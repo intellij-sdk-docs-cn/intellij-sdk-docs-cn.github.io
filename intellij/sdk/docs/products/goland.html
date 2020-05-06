@@ -1,0 +1,177 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>GoLand Plugin Development / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//products/goland.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="GoLand Plugin Development" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-26T11:43:12+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="GoLand Plugin Development" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="products/goland">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/products/data_grip.html">DataGrip Plugin Development</a>
+                        <a class="navigation-links__next" href="/products/idea.html">IntelliJ IDEA</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/products/goland.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>GoLand Plugin Development</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<a name="introduction" class="elem-anchor"></a>
+<h2>Introduction<a href="#introduction" class="anchor-link"><span></span></a></h2>
+<p><a href="https://www.jetbrains.com/go/" data-bypass="yes" target="_blank"><span>GoLand</span></a> is an IntelliJ Platform-based product.
+Plugin projects for GoLand can be developed using IntelliJ IDEA with the <code class="code highlight language-text">gradle-intellij-plugin</code>.</p>
+
+<a name="configuring-plugin-projects-targeting-goland" class="elem-anchor"></a>
+<h2>Configuring Plugin Projects Targeting GoLand<a href="#configuring-plugin-projects-targeting-goland" class="anchor-link"><span></span></a></h2>
+<p>The configuration of GoLand plugin projects follows the methods described in <a href="dev_alternate_products.html#configuring-plugin-projects-using-the-intellij-idea-product-attribute"><span>Configuring Plugin Projects using the IntelliJ IDEA Product Attribute</span></a>, and <a href="dev_alternate_products.html#configuring-pluginxml"><span>Configuring the plugin.xml File</span></a>.</p>
+
+<p>The table below summarizes the <code class="code highlight language-text">gradle-intellij-plugin</code> attributes to set in the <code class="code highlight language-text">build.gradle</code> file for a GoLand plugin project:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><code class="code highlight language-text">gradle-intellij-plugin</code> Attribute</th>
+      <th>Attribute Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://github.com/JetBrains/gradle-intellij-plugin/blob/master/README.md#intellij-platform-properties" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">intellij.type</code></span></a></td>
+      <td><code class="code highlight language-text">IU</code> for IntelliJ IDEA Ultimate. (The Go plugin isn’t compatible with IntelliJ IDEA Community Edition.)</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/JetBrains/gradle-intellij-plugin/blob/master/README.md#intellij-platform-properties" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">intellij.version</code></span></a></td>
+      <td>Set to the same <code class="code highlight language-text">IU</code> BRANCH.BUILD as the GoLand target version, e.g. <code class="code highlight language-text">193.5233.102</code></td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/JetBrains/gradle-intellij-plugin/blob/master/README.md#intellij-platform-properties" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">intellij.plugins</code></span></a></td>
+      <td><code class="code highlight language-text">org.jetbrains.plugins.go:193.5233.102.83</code> for the Go plugin.<br />See below for Go plugin version information.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/JetBrains/gradle-intellij-plugin/blob/master/README.md#running-dsl" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">runIde.ideDirectory</code></span></a></td>
+      <td>Path to locally installed target version of GoLand. For example, on macOS:<br /><code class="code highlight language-text">/Users/&lt;user name&gt;/Library/Application Support/JetBrains/Toolbox/apps/Goland/ch-0/193.5233.112/GoLand.app/Contents</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The version of the Go plugin is explicitly declared because it isn’t bundled with IntelliJ IDEA Ultimate Edition. 
+Select a <a href="http://plugins.jetbrains.com/plugin/9568-go/versions" data-bypass="yes" target="_blank"><span>version</span></a> of the Go plugin that is compatible with the IntelliJ Idea Ultimate version.</p>
+
+<p>The dependency on the Go plugin APIs must be declared in the <code class="code highlight language-text">plugin.xml</code> file.
+As described in <a href="/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html#modules-specific-to-functionality"><span>Modules Specific to Functionality</span></a> table, the <code class="code highlight language-text">&lt;depends&gt;</code> tags must declare <code class="code highlight language-text">com.intellij.modules.go</code>.
+The plugin.xml file must also declare a dependency on <code class="code highlight language-text">com.intellij.modules.platform</code> as explained in <a href="dev_alternate_products.html#configuring-pluginxml"><span>Configuring the plugin.xml File</span></a>. 
+The dependency declaration is illustrated in the <code class="code highlight language-text">plugin.xml</code> snippet below:</p>
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper"><span class="c">&lt;!-- Requires the Go plugin --&gt;</span>
+<span class="nt">&lt;depends&gt;</span>org.jetbrains.plugins.go<span class="nt">&lt;/depends&gt;</span>
+<span class="c">&lt;!-- Requires the platform module to distinguish it from a legacy plugin --&gt;</span>
+<span class="nt">&lt;depends&gt;</span>com.intellij.modules.platform<span class="nt">&lt;/depends&gt;</span>
+</code></div>
+<a name="available-goland-apis" class="elem-anchor"></a>
+<h2>Available GoLand APIs<a href="#available-goland-apis" class="anchor-link"><span></span></a></h2>
+<p>Use the <a href="/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html#exploring-apis-as-a-consumer"><span>Exploring APIs as a Consumer</span></a> process to identify the library <code class="code highlight language-text">intellij-go-&lt;version&gt;.jar</code>, where <code class="code highlight language-text">&lt;version&gt;</code> corresponds to the version of the Go plugin.
+Test your plugin with any version of GoLand you intend to support.</p>
+
+<a name="open-source-plugins-for-goland" class="elem-anchor"></a>
+<h2>Open Source Plugins for GoLand<a href="#open-source-plugins-for-goland" class="anchor-link"><span></span></a></h2>
+<p>When learning new APIs, it is helpful to have some representative projects for reference:</p>
+<ul>
+  <li><a href="https://github.com/pkondratev/Intellij-go-method-generator" data-bypass="yes" target="_blank"><span>Go Method Generator</span></a></li>
+  <li><a href="https://github.com/OddCN/go-builder-generator-idea-plugin" data-bypass="yes" target="_blank"><span>Go Builder Generator</span></a></li>
+</ul>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/products/data_grip.html">DataGrip Plugin Development</a>
+                        <a class="navigation-links__next" href="/products/idea.html">IntelliJ IDEA</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 26 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

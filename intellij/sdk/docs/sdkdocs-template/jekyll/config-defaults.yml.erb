@@ -1,0 +1,203 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//sdkdocs-template/jekyll/config-defaults.yml.erb" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-05-07T05:32:50+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="sdkdocs-template/jekyll/config-defaults.yml.erb">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        
+                        
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/sdkdocs-template/jekyll/config-defaults.yml.erb" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    
+                    ---
+product_name: MyProduct
+#product_version: 1.0
+product_type: Web Help
+
+# Specify the base url of the site. This is the path to the root of the site once
+# it's been deployed. MUST have a trailing slash. Root should be '/'
+baseurl: /devguide-test/
+
+# Used to convert an upsource:///path/to/file.java into a real https link
+# Note that commit can also be HEAD
+upsource:
+  server: upsource.jetbrains.com
+  repo: idea-ce
+  commit: 1731d054af4ca27aa827c03929e27eeb0e6a8366
+
+# =============================================================================
+#
+# Everything above here is expected to be overridden in _config.yml
+# Everything below should be left alone, but CAN be overridden if necessary
+# Note that anything being overridden doesn't get processed for env vars, etc.
+#
+# =============================================================================
+
+# Used by the TOC generator plugin.
+# Input and output files for generating the TOC.
+# Defaults are _SUMMARY.md and HelpTOC.json
+toc_input: _SUMMARY.md
+toc_output: HelpTOC.json
+
+# Make sure we require the plugins. We could just let the jekyll_plugins group
+# in Gemfile handle this, but that needs to be specified in the documentation
+# site's root, and might get forgotten. Specifying them here fails if we've not
+# set bundler up
+# gems: [jekyll-git_metadata, jekyll-redirect-from]
+
+# It's a shame we can't change the location of _includes via config
+# Also, these assume you've got this subrepo mounted as sdkdocs-template.
+# If you don't, override in the _config.yml
+plugins_dir: <%= ENV['_sdkdocs_template_dir'] %>/jekyll/plugins
+layouts_dir: <%= ENV['_sdkdocs_template_dir'] %>/jekyll/layouts
+
+# Do not copy these files
+exclude:
+  - Rakefile
+  - Gemfile
+  - Gemfile.lock
+  - sdkdocs-template
+  - '*.iml'
+  - .idea
+  - Gruntfile.js
+  - node_modules
+  - package.json
+
+# Use the CustomKramdownParser jekyll plugin
+markdown: CustomKramdownParser
+
+# Options for the custom kramdown parser
+# * Use GFM2, which parses GitHub Flavour Markup, including code fences, but adds support for
+#   line highlighting a code fence, e.g. ```csharp{1 23} ... ```
+# * Set the TOC levels - display h2-h6 only
+# * Use the rouge highlighter for GFM code fences
+kramdown:
+  input: GFM2
+  hard_wrap: false
+  auto_ids: false
+  toc_levels: 2..6
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    wrap: false
+
+# Configure Jekyll to use rouge for syntax highlighting liquid tags.
+# i.e. <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">...</span></code></pre></figure> snippets.
+# The markdown converter already configures Kramdown to use rouge
+# for GFM code blocks. This is for plain liquid tags.
+highlighter: rouge
+
+# Copy the following static files
+static_files:
+  "<%= ENV['_sdkdocs_static_files_dir'] %>/app/app.*": "app/"
+  "<%= ENV['_sdkdocs_static_files_dir'] %>/favicon.*": "/"
+  "<%= ENV['_sdkdocs_static_files_dir'] %>/*.png": "/"
+  "<%= ENV['_sdkdocs_static_files_dir'] %>/*.svg": "/"
+  "<%= ENV['_sdkdocs_static_files_dir'] %>/../styles/*": "app/"
+  "<%= ENV['_sdkdocs_static_files_dir'] %>/../images/*": "app/"
+
+defaults:
+  - values:
+      layout: 'webhelp'
+      edit_on_github: true
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        
+                        
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 7 May 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

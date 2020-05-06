@@ -1,0 +1,215 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>PSI References / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//basics/architectural_overview/psi_references.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="PSI References" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="PSI References" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="basics/architectural_overview/psi_references">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/architectural_overview/navigating_psi.html">Navigating the PSI</a>
+                        <a class="navigation-links__next" href="/basics/architectural_overview/modifying_psi.html">Modifying the PSI</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/basics/architectural_overview/psi_references.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>PSI References</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>A <em>reference</em> in a PSI tree is an object that represents a link from a <em>usage</em> of a certain element in the code
+to the corresponding <em>declaration</em>. <em>Resolving</em> a reference means locating the declaration to which a specific usage
+refers.</p>
+
+<p>The most common type of references is defined by language semantics. For example, consider a simple Java method:</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">hello</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+<span class="o">}</span>
+</code></div>
+
+<p>This simple code fragment contains five references. The references created by the identifiers <code class="code highlight language-text">String</code>, <code class="code highlight language-text">System</code>, <code class="code highlight language-text">out</code> and
+<code class="code highlight language-text">println</code> can be resolved to the corresponding declarations in the JDK: the <code class="code highlight language-text">String</code> and <code class="code highlight language-text">System</code> classes, the <code class="code highlight language-text">out</code> field and the
+<code class="code highlight language-text">println</code> method. The reference created by the second occurrence of the <code class="code highlight language-text">message</code> identifier in <code class="code highlight language-text">println(message)</code> can be resolved to the
+<code class="code highlight language-text">message</code> parameter, declared by <code class="code highlight language-text">String message</code> in the method header.</p>
+
+<p>Note that <code class="code highlight language-text">String message</code> is not a reference, and cannot be resolved. Instead, it’s a <em>declaration</em>. It does not
+refer to any name defined elsewhere; instead, it defines a name by itself.</p>
+
+<p>A reference is an instance of a class implementing the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiReference.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiReference</code></span></a> interface.
+Note that references are distinct from PSI elements. You can obtain the references created by a PSI element by calling
+<code class="code highlight language-text">PsiElement.getReferences()</code>, and can go back from a reference to an element by calling <code class="code highlight language-text">PsiReference.getElement()</code>.</p>
+
+<p>To <em>resolve</em> the reference - to locate the declaration being referenced - you call <code class="code highlight language-text">PsiReference.resolve()</code>. It’s very
+important to understand the difference between <code class="code highlight language-text">PsiReference.getElement()</code> and <code class="code highlight language-text">PsiReference.resolve()</code>. The former method returns the <em>source</em>
+of a reference, while the latter returns its <em>target</em>. In the example above, for the <code class="code highlight language-text">message</code> reference, <code class="code highlight language-text">getElement()</code>
+will return the <code class="code highlight language-text">message</code> identifier on the second line of the snippet, and <code class="code highlight language-text">resolve()</code> will return the <code class="code highlight language-text">message</code> identifier
+on the first line (inside the parameter list).</p>
+
+<p>The process of resolving references is distinct from parsing, and is not performed at the same time. Moreover, it is
+not always successful. If the code currently open in the IDE does not compile, or in other situations, it’s normal
+for <code class="code highlight language-text">PsiReference.resolve()</code> to return <code class="code highlight language-text">null</code>, and if you work with references, you need to be able to handle that in your code.</p>
+
+<aside class="tip">
+  <p> Please see also <em>Cache results of heavy computations</em> in <a href="/intellij/sdk/docs/reference_guide/performance/performance.html#working-with-psi-efficiently"><span>Working with PSI efficiently</span></a>.</p>
+</aside>
+
+<a name="contributed-references" class="elem-anchor"></a>
+<h2>Contributed References<a href="#contributed-references" class="anchor-link"><span></span></a></h2>
+
+<p>In addition to references defined by the semantics of the programming language, IntelliJ IDEA recognizes many references
+which are determined by the semantics of the APIs and frameworks used in your code. Consider the following example:</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="n">File</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">"foo.txt"</span><span class="o">);</span>
+</code></div>
+
+<p>Here, “foo.txt” has no special meaning from the point of view of the Java syntax - it’s just a string literal. However,
+if you open this example in IntelliJ IDEA, and if you have a file called “foo.txt” in the same directory, you’ll notice
+that you’re able to Ctrl-click on “foo.txt” and navigate to the file. This works because IntelliJ IDEA recognizes the
+semantics of <code class="code highlight language-text">new File(...)</code> and <em>contributes a reference</em> into the string literal passed as a parameter to the method.</p>
+
+<p>Normally, references can be contributed into elements which don’t have their own references, such as string literals
+and comments. References are also often contributed into non-code files, such as XML or JSON.</p>
+
+<p>Contributing references is one of the most common ways to extend an existing language. For example, your plugin can
+contribute references to Java code, even though the Java PSI is part of the platform and not defined in your plugin.</p>
+
+<p>To contribute your own references, see the <a href="/intellij/sdk/docs/tutorials/custom_language_support/reference_contributor.html"><span>reference contributor tutorial</span></a>.</p>
+
+<a name="references-with-optional-or-multiple-resolve-results" class="elem-anchor"></a>
+<h2>References with Optional or Multiple Resolve Results<a href="#references-with-optional-or-multiple-resolve-results" class="anchor-link"><span></span></a></h2>
+
+<p>In the simplest case, a reference resolves to a single element, and if the resolve fails, this means that the
+code is incorrect and the IDE needs to highlight it as an error. However, there are cases when the situation is different.</p>
+
+<p>The first case is <em>soft references</em>. Consider the <code class="code highlight language-text">new File("foo.txt")</code> example above. If IntelliJ IDEA can’t find
+the file “foo.txt”, it doesn’t mean that an error needs to be highlighted - maybe the file is only available at runtime.
+Such references return <code class="code highlight language-text">true</code> from the <code class="code highlight language-text">PsiReference.isSoft()</code> method.</p>
+
+<p>The second case is <em>polyvariant references</em>. Consider the case of a JavaScript program. JavaScript is a dynamically
+typed language, so the IDE cannot always precisely determine which method is being called at a particular location.
+To handle this, it provides a reference that can be resolved to multiple possible elements.
+Such references implement the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiPolyVariantReference.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiPolyVariantReference</code></span></a> interface.</p>
+
+<p>For resolving a <code class="code highlight language-text">PsiPolyVariantReference</code>, you call its <code class="code highlight language-text">multiResolve()</code> method. The call returns an array of
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/ResolveResult.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ResolveResult</code></span></a> objects. Each of the
+objects identifies a PSI element and also specifies whether the result is valid. For example, if you have multiple
+Java method overloads and a call with arguments not matching any of the overloads, you will get
+back <code class="code highlight language-text">ResolveResult</code> objects for all of the overloads, and <code class="code highlight language-text">isValidResult()</code> will return false for all of them.</p>
+
+<a name="searching-for-references" class="elem-anchor"></a>
+<h2>Searching for References<a href="#searching-for-references" class="anchor-link"><span></span></a></h2>
+
+<p>As you already know, resolving a reference means going from a usage to the corresponding declaration. To perform the
+navigation in the opposite direction - from a declaration to its usages - you need to perform a <strong>references search</strong>.</p>
+
+<p>To perform a references search, you use the 
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/indexing-api/src/com/intellij/psi/search/searches/ReferencesSearch.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ReferencesSearch</code></span></a> class.
+To perform a search, you need to specify the <em>element</em> to search for, and optionally other parameters such as the
+scope in which the reference needs to be searched. You get back a <em>query</em> object that allows you to get all results
+as an array, or to iterate over the results one by one. If you don’t need to collect all the results, it’s more efficient
+to use the iteration, because it allows you to stop the processing once you’ve found the element you need.</p>
+
+<a name="implementing-references" class="elem-anchor"></a>
+<h2>Implementing References<a href="#implementing-references" class="anchor-link"><span></span></a></h2>
+
+<p>The documentation above covers the key points of accessing references. If you need to create your own references
+(if you’re implementing a custom language or a reference contributor for an existing language),
+please refer to the <a href="/intellij/sdk/docs/reference_guide/custom_language_support/references_and_resolve.html"><span>guide</span></a> and
+<a href="/intellij/sdk/docs/tutorials/custom_language_support/reference_contributor.html"><span>tutorial</span></a> for implementing references.</p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/architectural_overview/navigating_psi.html">Navigating the PSI</a>
+                        <a class="navigation-links__next" href="/basics/architectural_overview/modifying_psi.html">Modifying the PSI</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

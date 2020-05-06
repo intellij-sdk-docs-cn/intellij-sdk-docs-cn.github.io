@@ -1,0 +1,215 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>References and Resolve / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//reference_guide/custom_language_support/references_and_resolve.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="References and Resolve" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="References and Resolve" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="reference_guide/custom_language_support/references_and_resolve">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/custom_language_support/syntax_highlighting_and_error_highlighting.html">Syntax Highlighting and Error Highlighting</a>
+                        <a class="navigation-links__next" href="/reference_guide/custom_language_support/code_completion.html">Code Completion</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/reference_guide/custom_language_support/references_and_resolve.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>References and Resolve</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>One of the most important and tricky parts in implementing a custom language PSI is resolving references.
+Resolving references gives users the ability to navigate from a PSI element usage (accessing a variable, calling a method and so on) to the declaration of that element (the variable’s definition, a method declaration and so on).
+This feature is needed in order to support the <em>Go to Declaration</em> action invoked by <strong>Ctrl-B</strong> and <strong>Ctrl-Click</strong>, and it is a prerequisite for implementing the <a href="find_usages.html"><span>Find Usages</span></a> action, the <a href="rename_refactoring.html"><span>Rename Refactoring</span></a> and <a href="code_completion.html"><span>Code Completion</span></a>.</p>
+
+<aside class="note">
+  <p> The <em>Quick Definition</em> action is based on the same mechanism, so it becomes automatically available for all references that can be resolved by the language plugin.</p>
+</aside>
+
+<p>All PSI elements which work as references (for which the <em>Go to Declaration</em> action applies) need to implement the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiElement.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiElement.getReference()</code></span></a>
+method and to return a
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiReference.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiReference</code></span></a>
+implementation from that method.
+The
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiReference.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiReference</code></span></a>
+interface can be implemented by the same class as
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiElement.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiElement</code></span></a>,
+or by a different class. An element can also contain multiple references (for example, a string literal can contain multiple substrings which are valid full-qualified class names), in which case it can implement
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiElement.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiElement.getReferences()</code></span></a>
+and return the references as an array.</p>
+
+<p>The main method of the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiReference.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiReference</code></span></a>
+interface is <code class="code highlight language-text">resolve()</code>, which returns the element to which the reference points, or <code class="code highlight language-text">null</code> if it was not possible to resolve the reference to a valid element (for example, should it point to an undefined class). The resolved element should implement the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiNamedElement.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiNamedElement</code></span></a> interface.</p>
+
+<aside class="note">
+  <p> While both the referencing element and the referenced element both have a name, only the element which <strong>introduces</strong> the name (e.g. the definition <code class="code highlight language-text">int x = 42</code>) needs to implement the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiNamedElement.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiNamedElement</code></span></a> interface. It is not necessary for the referencing element at the point of usage (e.g. the <code class="code highlight language-text">x</code> in the expression <code class="code highlight language-text">x + 1</code>) to implement <code class="code highlight language-text">PsiNamedElement</code>.</p>
+</aside>
+
+<aside class="tip">
+  <p> In order to enable more advanced IntelliJ functionality, prefer implementing <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiNameIdentifierOwner.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiNameIdentifierOwner</code></span></a> over <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiNamedElement.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiNamedElement</code></span></a> where possible.</p>
+</aside>
+
+<p>A counterpart to the <code class="code highlight language-text">resolve()</code> method is <code class="code highlight language-text">isReferenceTo()</code>, which checks if the reference resolves to the specified element. The latter method can be implemented by calling <code class="code highlight language-text">resolve()</code> and comparing the result with the passed PSI element, but additional optimizations are possible (for example, performing the tree walk only if the element text is equal to the text of the reference).</p>
+
+<p><strong>Examples</strong>:</p>
+<ul>
+  <li><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/plugins/properties/src/com/intellij/lang/properties/ResourceBundleReference.java" data-bypass="yes" target="_blank"><span>Reference</span></a>
+to a ResourceBundle in the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/plugins/properties" data-bypass="yes" target="_blank"><span>Properties language plugin</span></a></li>
+  <li><a href="/intellij/sdk/docs/tutorials/custom_language_support/reference_contributor.html"><span>Custom Language Support Tutorial: Reference Contributor</span></a></li>
+</ul>
+
+<aside class="tip">
+  <p> Please see also <em>Cache results of heavy computations</em> in <a href="/intellij/sdk/docs/reference_guide/performance/performance.html#working-with-psi-efficiently"><span>Working with PSI efficiently</span></a>.</p>
+</aside>
+
+<p>There’s a set of interfaces which can be used as a base for implementing resolve support, namely the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/scope/PsiScopeProcessor.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiScopeProcessor</code></span></a> interface and the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiElement.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiElement.processDeclarations()</code></span></a>
+method.
+These interfaces have a number of extra complexities which are not necessary for most custom languages (like support for substituting Java generics types), but they are required if the custom language can have references to Java code.
+If Java interoperability is not required, the plugin can forgo the standard interfaces and provide its own, different implementation of resolve.</p>
+
+<p>The implementation of resolve based on the standard helper classes contains of the following components:</p>
+
+<ul>
+  <li>
+    <p>A class implementing the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/scope/PsiScopeProcessor.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiScopeProcessor</code></span></a>
+interface which gathers the possible declarations for the reference and stops the resolve process when it has successfully completed.
+The main method which needs to be implemented is <code class="code highlight language-text">execute()</code>, which is called to process every declaration encountered during the resolve, and returns <code class="code highlight language-text">true</code> if the resolve needs to be continued or <code class="code highlight language-text">false</code> if the declaration has been found.
+The methods <code class="code highlight language-text">getHint()</code> and <code class="code highlight language-text">handleEvent()</code> are used for internal optimizations and can be left empty in the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/scope/PsiScopeProcessor.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiScopeProcessor</code></span></a>
+implementations for custom languages.</p>
+  </li>
+  <li>
+    <p>A function which walks the PSI tree up from the reference location until the resolve has successfully completed or until the end of the resolve scope has been reached.
+If the target of the reference is located in a different file, the file can be located, for example, using
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/indexing-impl/src/com/intellij/psi/search/FilenameIndex.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">FilenameIndex.getFilesByName()</code></span></a>
+(if the file name is known) or by iterating through all custom language files in the project (<code class="code highlight language-text">iterateContent()</code> in the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/indexing-impl/src/com/intellij/psi/search/FilenameIndex.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">FileIndex</code></span></a>
+interface obtained from
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/projectModel-api/src/com/intellij/openapi/roots/ProjectRootManager.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ProjectRootManager.getFileIndex()</code></span></a>
+).</p>
+  </li>
+  <li>
+    <p>The individual PSI elements, on which the <code class="code highlight language-text">processDeclarations()</code> method is called during the PSI tree walk.
+If a PSI element is a declaration, it passes itself to the <code class="code highlight language-text">execute()</code> method of the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/scope/PsiScopeProcessor.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiScopeProcessor</code></span></a>
+passed to it.
+Also, if necessary according to the language scoping rules, a PSI element can pass the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/scope/PsiScopeProcessor.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiScopeProcessor</code></span></a>
+to its child elements.</p>
+  </li>
+</ul>
+
+<a name="resolving-to-multiple-targets" class="elem-anchor"></a>
+<h3>Resolving to Multiple Targets<a href="#resolving-to-multiple-targets" class="anchor-link"><span></span></a></h3>
+<p>An extension of the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiReference.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiReference</code></span></a>
+interface, which allows a reference to resolve to multiple targets, is the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiPolyVariantReference.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiPolyVariantReference</code></span></a>
+interface.
+The targets to which the reference resolves are returned from the <code class="code highlight language-text">multiResolve()</code> method.
+The <em>Go to Declaration</em> action for such references allows the user to choose a navigation target.
+The implementation of <code class="code highlight language-text">multiResolve()</code> can be also based on
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/scope/PsiScopeProcessor.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiScopeProcessor</code></span></a>,
+and can collect all valid targets for the reference instead of stopping when the first valid target is found.</p>
+
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/custom_language_support/syntax_highlighting_and_error_highlighting.html">Syntax Highlighting and Error Highlighting</a>
+                        <a class="navigation-links__next" href="/reference_guide/custom_language_support/code_completion.html">Code Completion</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,152 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>IntelliJ Platform SDK / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//intro/welcome.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="IntelliJ Platform SDK" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-03-28T03:05:21+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="IntelliJ Platform SDK" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="intro/welcome">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        
+                        <a class="navigation-links__next" href="/intro/intellij_platform.html">What is the IntelliJ Platform?</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/intro/welcome.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>IntelliJ Platform SDK</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p><a href="https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub" data-bypass="yes" target="_blank"><span><img src="https://jb.gg/badges/official-flat-square.svg" alt="official JetBrains project" /></span></a></p>
+
+<p>欢迎来到 <em>IntelliJ Platform</em> SDK。这是通过创建插件，自定义语言支持，或构建自定义 IDE 来扩展 <em>IntelliJ Platform</em> 的主要文档来源。</p>
+
+<a name="section" class="elem-anchor"></a>
+<h2>入门<a href="#section" class="anchor-link"><span></span></a></h2>
+
+<ul>
+  <li><a href="intellij_platform.html"><span><strong>什么是 IntelliJ Platform？</strong></span></a></li>
+  <li><a href="about.html"><span><strong>关于这个指南</strong></span></a>
+    <ul>
+      <li><a href="key_topics.html"><span><strong>关键主题</strong></span></a></li>
+    </ul>
+  </li>
+  <li><a href="getting_help.html"><span><strong>获取帮助</strong></span></a></li>
+  <li><a href="/intellij/sdk/docs/basics/getting_started.html"><span><strong>入门</strong></span></a></li>
+  <li><a href="/intellij/sdk/docs/appendix/resources/useful_links.html"><span><strong>有用的链接</strong></span></a></li>
+</ul>
+
+<a name="section-1" class="elem-anchor"></a>
+<h2>更新<a href="#section-1" class="anchor-link"><span></span></a></h2>
+<p>最新的更改请参见<a href="content_updates.html"><span>内容更新</span></a>。 在 Twitter 上关注 <a href="https://twitter.com/JBPlatform/" data-bypass="yes" target="_blank"><span>JBPlatform</span></a> 并访问 <a href="https://blog.jetbrains.com/platform/" data-bypass="yes" target="_blank"><span>JetBrains Platform 博客</span></a>来获取最新公告。</p>
+
+<p>升级你的插件到最新 platform 发行版？确保你检查了<a href="/intellij/sdk/docs/reference_guide/api_changes_list.html"><span>不兼容的更改</span></a>以及<a href="/intellij/sdk/docs/reference_guide/api_notable/api_notable.html"><span>值得注意的更改和特性</span></a>。</p>
+
+<p>2020.1 将迎来<a href="/intellij/sdk/docs/basics/plugin_structure/dynamic_plugins.html"><span>动态插件</span></a>。我们还发布了 2020 年的 IntelliJ Platform 路线图：<a href="https://blog.jetbrains.com/idea/2019/12/intellij-platform-roadmap-for-2020/" data-bypass="yes" target="_blank"><span>部分 I</span></a> <a href="https://blog.jetbrains.com/idea/2020/01/intellij-based-ide-features-roadmap-for-2020/" data-bypass="yes" target="_blank"><span>部分 II</span></a></p>
+
+<aside class="注意">
+  <p> 如果你的插件依赖 Java 功能并且是 2019.2 或更高版本，请确保遵循此<a href="https://blog.jetbrains.com/platform/2019/06/java-functionality-extracted-as-a-plugin/" data-bypass="yes" target="_blank"><span>博客文章</span></a>中的步骤。</p>
+</aside>
+
+<a name="section-2" class="elem-anchor"></a>
+<h2>开源<a href="#section-2" class="anchor-link"><span></span></a></h2>
+<p>这个指南是开源的，并且以 Apache 2.0 协议开源。源代码（作为 Markdown）被<a href="https://github.com/JetBrains/intellij-sdk-docs" data-bypass="yes" target="_blank"><span>托管在 GitHub 上</span></a>。
+请参见 <a href="/intellij/sdk/docs/CONTRIBUTING.html"><span>CONTRIBUTING.md</span></a> 来获取有关如何在本地上托管文档与进行贡献的详细信息。</p>
+
+<p>如果你在这个指南中遇到了 bug，或需要缺失内容的帮助，请参见<a href="getting_help.html"><span>获取帮助</span></a>。</p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        
+                        <a class="navigation-links__next" href="/intro/intellij_platform.html">What is the IntelliJ Platform?</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 28 March 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

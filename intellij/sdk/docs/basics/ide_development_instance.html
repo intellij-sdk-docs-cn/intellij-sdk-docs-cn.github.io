@@ -1,0 +1,213 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>IDE Development Instances / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//basics/ide_development_instance.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="IDE Development Instances" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-03-18T18:42:50+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="IDE Development Instances" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="basics/ide_development_instance">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/getting_started.html">Creating Your First Plugin</a>
+                        <a class="navigation-links__next" href="/basics/getting_started/update_plugins_format.html">Publishing a Plugin to a Custom Plugin Repository</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/basics/ide_development_instance.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>IDE Development Instances</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>A JetBrains feature for developing plugins is running or debugging a plugin project from within an IntelliJ Platform-based IDE such as IntelliJ IDEA. 
+Selecting the <a href="getting_started/running_and_debugging_a_plugin.html"><span><strong>Run</strong></span></a> menu for a DevKit-based project, or the <a href="/intellij/sdk/docs/tutorials/build_system/prerequisites.html#running-a-simple-gradle-based-intellij-platform-plugin"><span><strong>runIde</strong></span></a> task for a Gradle-based project will launch a <em>Development Instance</em> of the IDE with the plugin enabled.
+This page describes how to control some of the settings for the Development Instance.</p>
+
+<a name="using-a-jetbrains-runtime-for-the-development-instance" class="elem-anchor"></a>
+<h2>Using a JetBrains Runtime for the Development Instance<a href="#using-a-jetbrains-runtime-for-the-development-instance" class="anchor-link"><span></span></a></h2>
+<p>A common use case is to develop (build) a plugin project against a JDK, e.g. Java 8, and then run or debug the plugin in a Development Instance of the IDE.
+In such a situation, it is important the Development Instance uses a JetBrains Runtime rather than the JDK used to build the plugin project.</p>
+
+<p>The JetBrains Runtime is an environment for running IntelliJ Platform-based IDEs on Windows, macOS, and Linux. 
+It has some modifications by JetBrains, such as fixes for native crashes not present in official JDK builds.
+A version of the JetBrains Runtime is bundled with all IntelliJ Platform-based IDEs.
+To produce accurate results while running or debugging a plugin project in a Development Instance, follow the procedures below to ensure the Development Instance uses a JetBrains Runtime.</p>
+
+<a name="determining-a-jetbrains-runtime-version" class="elem-anchor"></a>
+<h3>Determining a JetBrains Runtime Version<a href="#determining-a-jetbrains-runtime-version" class="anchor-link"><span></span></a></h3>
+<p>The JetBrains Runtime is determined from the JDK version used to build the plugin project.
+If a plugin is being developed against the Java 8 SE Development Kit 8 for macOS, for example, <code class="code highlight language-text">jdk-8u212-macosx-x64.dmg</code>.
+(This example will use macOS, but Windows and Linux follow the same procedure.)
+To acquire the compatible JetBrains Runtime:</p>
+<ul>
+  <li>Go to the <a href="https://bintray.com/jetbrains/intellij-jbr" data-bypass="yes" target="_blank"><span>JetBrains Bintray site</span></a>.</li>
+  <li>Select the package name corresponding to the platform and SDK version.
+In this case the package name is <code class="code highlight language-text">jbrsdk8-osx-x64</code> for <strong>j</strong>et <strong>b</strong>rains <strong>r</strong>untime <em>sdk</em> version 8, maxOS x64 hardware.</li>
+  <li>On the macOS package page of the JetBrains Bintray site, select the <strong>Files</strong> menu.</li>
+  <li>In the list of files, find the name that satisfies:
+    <ul>
+      <li>The version and build number match the JDK used to build the plugin project.
+For example, <code class="code highlight language-text">jbrx-8u212-osx-x64</code> matches the Java 8 JDK, build 212: <code class="code highlight language-text">jdk-8u212-macosx-x64</code>.</li>
+      <li>Pick the highest JetBrains Runtime build number available.
+For example, as of this writing, the file is <code class="code highlight language-text">jbrx-8u212-osx-x64-b1566.8.tar.gz</code>, meaning build 1566.8 for this JetBrains Runtime matching Java 8 JDK build 212.</li>
+    </ul>
+  </li>
+</ul>
+
+<a name="setting-a-jetbrains-runtime-for-gradle-based-plugin-projects" class="elem-anchor"></a>
+<h3>Setting a JetBrains Runtime for Gradle-Based Plugin Projects<a href="#setting-a-jetbrains-runtime-for-gradle-based-plugin-projects" class="anchor-link"><span></span></a></h3>
+<p>By default, the Gradle plugin will fetch and use the version of the JetBrains Runtime for the Development Instance corresponding to the version of the IntelliJ Platform used for building the plugin project.
+In this situation no additional configuration is required.</p>
+
+<a name="setting-a-jetbrains-runtime-for-devkit-based-plugin-projects" class="elem-anchor"></a>
+<h3>Setting a JetBrains Runtime for DevKit-Based Plugin Projects<a href="#setting-a-jetbrains-runtime-for-devkit-based-plugin-projects" class="anchor-link"><span></span></a></h3>
+<p>The <a href="https://www.jetbrains.com/help/idea/creating-and-editing-run-debug-configurations.html#edit" data-bypass="yes" target="_blank"><span>Run Configuration</span></a> for a DevKit-based plugin project controls the JDK used to run and debug a plugin project in a Development Instance.
+The default Run Configuration uses the same JDK for building the plugin project and running the plugin in a Development Instance.
+To change the runtime for the Development Instance, set the <em>JRE:</em> field in the Run Configuration edit dialog to use a downloaded JetBrains Runtime.
+Continuing from the example <a href="#determining-a-jetbrains-runtime-version"><span>above</span></a>, the <em>JRE:</em> field is set to use <code class="code highlight language-text">jbrx-8u212-osx-x64-1566_8</code></p>
+
+<p><img src="img/jbr_runconfig.png" alt="Setting Run Configuration JRE" width="900px" /></p>
+
+<a name="enabling-auto-reload" class="elem-anchor"></a>
+<h2>Enabling Auto-Reload<a href="#enabling-auto-reload" class="anchor-link"><span></span></a></h2>
+<aside class="note">
+  <p> Starting in 2020.1, this is available for compatible <a href="/intellij/sdk/docs/basics/plugin_structure/dynamic_plugins.html"><span>dynamic plugins</span></a>.</p>
+</aside>
+
+<p>When adding system property <code class="code highlight language-text">idea.auto.reload.plugins</code> in the <a href="getting_started/running_and_debugging_a_plugin.html"><span>run configuration</span></a> (DevKit-based) or <a href="/intellij/sdk/docs/tutorials/build_system/prerequisites.html#running-a-simple-gradle-based-intellij-platform-plugin"><span><strong>runIde</strong></span></a> task (Gradle-based), dynamic plugins are reloaded automatically when their JARs are modified.
+This allows a much faster development cycle by avoiding a full restart of the development instance after code changes.</p>
+
+<p>For <a href="/intellij/sdk/docs/tutorials/build_system/prerequisites.html"><span>Gradle-based plugins</span></a> using <code class="code highlight language-text">gradle-intellij-plugin</code> 0.4.17 or later, this property is set automatically.</p>
+
+<a name="the-development-instance-sandbox-directory" class="elem-anchor"></a>
+<h2>The Development Instance Sandbox Directory<a href="#the-development-instance-sandbox-directory" class="anchor-link"><span></span></a></h2>
+<p>The <em>Sandbox Home</em> directory contains the <a href="#development-instance-settings-caches-logs-and-plugins"><span>settings, caches, logs, and plugins</span></a> for a Development Instance of the IDE. 
+This information is stored in a different location than for the <a href="https://intellij-support.jetbrains.com/hc/en-us/articles/206544519-Directories-used-by-the-IDE-to-store-settings-caches-plugins-and-logs" data-bypass="yes" target="_blank"><span>installed IDE itself</span></a>.</p>
+
+<a name="sandbox-home-location-for-gradle-based-plugin-projects" class="elem-anchor"></a>
+<h3>Sandbox Home Location for Gradle-Based Plugin Projects<a href="#sandbox-home-location-for-gradle-based-plugin-projects" class="anchor-link"><span></span></a></h3>
+<p>For Gradle-based plugins, the default Sandbox Home location is defined by the IntelliJ Platform <code class="code highlight language-text">gradle-intellij-plugin</code>. 
+See <a href="/intellij/sdk/docs/tutorials/build_system/prerequisites.html"><span>Configuring a Gradle Plugin Project</span></a> for more information about specifying a Sandbox Home location. 
+The default Sandbox Home location for Gradle-based plugin projects is:</p>
+<ul>
+  <li><strong>Windows</strong> <code class="code highlight language-text">&lt;Project Dir&gt;\build\idea-sandbox</code></li>
+  <li><strong>Linux or macOS</strong> <code class="code highlight language-text">&lt;Project Dir&gt;/build/idea-sandbox</code></li>
+</ul>
+
+<a name="sandbox-home-location-for-devkit-based-plugin-projects" class="elem-anchor"></a>
+<h3>Sandbox Home Location for DevKit-Based Plugin Projects<a href="#sandbox-home-location-for-devkit-based-plugin-projects" class="anchor-link"><span></span></a></h3>
+<p>For DevKit-based plugins, the default Sandbox Home location is defined in the IntelliJ Platform Plugin SDK. 
+See specifying the <a href="/intellij/sdk/docs/basics/getting_started/setting_up_environment.html"><span>Sandbox Home for DevKit Projects</span></a> for more information.
+The default Sandbox Home directory location for DevKit-based plugin projects is:</p>
+<ul>
+  <li><strong>Windows:</strong> <code class="code highlight language-text">&lt;User home&gt;\.&lt;product_system_name&gt;&lt;product_version&gt;\system\plugins-sandbox\</code></li>
+  <li><strong>Linux:</strong> <code class="code highlight language-text">~/.&lt;product_system_name&gt;&lt;product_version&gt;/system/plugins-sandbox/</code></li>
+  <li><strong>macOS</strong> <code class="code highlight language-text">~/Library/Caches/&lt;product_system_name&gt;&lt;product_version&gt;/plugins-sandbox/</code></li>
+</ul>
+
+<a name="development-instance-settings-caches-logs-and-plugins" class="elem-anchor"></a>
+<h3>Development Instance Settings, Caches, Logs, and Plugins<a href="#development-instance-settings-caches-logs-and-plugins" class="anchor-link"><span></span></a></h3>
+<p>Within the Sandbox Home directory are subdirectories pertaining to the Development Instance:</p>
+<ul>
+  <li><code class="code highlight language-text">config</code> contains settings for the IDE instance.</li>
+  <li><code class="code highlight language-text">plugins</code> contains folders for each plugin being run in the IDE instance.</li>
+  <li><code class="code highlight language-text">system/caches</code> or <code class="code highlight language-text">system\caches</code> holds the IDE instance data.</li>
+  <li><code class="code highlight language-text">system/log</code> or <code class="code highlight language-text">system\log</code> contains the <code class="code highlight language-text">idea.log</code> file for the IDE instance.</li>
+</ul>
+
+<p>Each of these Sandbox Home subdirectories can be manually cleared to reset the IDE Development Instance. 
+At the next launch of a Development Instance, the subdirectories will be repopulated with the appropriate information.</p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/getting_started.html">Creating Your First Plugin</a>
+                        <a class="navigation-links__next" href="/basics/getting_started/update_plugins_format.html">Publishing a Plugin to a Custom Plugin Repository</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 18 March 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

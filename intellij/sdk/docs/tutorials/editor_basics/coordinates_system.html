@@ -1,0 +1,348 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Editor Coordinate Systems - Caret Positions and Offsets / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//tutorials/editor_basics/coordinates_system.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Editor Coordinate Systems - Caret Positions and Offsets" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Editor Coordinate Systems - Caret Positions and Offsets" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="tutorials/editor_basics/coordinates_system">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/tutorials/editor_basics/working_with_text.html">Working with text</a>
+                        <a class="navigation-links__next" href="/tutorials/editor_basics/editor_events.html">3. Handling Editor Events</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/tutorials/editor_basics/coordinates_system.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Editor Coordinate Systems - Caret Positions and Offsets</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>The previous tutorial <a href="working_with_text.html"><span>Working with Text</span></a> demonstrated how to use actions to access a caret placed in a document open in an editor. 
+The examples replaced selected text in a document by using information about the caret.</p>
+
+<p>Every caret has a set of properties describing its position in one of several coordinate systems. 
+This tutorial describes how to access information about the caret(s) in an editor. 
+The tutorial presents the following sections:</p>
+<ul id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction"><span>Introduction</span></a></li>
+  <li><a href="#caret-positions-from-the-caretmodel-and-caret-objects" id="markdown-toc-caret-positions-from-the-caretmodel-and-caret-objects"><span>Caret Positions from the CaretModel and Caret Objects</span></a></li>
+  <li><a href="#editor-coordinate-systems" id="markdown-toc-editor-coordinate-systems"><span>Editor Coordinate Systems</span></a>    <ul>
+      <li><a href="#caret-logical-position" id="markdown-toc-caret-logical-position"><span>Caret Logical Position</span></a></li>
+      <li><a href="#caret-visual-position" id="markdown-toc-caret-visual-position"><span>Caret Visual Position</span></a></li>
+      <li><a href="#caret-column-position" id="markdown-toc-caret-column-position"><span>Caret Column Position</span></a>        <ul>
+          <li><a href="#caret-lean" id="markdown-toc-caret-lean"><span>Caret Lean</span></a></li>
+          <li><a href="#examples-of-caret-lean" id="markdown-toc-examples-of-caret-lean"><span>Examples of Caret Lean</span></a></li>
+        </ul>
+      </li>
+      <li><a href="#caret-offset" id="markdown-toc-caret-offset"><span>Caret Offset</span></a></li>
+    </ul>
+  </li>
+  <li><a href="#displaying-caret-positions" id="markdown-toc-displaying-caret-positions"><span>Displaying Caret Positions</span></a></li>
+</ul>
+
+<a name="introduction" class="elem-anchor"></a>
+<h2>Introduction<a href="#introduction" class="anchor-link"><span></span></a></h2>
+<p>In this tutorial, the <a href="https://github.com/JetBrains/intellij-sdk-docs/tree/master/code_samples/editor_basics" data-bypass="yes" target="_blank"><span>editor_basics</span></a> code sample is used to explore caret positions. 
+In particular, the <strong>Caret Position</strong> action added by <code class="code highlight language-text">editor_basics</code> to the editor context menu is used to retrieve information about the current caret position. 
+A keyboard shortcut can also initiate the action.</p>
+
+<p><img src="img/basics.png" alt="Editor Basics Menu" width="600px" /></p>
+
+<p>The source code for the Java class behind the menu action is <a href="https://github.com/JetBrains/intellij-sdk-docs/blob/master/code_samples/editor_basics/src/main/java/org/intellij/sdk/editor/EditorAreaIllustration.java" data-bypass="yes" target="_blank"><span>EditorAreaIllustration</span></a>. 
+The focus of discussion will be the <code class="code highlight language-text">EditorAreaIllustration.actionPerformed()</code> method. 
+For more information about creating action classes, see the <a href="/intellij/sdk/docs/tutorials/action_system.html"><span>Actions Tutorial</span></a> which covers the topic in depth.</p>
+
+<a name="caret-positions-from-the-caretmodel-and-caret-objects" class="elem-anchor"></a>
+<h2>Caret Positions from the CaretModel and Caret Objects<a href="#caret-positions-from-the-caretmodel-and-caret-objects" class="anchor-link"><span></span></a></h2>
+<p>The properties of a caret can be accessed by obtaining an instance of the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/openapi/editor/CaretModel.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">CaretModel</code></span></a> object. 
+As in the <a href="working_with_text.html"><span>Working with Text</span></a> tutorial, the <code class="code highlight language-text">AnActionEvent</code> is used to get the <code class="code highlight language-text">Editor</code> object.
+The <code class="code highlight language-text">Editor</code> object provides access to the <code class="code highlight language-text">CaretModel</code> object, as shown below:</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EditorAreaIllustration</span> <span class="kd">extends</span> <span class="n">AnAction</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="kd">final</span> <span class="n">AnActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+      <span class="c1">// Get access to the editor and caret model. update() validated editor's existence.</span>
+      <span class="kd">final</span> <span class="n">Editor</span> <span class="n">editor</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">getRequiredData</span><span class="o">(</span><span class="n">CommonDataKeys</span><span class="o">.</span><span class="na">EDITOR</span><span class="o">);</span>
+      <span class="kd">final</span> <span class="n">CaretModel</span> <span class="n">caretModel</span> <span class="o">=</span> <span class="n">editor</span><span class="o">.</span><span class="na">getCaretModel</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="editor-coordinate-systems" class="elem-anchor"></a>
+<h2>Editor Coordinate Systems<a href="#editor-coordinate-systems" class="anchor-link"><span></span></a></h2>
+<p>When a <code class="code highlight language-text">Document</code> is opened, the <code class="code highlight language-text">Editor</code> assigns an internal, zero-based coordinate system to lines and columns in the <code class="code highlight language-text">Document</code>. 
+The first line in a <code class="code highlight language-text">Document</code> and the first character in each line are assigned the zero position. 
+Every character in a <code class="code highlight language-text">Document</code> is assigned an <a href="#caret-offset"><span><em>Offset</em></span></a>, which is a zero-based count of the characters from the beginning of the file to that character. 
+These <a href="#caret-logical-position"><span>LogicalPosition</span></a> coordinates are used to describe the line and column number for a caret position. 
+Note that the Logical Position coordinate system is different from the editor UI, which is one-based rather than zero-based.</p>
+
+<p>Logical Position coordinates and other coordinate systems discussed in this tutorial can be used to characterize any location in an <code class="code highlight language-text">Editor</code>, not just carets. 
+Hints used for code insights are characterized in terms of these coordinates, for example <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/platform-impl/src/com/intellij/codeInsight/hint/HintManagerImpl.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">HintManager.getHintPosition()</code></span></a>. 
+Custom visual elements displayed in an <code class="code highlight language-text">Editor</code>, called <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/openapi/editor/Inlay.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">Inlay</code></span></a> objects, are also expressed in terms of these coordinate systems.</p>
+
+<p>The diagram below shows the Logical Position coordinate system applied to some example content. 
+The character “s” in the red box represents placing the cursor on that character. 
+It has the caret position of line 1, column 9, and Offset 28. 
+More about caret <a href="#caret-offset"><span>Offsets</span></a> is discussed below.</p>
+
+<p><img src="img/editor_coords.png" alt="Editor Coordinates" width="800px" /></p>
+
+<p>The <a href="/intellij/sdk/docs/reference_guide/multiple_carets.html"><span>Multiple Carets</span></a> documentation covers the subject of more than one caret in an Editor. 
+For this tutorial, be aware there may be more than one caret in an <code class="code highlight language-text">Editor</code> at any given time. 
+Consequently, examples use the <em>Primary Caret</em> in an <code class="code highlight language-text">Editor</code>. 
+If there is only one caret in an <code class="code highlight language-text">Editor</code>, it is the Primary Caret. 
+For the case of multiple carets in an <code class="code highlight language-text">Editor</code>, the Primary Caret is the one on which query and update methods in the model operate at the moment.</p>
+
+<a name="caret-logical-position" class="elem-anchor"></a>
+<h3>Caret Logical Position<a href="#caret-logical-position" class="anchor-link"><span></span></a></h3>
+<p>The caret <em>Logical Position</em> is a zero-based, (line and column) position of the caret in the Editor. 
+Logical Position information is obtained from the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/openapi/editor/LogicalPosition.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">LogicalPosition</code></span></a> object for that caret.</p>
+
+<p>The Logical Position line number of a caret ignores the effects of settings that change the presentation of a <code class="code highlight language-text">Document</code> within the Editor. 
+Examples of these settings are <a href="https://www.jetbrains.com/help/idea/working-with-source-code.html#code_folding" data-bypass="yes" target="_blank"><span>Code (Line) Folding</span></a> and <a href="https://www.jetbrains.com/help/idea/using-code-editor.html#f804afd8" data-bypass="yes" target="_blank"><span>Soft Line Wrap</span></a>. 
+These effects mean regardless of whether one or more lines in an Editor are folded or soft-wrapped, the caret Logical Position line number will not change.</p>
+
+<p>In the example Java file below, Logical Position line numbers 1-3 are folded into line 0. 
+The caret - a blue block - is placed on the letter “p” in “public.” 
+Using the <code class="code highlight language-text">editor_basics</code> <strong>Caret Position</strong> action to inspect the caret, it is reported to be at Logical Position (5,0) - which is line 5, character 0 - the first character in the line. 
+This means that caret Logical Position is not changed by Code Folding:</p>
+
+<p><img src="img/logical_pos_folded.png" alt="Caret Logical Position with Folding" width="800px" /></p>
+
+<p>However, note that applying Code Folding <em>does change the reported Visual Position</em> of the caret even if the Logical Position stays constant. 
+More about <a href="#caret-visual-position"><span>Visual Position</span></a> is discussed below. 
+However, it’s clear combinations of Code Folding and Soft Wrap means that one Logical Position of a caret could map to multiple Visual Positions. 
+The <code class="code highlight language-text">Editor</code> interface provides methods to work with a caret Logical and Visual Position, such as the method <code class="code highlight language-text">Editor.logicalToVisualPosition()</code>.</p>
+
+<a name="caret-visual-position" class="elem-anchor"></a>
+<h3>Caret Visual Position<a href="#caret-visual-position" class="anchor-link"><span></span></a></h3>
+<p>A caret’s <em>Visual Position</em> differs from Logical Position in that it takes into account editor presentation settings such as Code Folding and Soft Line Wrap. 
+In doing so, <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/openapi/editor/VisualPosition.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">VisualPosition</code></span></a> counts - zero-based - the lines of a <code class="code highlight language-text">Document</code> that can be <em>displayed</em> in an Editor. 
+Consequently, Visual Positions can’t be uniquely mapped to Logical Positions or corresponding lines in the underlying <code class="code highlight language-text">Document</code>.</p>
+
+<p>For example, Soft Line Wrap affects the Visual Position of succeeding lines. 
+In the image below, Soft Line Wrap is applied to Logical line three. 
+With the caret placed at the same character location as in previous tests, it is evident the Logical Position has not changed. 
+However, the Visual Position line number has increased by one! 
+The comments on each line illustrate how the Soft Wrap portion of Logical line three is evaluated as Visual Position line four, as though it was a separate line.</p>
+
+<p><img src="img/vis_pos_soft_wrap.png" alt="Caret Visual Position with Soft-Wrap" width="800px" /></p>
+
+<p>The Logical and Visual Position objects for a caret are obtained from the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/openapi/editor/Caret.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">Caret</code></span></a> object, as shown in the code snippet below.</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EditorAreaIllustration</span> <span class="kd">extends</span> <span class="n">AnAction</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="kd">final</span> <span class="n">AnActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+      <span class="c1">// Get access to the editor and caret model.</span>
+      <span class="kd">final</span> <span class="n">Editor</span> <span class="n">editor</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">getRequiredData</span><span class="o">(</span><span class="n">CommonDataKeys</span><span class="o">.</span><span class="na">EDITOR</span><span class="o">);</span>
+      <span class="kd">final</span> <span class="n">CaretModel</span> <span class="n">caretModel</span> <span class="o">=</span> <span class="n">editor</span><span class="o">.</span><span class="na">getCaretModel</span><span class="o">();</span>
+      <span class="kd">final</span> <span class="n">Caret</span> <span class="n">primaryCaret</span> <span class="o">=</span> <span class="n">caretModel</span><span class="o">.</span><span class="na">getPrimaryCaret</span><span class="o">();</span>
+      <span class="n">LogicalPosition</span> <span class="n">logicalPos</span> <span class="o">=</span> <span class="n">primaryCaret</span><span class="o">.</span><span class="na">getLogicalPosition</span><span class="o">();</span>
+      <span class="n">VisualPosition</span> <span class="n">visualPos</span> <span class="o">=</span> <span class="n">primaryCaret</span><span class="o">.</span><span class="na">getVisualPosition</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="caret-column-position" class="elem-anchor"></a>
+<h3>Caret Column Position<a href="#caret-column-position" class="anchor-link"><span></span></a></h3>
+<p>The <em>Column Position</em> is a count of characters from the beginning of a Logical (Position) line to the current caret position in that line. 
+Characters are counted using a zero-based numbering system, so the first character of a line is numbered zero. 
+Note that Column Position is different from the editor UI, which uses a one-based numbering scheme.</p>
+
+<p>Column Position includes:</p>
+<ul>
+  <li>Whitespace, such as tabs.
+Tabs can occupy multiple columns, up to the tab size set for the editor.</li>
+  <li>The character selected by the caret.</li>
+</ul>
+
+<a name="caret-lean" class="elem-anchor"></a>
+<h4>Caret Lean</h4>
+<p>The Column Position of a caret is the boundary between two characters. 
+A caret can be associated with either a preceding or succeeding character. 
+The association is important in bidirectional text, where mapping from Logical Column Position to Visual Column Position is not continuous.</p>
+
+<p>As defined in the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/openapi/editor/LogicalPosition.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">LogicalPosition</code></span></a> class, if a caret position is associated with a succeeding character it <em>Leans Forward</em>. 
+Otherwise, it is associated with the preceding character.</p>
+
+<p>As defined in the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/openapi/editor/VisualPosition.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">VisualPosition</code></span></a> class, if a caret position is associated with a succeeding character it <em>Leans Right</em>. 
+Otherwise, it is associated with the preceding character.</p>
+
+<a name="examples-of-caret-lean" class="elem-anchor"></a>
+<h4>Examples of Caret Lean</h4>
+<p>In the example below, placing a (blue) block caret on the first visible character in Logical line three produces a column position of 0 for both Visual and Logical Positions. 
+Note that the text is unidirectional in this example. 
+In the Logical Position the caret leans forward, meaning it is associated with the succeeding character in the Logical line. 
+For the Visual Position the caret leans right, indicating its association with the succeeding character in the Visual line.</p>
+
+<p><img src="img/caret_col_pos_block.png" alt="Caret Column Position - Block Caret" width="800px" /></p>
+
+<p><br /></p>
+
+<p>Consider the Java snippet below, and use the <code class="code highlight language-text">editor_basics</code> <strong>Caret Position</strong> action to report caret information at each step. 
+Be sure to use the keyboard shortcut to invoke the action so that the caret position is not disturbed.</p>
+
+<p>The line containing the <code class="code highlight language-text">String</code> variable declaration contains bidirectional text. 
+Starting on the left end of the line, and using the arrow key to advance a line-shaped cursor to between the <code class="code highlight language-text">("</code> characters reveals discontinuities in caret coordinate column positions.</p>
+<ul>
+  <li>After the caret first moves from between <code class="code highlight language-text">g(</code> to between <code class="code highlight language-text">("</code>, the Logical and Visual Positions have equal column positions of 28, and neither leans. 
+Note the value of the caret positions you measure may have different starting values because of line indentation, but the sign and magnitude of the changes in position will be the same.</li>
+  <li>Advancing the caret once more does not appear to visually move the cursor. 
+However, the Logical Position column increases to 61, and although the Visual Position column does not change, it leans right.</li>
+  <li>Continuing to advance the cursor (to the right) through the string causes the Logical Position column to <em>decrease</em>, and the Visual Position column to <em>increase</em>.</li>
+  <li>Once the cursor advances to between the <code class="code highlight language-text">".</code> characters, the Logical Position column position is again 28, and leans forward.
+The Visual Position column position is now 61.</li>
+  <li>Moving the caret right once more does not appear to visually advance the cursor. 
+However, the Logical Position and Visual Position column values are both 61, and both lean.</li>
+  <li>As the cursor advances to the right, both Logical and Visual column values increase.</li>
+</ul>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper">  <span class="kn">import</span> <span class="nn">static</span> <span class="n">java</span><span class="o">.</span><span class="na">nio</span><span class="o">.</span><span class="na">charset</span><span class="o">.</span><span class="na">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">showNow</span><span class="o">()</span> <span class="o">{</span>
+<span class="c1">//234567890123456789012345678901234567890123456789012345678901234567890</span>
+    <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">"تعطي يونيكود رقما فريدا لكل حرف"</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(),</span> <span class="n">UTF_8</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="n">str</span> <span class="o">);</span>
+  <span class="o">}</span>
+</code></div>
+<p>The apparent discontinuity in Logical Position is because the RTL portion of the string is treated (or counted) in the logical character order in which it would be written. 
+The apparent continuity in Visual Position is because the RTL portion of the string is counted in the visual order in which it is displayed in the code.</p>
+
+<a name="caret-offset" class="elem-anchor"></a>
+<h3>Caret Offset<a href="#caret-offset" class="anchor-link"><span></span></a></h3>
+<p>The <em>Offset</em> of a caret is a character count from the beginning of a <code class="code highlight language-text">Document</code> to the caret position. 
+Caret offsets are always calculated in terms of Logical Position. 
+The caret Offset includes:</p>
+<ul>
+  <li>The first (0th) character in a document.</li>
+  <li>Whitespace characters, including newline and tabs.</li>
+  <li>Any characters after end-of-line if the IDE settings permit them.
+(<strong>Preferences | Editor | General | Virtual Space</strong>)</li>
+  <li>The character selected by the caret.</li>
+</ul>
+
+<p>The example below demonstrates the Offset of a caret placed at the first character of Logical line one. 
+Note the Offset is 22, which is one greater than the number of visible characters on line zero, and the first character on line one. 
+This apparent discrepancy is actually correct because the Offset includes the newline character for line zero.</p>
+
+<p><img src="img/caret_offset_l2.png" alt="Line 2 Caret Offset" width="800px" /></p>
+
+<a name="displaying-caret-positions" class="elem-anchor"></a>
+<h2>Displaying Caret Positions<a href="#displaying-caret-positions" class="anchor-link"><span></span></a></h2>
+<p>To display the values of caret Logical and Visual positions, and Offset, a
+<code class="code highlight language-text">Messages.showInfoMessage()</code> method shows them in the form of notification as the action is performed.</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EditorAreaIllustration</span> <span class="kd">extends</span> <span class="n">AnAction</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="kd">final</span> <span class="n">AnActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Get access to the editor and caret model.</span>
+    <span class="kd">final</span> <span class="n">Editor</span> <span class="n">editor</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">getRequiredData</span><span class="o">(</span><span class="n">CommonDataKeys</span><span class="o">.</span><span class="na">EDITOR</span><span class="o">);</span>
+    <span class="kd">final</span> <span class="n">CaretModel</span> <span class="n">caretModel</span> <span class="o">=</span> <span class="n">editor</span><span class="o">.</span><span class="na">getCaretModel</span><span class="o">();</span>
+    <span class="c1">// Getting the primary caret ensures we get the correct one of a possible many.</span>
+    <span class="kd">final</span> <span class="n">Caret</span> <span class="n">primaryCaret</span> <span class="o">=</span> <span class="n">caretModel</span><span class="o">.</span><span class="na">getPrimaryCaret</span><span class="o">();</span>
+    <span class="c1">// Get the caret information</span>
+    <span class="n">LogicalPosition</span> <span class="n">logicalPos</span> <span class="o">=</span> <span class="n">primaryCaret</span><span class="o">.</span><span class="na">getLogicalPosition</span><span class="o">();</span>
+    <span class="n">VisualPosition</span> <span class="n">visualPos</span> <span class="o">=</span> <span class="n">primaryCaret</span><span class="o">.</span><span class="na">getVisualPosition</span><span class="o">();</span>
+    <span class="kt">int</span> <span class="n">caretOffset</span> <span class="o">=</span> <span class="n">primaryCaret</span><span class="o">.</span><span class="na">getOffset</span><span class="o">();</span>
+    <span class="c1">// Build and display the caret report.</span>
+    <span class="n">StringBuilder</span> <span class="n">report</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="n">logicalPos</span><span class="o">.</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">"\n"</span><span class="o">);</span>
+    <span class="n">report</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">visualPos</span><span class="o">.</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">"\n"</span><span class="o">);</span>
+    <span class="n">report</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"Offset: "</span> <span class="o">+</span> <span class="n">caretOffset</span><span class="o">);</span>
+    <span class="n">Messages</span><span class="o">.</span><span class="na">showInfoMessage</span><span class="o">(</span><span class="n">report</span><span class="o">.</span><span class="na">toString</span><span class="o">(),</span> <span class="s">"Caret Parameters Inside The Editor"</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</code></div>
+
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/tutorials/editor_basics/working_with_text.html">Working with text</a>
+                        <a class="navigation-links__next" href="/tutorials/editor_basics/editor_events.html">3. Handling Editor Events</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

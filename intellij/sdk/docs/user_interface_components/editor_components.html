@@ -1,0 +1,189 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Editor Components / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//user_interface_components/editor_components.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Editor Components" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Editor Components" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="user_interface_components/editor_components">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/user_interface_components/file_and_class_choosers.html">File and Class Choosers</a>
+                        <a class="navigation-links__next" href="/user_interface_components/lists_and_trees.html">List and Tree Controls</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/user_interface_components/editor_components.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Editor Components</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<a name="editortextfield" class="elem-anchor"></a>
+<h2>EditorTextField<a href="#editortextfield" class="anchor-link"><span></span></a></h2>
+
+<p>Compared to
+<a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JTextArea.html" data-bypass="yes" target="_blank"><span>Swing <code class="code highlight language-text">JTextArea</code></span></a>, the
+<em>IntelliJ Platform’s</em> editor component has a ton of advantages: syntax highlighting support, code completion, code folding and much more.
+<em>IntelliJ Platform</em> editors are normally displayed in editor tabs, but they can be embedded in dialogs or tool windows, too.
+This is enabled by the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/platform-impl/src/com/intellij/ui/EditorTextField.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">EditorTextField</code></span></a>
+component.</p>
+
+<p>When creating an
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/platform-impl/src/com/intellij/ui/EditorTextField.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">EditorTextField</code></span></a>,
+you can specify the following attributes:</p>
+
+<ul>
+  <li>
+    <p>The file type according to which the text in the text field is parsed;</p>
+  </li>
+  <li>
+    <p>Whether the text field is read-only or editable;</p>
+  </li>
+  <li>
+    <p>Whether the text field is single-line or multiline.</p>
+  </li>
+</ul>
+
+<p>A common use case for
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/platform-impl/src/com/intellij/ui/EditorTextField.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">EditorTextField</code></span></a>
+is entering the name of a Java class or package.
+This can be accomplished with the following steps:</p>
+
+<ul>
+  <li>
+    <p>Use
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/java/java-psi-api/src/com/intellij/psi/JavaCodeFragmentFactory.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">JavaCodeFragmentFactory.getInstance().createReferenceCodeFragment()</code></span></a>
+to create a code fragment representing the class or package name;</p>
+  </li>
+  <li>
+    <p>Call
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiDocumentManager.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiDocumentManager.getInstance().getDocument()</code></span></a>
+to get the document corresponding to the code fragment;</p>
+  </li>
+  <li>
+    <p>Pass the returned document to the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/platform-impl/src/com/intellij/ui/EditorTextField.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">EditorTextField</code></span></a>
+constructor or its <code class="code highlight language-text">setDocument()</code> method.</p>
+  </li>
+</ul>
+
+<p>E.g.:</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="n">PsiFile</span> <span class="n">psiFile</span> <span class="o">=</span> <span class="n">PsiDocumentManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">editor</span><span class="o">.</span><span class="na">getProject</span><span class="o">()).</span><span class="na">getPsiFile</span><span class="o">(</span><span class="n">editor</span><span class="o">.</span><span class="na">getDocument</span><span class="o">());</span>
+<span class="n">PsiElement</span> <span class="n">element</span> <span class="o">=</span> <span class="n">psiFile</span><span class="o">.</span><span class="na">findElementAt</span><span class="o">(</span><span class="n">editor</span><span class="o">.</span><span class="na">getCaretModel</span><span class="o">().</span><span class="na">getOffset</span><span class="o">());</span>
+
+<span class="n">PsiExpressionCodeFragment</span> <span class="n">code</span> <span class="o">=</span> <span class="n">JavaCodeFragmentFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">editor</span><span class="o">.</span><span class="na">getProject</span><span class="o">()).</span><span class="na">createExpressionCodeFragment</span><span class="o">(</span><span class="s">""</span><span class="o">,</span> <span class="n">element</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+<span class="n">Document</span> <span class="n">document</span> <span class="o">=</span> <span class="n">PsiDocumentManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">editor</span><span class="o">.</span><span class="na">getProject</span><span class="o">()).</span><span class="na">getDocument</span><span class="o">(</span><span class="n">code</span><span class="o">);</span>
+
+<span class="n">EditorTextField</span> <span class="n">myInput</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EditorTextField</span><span class="o">(</span><span class="n">document</span><span class="o">,</span> <span class="n">editor</span><span class="o">.</span><span class="na">getProject</span><span class="o">(),</span> <span class="n">JavaFileType</span><span class="o">.</span><span class="na">INSTANCE</span><span class="o">);</span>
+</code></div>
+
+<p><strong>TIPS</strong>:</p>
+
+<ul>
+  <li>
+    <p>When creating more than one field you need two separate documents. This is accomplished by using separate instances of the <code class="code highlight language-text">PsiExpressionCodeFragment</code></p>
+  </li>
+  <li>
+    <p><code class="code highlight language-text">setText</code> no longer works for the input field. However, the <code class="code highlight language-text">createExpressionCodeFragment</code> accepts the text fore the field as an argument. As such you can replace the empty string and create a new document in leau of <code class="code highlight language-text">setText()</code></p>
+  </li>
+  <li>
+    <p>You can replace instances of <code class="code highlight language-text">JTextField</code> in the GUI builder with custom replace using the right click in your IDE. Make sure to use “Custom Create” so you can set the initialization code properly</p>
+  </li>
+</ul>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/user_interface_components/file_and_class_choosers.html">File and Class Choosers</a>
+                        <a class="navigation-links__next" href="/user_interface_components/lists_and_trees.html">List and Tree Controls</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

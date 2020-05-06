@@ -1,0 +1,294 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>2. Parsing Test / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//tutorials/writing_tests_for_plugins/parsing_test.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="2. Parsing Test" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="2. Parsing Test" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="tutorials/writing_tests_for_plugins/parsing_test">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/tutorials/writing_tests_for_plugins/tests_prerequisites.html">1. Tests Prerequisites</a>
+                        <a class="navigation-links__next" href="/tutorials/writing_tests_for_plugins/completion_test.html">3. Completion Test</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/tutorials/writing_tests_for_plugins/parsing_test.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>2. Parsing Test</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>The first test checks if the Simple Language parser, implemented in the <a href="/intellij/sdk/docs/tutorials/custom_language_support/lexer_and_parser_definition.html"><span>Lexer and Parser Definition</span></a> section of the Custom Language Support Tutorial, works as expected.</p>
+
+<a name="update-grammar-and-regenerate-the-parser" class="elem-anchor"></a>
+<h2>2.1. Update Grammar and Regenerate the Parser<a href="#update-grammar-and-regenerate-the-parser" class="anchor-link"><span></span></a></h2>
+<p>Before creating the parsing test, ensure the parser definition (<code class="code highlight language-text">Simple.bnf</code>) includes the lines shown below.
+These additional lines facilitate testing incorrect keys.</p>
+
+<p>If the lines below are not present in <code class="code highlight language-text">Simple.bnf</code>, replace the existing <code class="code highlight language-text">property</code> definition with the lines below.
+Don’t forget to regenerate the parser after updating the file! 
+Right-click on the <code class="code highlight language-text">Simple.bnf</code> file and select <strong>Generate Parser Code</strong>.</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="n">property</span> <span class="o">::=</span> <span class="o">(</span><span class="n">KEY</span><span class="o">?</span> <span class="n">SEPARATOR</span> <span class="n">VALUE</span><span class="o">?)</span> <span class="o">|</span> <span class="n">KEY</span> <span class="o">{</span>
+  <span class="n">pin</span><span class="o">=</span><span class="mi">3</span>
+  <span class="n">recoverWhile</span><span class="o">=</span><span class="s">"recover_property"</span>
+  <span class="n">mixin</span><span class="o">=</span><span class="s">"org.intellij.sdk.language.psi.impl.SimpleNamedElementImpl"</span>
+  <span class="kd">implements</span><span class="o">=</span><span class="s">"org.intellij.sdk.language.psi.SimpleNamedElement"</span>
+  <span class="n">methods</span><span class="o">=[</span><span class="n">getKey</span> <span class="n">getValue</span> <span class="n">getName</span> <span class="n">setName</span> <span class="n">getNameIdentifier</span> <span class="n">getPresentation</span><span class="o">]</span>
+<span class="o">}</span>
+<span class="kd">private</span> <span class="n">recover_property</span> <span class="o">::=</span> <span class="o">!(</span><span class="n">KEY</span><span class="o">|</span><span class="n">SEPARATOR</span><span class="o">|</span><span class="n">COMMENT</span><span class="o">)</span>
+</code></div>
+
+<a name="define-input-test-data" class="elem-anchor"></a>
+<h2>2.2. Define Input Test Data<a href="#define-input-test-data" class="anchor-link"><span></span></a></h2>
+<p>Create the <em>ParsingTestData.simple</em> properties file in the <em>testData</em> folder.
+Note the last few lines define a purposely incorrect key.</p>
+<div class="code-block" data-lang="bash"><code class="code-block__wrapper"><span class="c"># You are reading the ".properties" entry.</span>
+<span class="o">!</span> The exclamation mark can also mark text as comments.
+website <span class="o">=</span> http://en.wikipedia.org/
+
+language <span class="o">=</span> English
+<span class="c"># The backslash below tells the application to continue reading</span>
+<span class="c"># the value onto the next line.</span>
+message <span class="o">=</span> Welcome to <span class="se">\</span>
+          Wikipedia!
+<span class="c"># Add spaces to the key</span>
+key<span class="se">\ </span>with<span class="se">\ </span>spaces <span class="o">=</span> This is the value that could be looked up with the key <span class="s2">"key with spaces"</span><span class="nb">.</span>
+<span class="c"># Unicode</span>
+tab : <span class="se">\u</span>0009
+<span class="c"># test for illegal key attempt</span>
+key<span class="se">\</span>
+with<span class="se">\</span>
+endofline <span class="o">=</span> <span class="nb">test</span>
+
+</code></div>
+
+<a name="copy-the-expected-psi-tree" class="elem-anchor"></a>
+<h2>2.3. Copy the Expected PSI Tree<a href="#copy-the-expected-psi-tree" class="anchor-link"><span></span></a></h2>
+<p>The easiest way to get the expected PSI structure for any file is to use the PSI Viewer.
+Run the project and use <strong>Tools | View PSI Structure</strong>.</p>
+
+<p><img src="img/plugin_copy_psi.png" alt="PSI Tree Copy" /></p>
+
+<p>Use the <code class="code highlight language-text">Copy PSI</code> button to copy the expected PSI structure to the clipboard.</p>
+
+<a name="define-the-output-reference-test-data" class="elem-anchor"></a>
+<h2>2.3. Define the Output Reference Test Data<a href="#define-the-output-reference-test-data" class="anchor-link"><span></span></a></h2>
+<p>Create a file <em>ParsingTestData.txt</em> with the copied PSI tree.</p>
+
+<div class="code-block" data-lang="text"><code class="code-block__wrapper">Simple File(0,492)
+  PsiComment(SimpleTokenType.COMMENT)('# You are reading the ".properties" entry.')(0,42)
+  PsiWhiteSpace('\n')(42,43)
+  PsiComment(SimpleTokenType.COMMENT)('! The exclamation mark can also mark text as comments.')(43,97)
+  PsiWhiteSpace('\n')(97,98)
+  SimplePropertyImpl(PROPERTY)(98,132)
+    PsiElement(SimpleTokenType.KEY)('website')(98,105)
+    PsiWhiteSpace(' ')(105,106)
+    PsiElement(SimpleTokenType.SEPARATOR)('=')(106,107)
+    PsiWhiteSpace(' ')(107,108)
+    PsiElement(SimpleTokenType.VALUE)('http://en.wikipedia.org/')(108,132)
+  PsiWhiteSpace('\n\n')(132,134)
+  SimplePropertyImpl(PROPERTY)(134,152)
+    PsiElement(SimpleTokenType.KEY)('language')(134,142)
+    PsiWhiteSpace(' ')(142,143)
+    PsiElement(SimpleTokenType.SEPARATOR)('=')(143,144)
+    PsiWhiteSpace(' ')(144,145)
+    PsiElement(SimpleTokenType.VALUE)('English')(145,152)
+  PsiWhiteSpace('\n')(152,153)
+  PsiComment(SimpleTokenType.COMMENT)('# The backslash below tells the application to continue reading')(153,216)
+  PsiWhiteSpace('\n')(216,217)
+  PsiComment(SimpleTokenType.COMMENT)('# the value onto the next line.')(217,248)
+  PsiWhiteSpace('\n')(248,249)
+  SimplePropertyImpl(PROPERTY)(249,292)
+    PsiElement(SimpleTokenType.KEY)('message')(249,256)
+    PsiWhiteSpace(' ')(256,257)
+    PsiElement(SimpleTokenType.SEPARATOR)('=')(257,258)
+    PsiWhiteSpace(' ')(258,259)
+    PsiElement(SimpleTokenType.VALUE)('Welcome to \\n          Wikipedia!')(259,292)
+  PsiWhiteSpace('\n')(292,293)
+  PsiComment(SimpleTokenType.COMMENT)('# Add spaces to the key')(293,316)
+  PsiWhiteSpace('\n')(316,317)
+  SimplePropertyImpl(PROPERTY)(317,410)
+    PsiElement(SimpleTokenType.KEY)('key\ with\ spaces')(317,334)
+    PsiWhiteSpace(' ')(334,335)
+    PsiElement(SimpleTokenType.SEPARATOR)('=')(335,336)
+    PsiWhiteSpace(' ')(336,337)
+    PsiElement(SimpleTokenType.VALUE)('This is the value that could be looked up with the key "key with spaces".')(337,410)
+  PsiWhiteSpace('\n')(410,411)
+  PsiComment(SimpleTokenType.COMMENT)('# Unicode')(411,420)
+  PsiWhiteSpace('\n')(420,421)
+  SimplePropertyImpl(PROPERTY)(421,433)
+    PsiElement(SimpleTokenType.KEY)('tab')(421,424)
+    PsiWhiteSpace(' ')(424,425)
+    PsiElement(SimpleTokenType.SEPARATOR)(':')(425,426)
+    PsiWhiteSpace(' ')(426,427)
+    PsiElement(SimpleTokenType.VALUE)('\u0009')(427,433)
+  PsiWhiteSpace('\n')(433,434)
+  PsiComment(SimpleTokenType.COMMENT)('# test for illegal key attempt')(434,464)
+  PsiWhiteSpace('\n')(464,465)
+  SimplePropertyImpl(PROPERTY)(465,469)
+    PsiElement(SimpleTokenType.KEY)('key')(465,468)
+    PsiErrorElement:SimpleTokenType.SEPARATOR expected, got '\'(468,469)
+      PsiElement(BAD_CHARACTER)('\')(468,469)
+  PsiWhiteSpace('\n')(469,470)
+  SimplePropertyImpl(PROPERTY)(470,475)
+    PsiElement(SimpleTokenType.KEY)('with')(470,474)
+    PsiErrorElement:SimpleTokenType.SEPARATOR expected, got '\'(474,475)
+      PsiElement(BAD_CHARACTER)('\')(474,475)
+  PsiWhiteSpace('\n')(475,476)
+  SimplePropertyImpl(PROPERTY)(476,492)
+    PsiElement(SimpleTokenType.KEY)('endofline')(476,485)
+    PsiWhiteSpace(' ')(485,486)
+    PsiElement(SimpleTokenType.SEPARATOR)('=')(486,487)
+    PsiWhiteSpace(' ')(487,488)
+    PsiElement(SimpleTokenType.VALUE)('test')(488,492)
+</code></div>
+
+<a name="define-a-parsing-test" class="elem-anchor"></a>
+<h2>2.4. Define a Parsing Test<a href="#define-a-parsing-test" class="anchor-link"><span></span></a></h2>
+<p>Subclass <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/testFramework/src/com/intellij/testFramework/ParsingTestCase.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ParsingTestCase</code></span></a> to create <code class="code highlight language-text">SimpleParsingTest</code>:
+Override <code class="code highlight language-text">getTestDataPath()</code>, and return the path from the root of this plugin module to the <code class="code highlight language-text">testData</code> directory.</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="c1">// Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.</span>
+
+<span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">intellij</span><span class="o">.</span><span class="na">sdk</span><span class="o">.</span><span class="na">language</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.intellij.testFramework.ParsingTestCase</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleParsingTest</span> <span class="kd">extends</span> <span class="n">ParsingTestCase</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="nf">SimpleParsingTest</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">(</span><span class="s">""</span><span class="o">,</span> <span class="s">"simple"</span><span class="o">,</span> <span class="k">new</span> <span class="n">SimpleParserDefinition</span><span class="o">());</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testParsingTestData</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">doTest</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+  <span class="o">}</span>
+  
+  <span class="cm">/**
+   *
+   * @return path to test data file directory relative to root of this module.
+   */</span>
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="n">String</span> <span class="nf">getTestDataPath</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="s">"src/test/testData"</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">skipSpaces</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">includeRanges</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></div>
+
+<a name="run-the-test" class="elem-anchor"></a>
+<h2>2.5. Run the Test<a href="#run-the-test" class="anchor-link"><span></span></a></h2>
+<p>Run the test by:</p>
+<ul>
+  <li>Opening the Gradle Tool Window.</li>
+  <li>Select the <code class="code highlight language-text">simple_language_plugin</code>.
+You may need to reimport it as a Gradle project.</li>
+  <li>Drill down under <code class="code highlight language-text">simple_language_plugin</code> to <em>Tasks</em>, <em>verification</em>, <em>test</em> task.</li>
+  <li>Run the <em>test</em> task.</li>
+</ul>
+
+<p>The results are displayed in the <strong>Run</strong> Window, and also written to the <code class="code highlight language-text">simple_language_plugin/build/test-results/test/</code> directory.</p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/tutorials/writing_tests_for_plugins/tests_prerequisites.html">1. Tests Prerequisites</a>
+                        <a class="navigation-links__next" href="/tutorials/writing_tests_for_plugins/completion_test.html">3. Completion Test</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

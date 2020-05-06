@@ -1,0 +1,446 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Customizing UI Themes - Icons and UI Controls / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//reference_guide/ui_themes/themes_customize.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Customizing UI Themes - Icons and UI Controls" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Customizing UI Themes - Icons and UI Controls" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="reference_guide/ui_themes/themes_customize">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/ui_themes/themes.html">Creating Custom UI Themes</a>
+                        <a class="navigation-links__next" href="/reference_guide/ui_themes/themes_extras.html">UI Themes - Editor Schemes and Background Images</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/reference_guide/ui_themes/themes_customize.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Customizing UI Themes - Icons and UI Controls</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<style>
+  table {
+    width:100%;
+  }
+  th:first-child, td:first-child {
+    width: 20%;
+  }
+  th:last-child, td:last-child {
+    width: 60%;
+  }
+</style>
+
+<p>A UI Theme is customized by adding information to the UI Theme description file that overrides the base (<em>Light</em> or <em>Darcula</em>) UI Theme.</p>
+
+<a name="introduction-to-ui-theme-description-file-syntax" class="elem-anchor"></a>
+<h2>Introduction to UI Theme Description File Syntax<a href="#introduction-to-ui-theme-description-file-syntax" class="anchor-link"><span></span></a></h2>
+<p>The syntax of a Theme description file follows the JSON open-standard file format of key-value pairs. 
+The minimum valid default file is the output of the <a href="themes.html#creating-a-ui-theme-with-the-devkit-theme-wizard"><span>DevKit Theme Wizard</span></a>. 
+Adding key-value pairs customizes a Theme.</p>
+
+<p>UI Theme key-value pairs often use a color as the <code class="code highlight language-text">value</code>.
+Colors are defined by six-digit RGB or eight-digit RGBA hexadecimal notation.</p>
+
+<a name="ui-theme-reference-implementations" class="elem-anchor"></a>
+<h3>UI Theme Reference Implementations<a href="#ui-theme-reference-implementations" class="anchor-link"><span></span></a></h3>
+<p>When learning new syntax, it is often useful to have some existing implementations for reference.
+For example, refer to the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/platform-resources/src/themes/HighContrast.theme.json" data-bypass="yes" target="_blank"><span>Theme description file</span></a> for the IntelliJ IDEA <em>High Contrast</em> Theme.
+It may also be helpful to review some of the <a href="https://plugins.jetbrains.com/search?headline=164-theme&amp;tags=Theme" data-bypass="yes" target="_blank"><span>UI Themes available</span></a> at the JetBrains Plugin Repository.</p>
+
+<a name="defining-named-colors" class="elem-anchor"></a>
+<h2>Defining Named Colors<a href="#defining-named-colors" class="anchor-link"><span></span></a></h2>
+<p>Colors can always be defined individually as six-digit RGB or eight-digit RGBA hexadecimal notation.
+However, Theme definitions often use the same color in multiple places.
+Maintaining a Theme is more manageable if <em>Named Colors</em> are globally defined in a <code class="code highlight language-text">colors {}</code> block as part of the <code class="code highlight language-text">*.theme.json</code> file.
+After that, the Named Color can be used instead of a hexadecimal description of the color.
+For example, defining the Named Color <code class="code highlight language-text">basicBackground</code> and then using it to set the background color for panels.
+(Don’t be concerned with the <code class="code highlight language-text">"ui"</code> syntax in the example below, it will be discussed in <a href="#custom-ui-control-colors"><span>Custom UI Control Colors</span></a>.)</p>
+<div class="code-block" data-lang="json"><code class="code-block__wrapper"><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"theme_basics"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dark"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IntelliJ Platform SDK"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"editorScheme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/Lightning.xml"</span><span class="p">,</span><span class="w">
+
+  </span><span class="s2">"colors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"basicBackground"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#E1E1E1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"ui"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Panel.background"</span><span class="p">:</span><span class="w"> </span><span class="s2">"basicBackground"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></div>
+
+<a name="customizing-icons" class="elem-anchor"></a>
+<h2>Customizing Icons<a href="#customizing-icons" class="anchor-link"><span></span></a></h2>
+<p>UI themes can customize the color of default IntelliJ IDEA UI icons, or substitute custom icons for the default ones. 
+Customization is done by adding an <code class="code highlight language-text">"icons": {}</code> section to the Theme description file.</p>
+
+<a name="overriding-the-global-color-of-icons" class="elem-anchor"></a>
+<h3>Overriding the Global Color of Icons<a href="#overriding-the-global-color-of-icons" class="anchor-link"><span></span></a></h3>
+<p>Default global icon colors are customized by adding key-value pairs to a <code class="code highlight language-text">"ColorPalette": {}</code> section. 
+The <code class="code highlight language-text">ColorPalette</code> must be inserted in the <code class="code highlight language-text">icons</code> section.</p>
+
+<p>In the following example the <code class="code highlight language-text">key</code> - the default red color (#DB5860) used for <code class="code highlight language-text">Action</code> icons in the <em>Light</em> Theme - is overridden to the <code class="code highlight language-text">value</code> of a different color (#D61A26):</p>
+<div class="code-block" data-lang="json"><code class="code-block__wrapper"><span class="p">{</span><span class="w">
+  </span><span class="s2">"icons"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ColorPalette"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"#DB5860"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#D61A26"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></div>
+<p>This color substitution is applied throughout the IDE UI.</p>
+
+<a name="custom-icon-palette-colors" class="elem-anchor"></a>
+<h3>Custom Icon Palette Colors<a href="#custom-icon-palette-colors" class="anchor-link"><span></span></a></h3>
+<p>Icon Palettes are predefined UI Theme color keys, each describing a single color in an <code class="code highlight language-text">Actions</code> or <code class="code highlight language-text">Objects</code> context.</p>
+
+<a name="icon-colors-in-actions-and-objects-contexts" class="elem-anchor"></a>
+<h4>Icon Colors in “Actions” and “Objects” Contexts</h4>
+<p>IntelliJ IDEA has default icon colors defined for <code class="code highlight language-text">Actions</code> and <code class="code highlight language-text">Objects</code> contexts.</p>
+<ul>
+  <li><code class="code highlight language-text">Actions</code> are Theme keys for icons that appear in the context of toolbars, and represent actions such as <em>Compile</em>, <em>Run</em>, or <em>Debug</em>.</li>
+  <li><code class="code highlight language-text">Objects</code> are Theme keys for icons that appear in the contexts of lists and trees, and represent entities like files, symbols, or run and debug configurations.</li>
+</ul>
+
+<p>The <a href="https://jetbrains.design/intellij/principles/icons/" data-bypass="yes" target="_blank"><span>JetBrains Platform UI Guideline for Icons</span></a>
+defines the default hexadecimal RGB values of colors for <code class="code highlight language-text">Actions</code> and <code class="code highlight language-text">Objects</code> keys. 
+Note that this document refers to <code class="code highlight language-text">Objects</code> keys as “Noun icons.”</p>
+
+<a name="customizing-actions-and-objects-icon-colors" class="elem-anchor"></a>
+<h4>Customizing “Actions” and “Objects” Icon Colors</h4>
+<p>An icon Palette color is customized by adding an <code class="code highlight language-text">Actions</code> or <code class="code highlight language-text">Objects</code> <code class="code highlight language-text">key</code> and custom color <code class="code highlight language-text">value</code> to the <code class="code highlight language-text">"ColorPalette": {}</code> section in a Theme description file.
+The list of available icon <code class="code highlight language-text">Actions</code> and <code class="code highlight language-text">Objects</code> keys are provided by the completion popup in the editor:</p>
+
+<p><img src="img/theme_colorpalette_popup.png" alt="Color Palette Popup" width="600px" /></p>
+
+<p>For example, the following key-value pair changes the color for  all blue-colored icons on toolbars to the color #5BC0DE:</p>
+<div class="code-block" data-lang="json"><code class="code-block__wrapper"><span class="p">{</span><span class="w">
+  </span><span class="s2">"icons"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ColorPalette"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"Actions.Blue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#5BC0DE"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></div>
+<p>This more specific change to the <code class="code highlight language-text">Actions.Blue</code> color overrides the default definition. 
+It will also, in the narrower context of blue <code class="code highlight language-text">Actions</code> icons, supersede any global color overrides of the default blue icon color.</p>
+
+<a name="custom-icons" class="elem-anchor"></a>
+<h3>Custom Icons<a href="#custom-icons" class="anchor-link"><span></span></a></h3>
+<p>The default IntelliJ IDEA UI icons can be replaced by custom icons. 
+The file format for icons is SVG. 
+The <a href="https://jetbrains.design/intellij/principles/icons/" data-bypass="yes" target="_blank"><span>JetBrains Platform UI Guideline for Icons</span></a> has detailed specifications for icons.</p>
+
+<p>An icon replacement is described within the <code class="code highlight language-text">icon {}</code> section of a Theme description file. 
+Note that icon replacement key-value pairs appear outside of the <code class="code highlight language-text">ColorPalette</code> section.</p>
+
+<p>For icon substitutions, the <code class="code highlight language-text">key</code> is the path to the default icon image.
+This path is derived from the <code class="code highlight language-text">AllIcons.[Group].[IconName]</code> path in icon section reported by the <a href="/intellij/sdk/docs/reference_guide/internal_actions/internal_uii.html"><span>UI Inspector</span></a>.</p>
+
+<p>For example, the <em>Build</em> (hammer) icon in the toolbar has the path <code class="code highlight language-text">Allcons.Actions.Compile</code> as reported by the UI Inspector. 
+Therefore the <code class="code highlight language-text">key</code> for the <em>Build</em> icon is <code class="code highlight language-text">/actions/compile.svg</code>. 
+The <code class="code highlight language-text">value</code> is the file name of the replacement icon, located in the <code class="code highlight language-text">resources</code> folder of the UI Theme plugin project:</p>
+<div class="code-block" data-lang="json"><code class="code-block__wrapper"><span class="p">{</span><span class="w">
+  </span><span class="s2">"icons"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"/actions/compile.svg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/factory.svg"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></div>
+<p>The color of a replaced icon takes precedence over any <code class="code highlight language-text">ColorPalette</code> overrides.</p>
+
+<a name="customizing-ui-controls" class="elem-anchor"></a>
+<h2>Customizing UI Controls<a href="#customizing-ui-controls" class="anchor-link"><span></span></a></h2>
+<p>UI Themes can change the appearance of more general controls in the IntelliJ IDEA UI. 
+Examples of these controls are labels, buttons, checkboxes, trees, lists, and menus.</p>
+
+<a name="custom-ui-control-colors" class="elem-anchor"></a>
+<h3>Custom UI Control Colors<a href="#custom-ui-control-colors" class="anchor-link"><span></span></a></h3>
+<p>The custom color of a UI control is specified by adding a key-value pair to the <code class="code highlight language-text">"ui": {}</code> section of a Theme description file.</p>
+
+<p>A UI control <code class="code highlight language-text">key</code> has the compound format <code class="code highlight language-text">element.property</code>, where:</p>
+<ul>
+  <li><code class="code highlight language-text">element</code> is the type (label, checkbox, etc.,) of the UI control.</li>
+  <li><code class="code highlight language-text">property</code> is how the color is applied. Examples include <code class="code highlight language-text">foreground</code>, <code class="code highlight language-text">background</code>, and <code class="code highlight language-text">errorForeground </code>.</li>
+</ul>
+
+<p>Note that some UI control keys have more than two parts, for example <code class="code highlight language-text">Popup.Advertiser.foreground</code> or <code class="code highlight language-text">ScrollBar.Mac.Transparent.thumbColor</code>.
+The full key must be used to customize that specific button control.
+However, for other purposes the first section can be considered the <code class="code highlight language-text">element</code>, and the last section considered the <code class="code highlight language-text">property</code>.</p>
+
+<p>Methods for finding UI control keys are in the <a href="#finding-attribute-keys-for-ui-controls"><span>Finding Attribute Keys for UI Controls</span></a> section.</p>
+
+<a name="customizing-all-ui-control-colors-with-the-same-property" class="elem-anchor"></a>
+<h4>Customizing All UI Control Colors with the Same Property</h4>
+<p>All UI Controls that have the same <code class="code highlight language-text">property</code> portion of their key can be set to the same color. 
+This customization is done using the wildcard <code class="code highlight language-text">"*": {}</code> section in the Theme description file. 
+A key-value pair is inserted in this section, but only the <code class="code highlight language-text">property</code> portion of the key is specified. 
+The <code class="code highlight language-text">value</code> is the custom color.</p>
+
+<p>The following example would change the default background color to #AED7E3 for all UI controls:</p>
+<div class="code-block" data-lang="json"><code class="code-block__wrapper"><span class="p">{</span><span class="w">
+  </span><span class="s2">"ui"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"*"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"background"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#AED7E3"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></div>
+<p>Note that the wildcard <code class="code highlight language-text">"*": {}</code> section must be within the <code class="code highlight language-text">"ui": {}</code> section.</p>
+
+<a name="customizing-the-color-of-specific-ui-control-types" class="elem-anchor"></a>
+<h4>Customizing the Color of Specific UI Control Types</h4>
+<p>The color of a specific UI control types are changed by adding a key-value pair to the <code class="code highlight language-text">"ui": {}</code> section of a Theme description file. 
+The <code class="code highlight language-text">key</code> is the full <code class="code highlight language-text">element.property</code> format and the <code class="code highlight language-text">value</code> is the custom color.</p>
+
+<p>The following example sets the background color for all labels to the color #F6E9C9</p>
+<div class="code-block" data-lang="json"><code class="code-block__wrapper"><span class="p">{</span><span class="w">
+  </span><span class="s2">"ui"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"*"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"background"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#AED7E3"</span><span class="w">
+     </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"Label.background"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#F6E9C9"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></div>
+<p>The <code class="code highlight language-text">Label.background</code> entry supersedes, in the narrower context of label backgrounds, any default color as well as any wildcard color assigned to backgrounds.</p>
+
+<a name="customizing-the-color-of-ui-tabs" class="elem-anchor"></a>
+<h4>Customizing the Color of UI Tabs</h4>
+<p>UI Tab colors are changed by <a href="#custom-ui-control-colors"><span>key-value pairs</span></a> in a Theme description file.</p>
+
+<p>There are two implementations of tabs in the IntelliJ Platform:</p>
+<ul>
+  <li>Editor Tabs, which e.g., represent open files in the <a href="https://www.jetbrains.com/help/idea/using-code-editor.html" data-bypass="yes" target="_blank"><span>Editor window</span></a>, and in <a href="https://www.jetbrains.com/help/idea/tool-windows.html#bars_and_buttons" data-bypass="yes" target="_blank"><span>Tool Window bars</span></a>.</li>
+  <li>Tabbed Panes, which e.g., are used for the <a href="https://www.jetbrains.com/help/idea/run-debug-configurations-dialog.html" data-bypass="yes" target="_blank"><span>Run/Debug Configurations dialog</span></a>.</li>
+</ul>
+
+<p>The control keys for UI Tabs were expanded from release 2019.1 to 2019.2 of the IntelliJ Platform.
+The 2019.1 release control keys are compatible with release 2019.2 and later versions of the IntelliJ Platform.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Release 2019.1 Element</th>
+      <th>Release 2019.2 Element</th>
+      <th>Description of Release 2019.2 Element</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>N/A</td>
+      <td><strong><code class="code highlight language-text">DefaultTabs</code></strong></td>
+      <td>Applied to all tabs except <code class="code highlight language-text">TabbedPane</code>, <em>unless</em> overridden by a more specific Tab control element.</td>
+    </tr>
+    <tr>
+      <td><strong><code class="code highlight language-text">EditorTabs</code></strong></td>
+      <td><strong><code class="code highlight language-text">EditorTabs</code></strong></td>
+      <td>Applied only to Editor tabs. Overrides any <code class="code highlight language-text">DefaultTab</code> settings. 192 has many more <code class="code highlight language-text">property</code> settings than 191.</td>
+    </tr>
+    <tr>
+      <td><strong><code class="code highlight language-text">ToolWindow.HeaderTab</code></strong></td>
+      <td><strong><code class="code highlight language-text">ToolWindow.HeaderTab</code></strong></td>
+      <td>Applied only to Tool Window tabs. Overrides any <code class="code highlight language-text">DefaultTab</code> settings. 192 has many more <code class="code highlight language-text">property</code> settings than 191.</td>
+    </tr>
+    <tr>
+      <td><strong><code class="code highlight language-text">DebuggerTabs</code></strong></td>
+      <td><strong><code class="code highlight language-text">DefaultTabs</code></strong></td>
+      <td><code class="code highlight language-text">DefaultTab</code> settings are used instead of <code class="code highlight language-text">DebuggerTabs</code>, except for key <code class="code highlight language-text">DebuggerTabs.underlineHeight</code>.</td>
+    </tr>
+    <tr>
+      <td><strong><code class="code highlight language-text">TabbedPane</code></strong></td>
+      <td><strong><code class="code highlight language-text">TabbedPane</code></strong></td>
+      <td>Applied only to Tabbed Panes.</td>
+    </tr>
+    <tr>
+      <td><strong><code class="code highlight language-text">Plugins.Tab</code></strong></td>
+      <td><strong><code class="code highlight language-text">TabbedPane</code></strong></td>
+      <td>Use <code class="code highlight language-text">TabbedPane</code> instead.</td>
+    </tr>
+    <tr>
+      <td><strong><code class="code highlight language-text">SearchEverywhere.Tab</code></strong></td>
+      <td><strong><code class="code highlight language-text">SearchEverywhere.Tab</code></strong></td>
+      <td>No change.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Methods for identifying UI control keys are in the <a href="#finding-attribute-keys-for-ui-controls"><span>Finding Attribute Keys for UI Controls</span></a> section.</p>
+
+<p>For example, here is an excerpt from the IntelliJ Platform <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/platform-resources/src/themes/HighContrast.theme.json" data-bypass="yes" target="_blank"><span>High Contrast Theme</span></a>:
+Note that a Theme file can mix versions of <code class="code highlight language-text">property</code> identifiers:</p>
+<ul>
+  <li>The first three <code class="code highlight language-text">property</code> entries are recognized by release 2019.1, and ignored by subsequent releases because they are defined by new <code class="code highlight language-text">property</code> identifiers.</li>
+  <li>The <code class="code highlight language-text">underlineColor</code> <code class="code highlight language-text">property</code> is recognized by release 2019.1 and subsequent releases.</li>
+  <li>The <code class="code highlight language-text">underlineHeight</code> <code class="code highlight language-text">property</code> was introduced in release 2019.2, and is ignored by previous releases.</li>
+  <li>The <code class="code highlight language-text">underlinedTabBackground</code> <code class="code highlight language-text">property</code> was introduced in release 2019.2, replaces the 2019.1 <code class="code highlight language-text">selectedBackground</code>, and is ignored by previous releases.</li>
+  <li>The <code class="code highlight language-text">inactiveColoredFileBackground</code> <code class="code highlight language-text">property</code> was introduced in release 2019.2, replaces the 2019.1 <code class="code highlight language-text">inactiveMaskColor</code>, and is ignored by previous releases.</li>
+</ul>
+
+<div class="code-block" data-lang="json"><code class="code-block__wrapper"><span class="p">{</span><span class="w">
+  </span><span class="s2">"ui"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"EditorTabs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"selectedForeground"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#FFFFFF"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"selectedBackground"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#0e5d73"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"inactiveMaskColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#000000FF"</span><span class="p">,</span><span class="w">
+
+      </span><span class="s2">"underlineColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#1AEBFF"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"underlineHeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+
+      </span><span class="s2">"underlinedTabBackground"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"inactiveColoredFileBackground"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#00000000"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></div>
+
+<a name="customizing-the-borders-of-ui-controls" class="elem-anchor"></a>
+<h3>Customizing the Borders of UI Controls<a href="#customizing-the-borders-of-ui-controls" class="anchor-link"><span></span></a></h3>
+<p>The color and geometry of borders used in UI controls can be customized by key-value pairs in a Theme description file. 
+The format of keys for borders is <code class="code highlight language-text">element.property</code>, where:</p>
+<ul>
+  <li><code class="code highlight language-text">element</code> is the type of UI control containing a border, such as a window or a popup menu.</li>
+  <li><code class="code highlight language-text">property</code> is the desired border appearance, for example:
+    <ul>
+      <li><code class="code highlight language-text">border</code> is the border width (in pixels) specified as top, left, bottom, and right widths.
+Border color is also (optionally) specified as hexadecimal RGB, e.g. “E6E6E6” with no “#” character.</li>
+      <li><code class="code highlight language-text">borderInsets</code> is the inset distance (in pixels) from the edge of the <code class="code highlight language-text">element</code> to the border. 
+It is specified as top, left, bottom, and right insets.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Methods for identifying UI control keys are in the <a href="#finding-attribute-keys-for-ui-controls"><span>Finding Attribute Keys for UI Controls</span></a> section.</p>
+
+<a name="customizing-the-border-appearance-of-specific-ui-controls" class="elem-anchor"></a>
+<h4>Customizing the Border Appearance of Specific UI Controls</h4>
+<p>The appearance of borders for specific UI control types are customized by adding a key-value pair to the <code class="code highlight language-text">"ui": {}</code> section of a Theme description file.</p>
+
+<p>The following example sets a new border width and color for all windows:</p>
+<div class="code-block" data-lang="json"><code class="code-block__wrapper"><span class="p">{</span><span class="w">
+  </span><span class="s2">"ui"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Window.border"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4, 4, 4, 4, E6E6E6"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></div>
+<p>In this example the customized border supersedes the default definition and 
+any global color override.</p>
+
+<a name="finding-attribute-keys-for-ui-controls" class="elem-anchor"></a>
+<h2>Finding Attribute Keys for UI Controls<a href="#finding-attribute-keys-for-ui-controls" class="anchor-link"><span></span></a></h2>
+<p>There are hundreds of UI control <code class="code highlight language-text">element.property</code> keys defined in the IntelliJ Platform UI. 
+Some keys and strategies for applying them can be gleaned from the <a href="#UI-Theme-Reference-Implementations"><span>UI Theme reference implementations</span></a>. 
+For a general search, here some suggested methods for locating UI control keys.</p>
+
+<a name="finding-a-ui-control-key-using-code-completion-in-the-editor" class="elem-anchor"></a>
+<h3>Finding a UI Control Key Using Code Completion in the Editor<a href="#finding-a-ui-control-key-using-code-completion-in-the-editor" class="anchor-link"><span></span></a></h3>
+<p>The preferred method of finding UI control keys is to use the <a href="https://www.jetbrains.com/help/idea/auto-completing-code.html#Auto-Completing_Code.xml" data-bypass="yes" target="_blank"><span>Code Completion</span></a> feature in the IntelliJ IDEA editor. 
+Note that some keys presented by the code completion feature may be deprecated. 
+New entries in the <code class="code highlight language-text">"ui": {}</code> section will invoke the code completion popup, as shown below:</p>
+
+<p><img src="img/uit_control_complete.png" alt="UI Control Key Code Completion" /></p>
+
+<p>Beginning with version 2019.2 of the IntelliJ Platform, the editor has added features for Code Completion and <a href="https://www.jetbrains.com/help/idea/viewing-reference-information.html#inline-quick-documentation" data-bypass="yes" target="_blank"><span>Quick Documentation</span></a> to show the release in which a UI control key began to be supported.
+It appears as the <em>Since</em> attribute in editor popups.
+In the Quick Documentation popup the format is e.g. <em>Since: 2019.2</em>.
+The Code Completion popup is similar, but it the format is e.g. <em>[Since 2019.2]</em>.</p>
+
+<a name="finding-a-ui-control-key-using-laf-defaults-ui" class="elem-anchor"></a>
+<h3>Finding a UI Control Key using Laf Defaults UI<a href="#finding-a-ui-control-key-using-laf-defaults-ui" class="anchor-link"><span></span></a></h3>
+<p>Using the <a href="/intellij/sdk/docs/reference_guide/internal_actions/internal_ui_lafd.html"><span>Laf Defaults</span></a> inspector, enter the <code class="code highlight language-text">element</code> portion of the key. 
+The Laf Defaults inspector will prompt with a list of UI Control keys and their default color.</p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/ui_themes/themes.html">Creating Custom UI Themes</a>
+                        <a class="navigation-links__next" href="/reference_guide/ui_themes/themes_extras.html">UI Themes - Editor Schemes and Background Images</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

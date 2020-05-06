@@ -1,0 +1,277 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>IntelliJ Platform Artifacts Repositories / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//reference_guide/intellij_artifacts.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="IntelliJ Platform Artifacts Repositories" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="IntelliJ Platform Artifacts Repositories" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="reference_guide/intellij_artifacts">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/plugin_structure/dynamic_plugins.html">Dynamic Plugins</a>
+                        <a class="navigation-links__next" href="/tutorials/kotlin.html">Kotlin for Plugin Developers</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/reference_guide/intellij_artifacts.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>IntelliJ Platform Artifacts Repositories</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<aside class="warning">
+  <p> When using additional repositories, make sure to use HTTPS always.</p>
+</aside>
+
+<p>JetBrains maintains public repositories that host artifacts related to the IntelliJ Platform, such as binaries and source code. These 
+repositories make artifacts more accessible for plugin developers.</p>
+
+<p>The IntelliJ Platform artifacts repositories are:</p>
+<ul>
+  <li><a href="https://www.jetbrains.com/intellij-repository/releases/" data-bypass="yes" target="_blank"><span>Releases repository</span></a> for release versions by <a href="/intellij/sdk/docs/basics/getting_started/build_number_ranges.html"><span>build number</span></a>.</li>
+  <li><a href="https://www.jetbrains.com/intellij-repository/snapshots/" data-bypass="yes" target="_blank"><span>Snapshots repository</span></a> for <em>BRANCH#-EAP-SNAPSHOT</em>, <em>EAP-CANDIDATE-SNAPSHOT</em>, <em>LATEST-EAP-SNAPSHOT</em>, and the <em>EAP-SNAPSHOT</em>.</li>
+</ul>
+
+<p>See the <a href="#specify-the-maven-coordinates-for-the-artifact"><span>Maven coordinates</span></a> section for details about specifying these artifacts.</p>
+
+<p>Both the Releases and Snapshots repositories have two types of content:</p>
+<ul>
+  <li>Binary and source code artifacts for cross-platform, ZIP distributions of IntelliJ Platform-based IDEs, such as IntelliJ IDEA, CLion, Rider, and MPS. 
+These artifacts are <em>not intended</em> to be accessed directly from a plugin project’s <code class="code highlight language-text">build.gradle</code> file. 
+The <code class="code highlight language-text">gradle-intellij-plugin</code> will access them as-needed for a plugin project.</li>
+  <li>Artifacts for individual modules from the IntelliJ Platform. 
+These may be downloaded, or accessed directly from a <code class="code highlight language-text">build.gradle</code> file, as explained below.</li>
+</ul>
+
+<p>Artifacts for IntelliJ Platform third-party dependencies are hosted at the <a href="https://jetbrains.bintray.com/intellij-third-party-dependencies" data-bypass="yes" target="_blank"><span>Bintray repository</span></a>. 
+A link to this repository should be added to <code class="code highlight language-text">pom.xml</code>/<code class="code highlight language-text">build.gradle</code> files when individual modules from an IntelliJ Platform artifacts repository are used.</p>
+
+<a name="using-intellij-platform-module-artifacts" class="elem-anchor"></a>
+<h2>Using IntelliJ Platform Module Artifacts<a href="#using-intellij-platform-module-artifacts" class="anchor-link"><span></span></a></h2>
+<p>IntelliJ Platform module artifacts are utilized by adding information to a project’s <code class="code highlight language-text">build.gradle</code> file. 
+More information about <a href="https://www.jetbrains.com/help/idea/gradle.html" data-bypass="yes" target="_blank"><span>Gradle support</span></a> is available in the IntelliJ IDEA Help documentation.</p>
+
+<p>To setup dependencies on a module there are two types of information needed:</p>
+<ol>
+  <li>Specify the corresponding repository URL for the artifact.</li>
+  <li>Specify the <a href="https://maven.apache.org/pom.html#Maven_Coordinates" data-bypass="yes" target="_blank"><span>Maven coordinates</span></a> for the artifact.</li>
+</ol>
+
+<a name="specify-the-repository-url" class="elem-anchor"></a>
+<h3>Specify the Repository URL<a href="#specify-the-repository-url" class="anchor-link"><span></span></a></h3>
+<p>The URL for the desired artifact needs to be added to a Maven or Gradle script:</p>
+<ul>
+  <li>For release versions, use <code class="code highlight language-text">https://www.jetbrains.com/intellij-repository/releases</code></li>
+  <li>For EAP snapshots, use <code class="code highlight language-text">https://www.jetbrains.com/intellij-repository/snapshots</code></li>
+  <li>For dependencies on individual modules from the IntelliJ Platform, also use <code class="code highlight language-text">https://jetbrains.bintray.com/intellij-third-party-dependencies</code></li>
+</ul>
+
+<a name="specify-the-maven-coordinates-for-the-artifact" class="elem-anchor"></a>
+<h3>Specify the Maven Coordinates for the Artifact<a href="#specify-the-maven-coordinates-for-the-artifact" class="anchor-link"><span></span></a></h3>
+<p>Describing a desired IntelliJ Platform module artifact is done with Maven coordinates: <em>groupId</em>, <em>artifactId</em>, and <em>version</em>.
+The Maven coordinates are based on the names of modules.</p>
+
+<p>The <em>groupId</em> for a module is the prefix <code class="code highlight language-text">com.jetbrains.</code> concatenated with the first two parts of the module name.<br />
+For example, the module <code class="code highlight language-text">intellij.xml</code> would have the groupId <code class="code highlight language-text">com.jetbrains.intellij.xml</code>.</p>
+
+<p>The <em>artifactId</em> is the second..<em>n</em> parts of the module name separated by “-“ characters.<br />
+For example, the module <code class="code highlight language-text">intellij.xml</code> would have the artifactId <code class="code highlight language-text">xml</code>.
+There are some special cases to artifactId names. 
+If the second part of the module name is a common group like <code class="code highlight language-text">platform</code>, <code class="code highlight language-text">vcs</code>, or <code class="code highlight language-text">cloud</code>, the second part of the module name is dropped, and the artifactId becomes the third..<em>n</em> parts of the module name, separated by “-“ characters.
+Portions of the module name expressed in <code class="code highlight language-text">camelCase</code> format are divided and used in the artifactId as (all lower case) <code class="code highlight language-text">camel-case</code>.</p>
+
+<p>The table below shows some example module names and their corresponding groupId and artifactId.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Module Name</th>
+      <th>groupId</th>
+      <th>artifactId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>intellij.java.compiler.antTasks</td>
+      <td>com.jetbrains.intellij.java</td>
+      <td>java-compiler-ant-tasks</td>
+    </tr>
+    <tr>
+      <td>intellij.java.debugger</td>
+      <td>com.jetbrains.intellij.java</td>
+      <td>java-debugger</td>
+    </tr>
+    <tr>
+      <td>intellij.platform.util</td>
+      <td>com.jetbrains.intellij.platform</td>
+      <td>util</td>
+    </tr>
+    <tr>
+      <td>intellij.platform.vcs.log</td>
+      <td>com.jetbrains.intellij.platform</td>
+      <td>vcs-log</td>
+    </tr>
+    <tr>
+      <td>intellij.spring</td>
+      <td>com.jetbrains.intellij.spring</td>
+      <td>spring</td>
+    </tr>
+    <tr>
+      <td>intellij.xml.impl</td>
+      <td>com.jetbrains.intellij.xml</td>
+      <td>xml-impl</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The artifact <em>version</em> can be specified in one of several ways because each artifact <a href="#specify-the-repository-url"><span>at the Repository URLs</span></a> has multiple versions available:</p>
+<ul>
+  <li>Specify release build versions as <em>MAJOR[.MINOR][.FIX]</em>. For example <code class="code highlight language-text">14</code>, or <code class="code highlight language-text">14.1</code>, or <code class="code highlight language-text">14.1.1</code></li>
+  <li>Snapshot versions are specified as:
+    <ul>
+      <li>The snapshot of the most recent branch build is specified as <em>BRANCH-EAP-SNAPSHOT</em>. For example, <code class="code highlight language-text">193-EAP-SNAPSHOT</code>.
+There is only one of this type of build for each branch of each product.</li>
+      <li>The snapshot of the branch from which the next EAP/release build might be produced is specified as <em>BRANCH.BUILD-EAP-CANDIDATE-SNAPSHOT</em>. For example <code class="code highlight language-text">193.4386-EAP-CANDIDATE-SNAPSHOT</code>.
+There are multiple builds of this type, one for each build in each branch of every product.</li>
+      <li>The latest snapshot of a product is always specified as <em>LATEST-EAP-SNAPSHOT</em>.
+There is only one build of this type per product, and it is always the same as the <em>BRANCH-EAP-SNAPSHOT</em> for the newest branch of the product.</li>
+      <li>A snapshot of a branch is specified as <em>BRANCH.BUILD.FIX-EAP-SNAPSHOT</em>. For example, <code class="code highlight language-text">193.4386.10-EAP-SNAPSHOT</code>.
+There are many builds of this type for each branch of each product.</li>
+    </ul>
+  </li>
+</ul>
+
+<a name="example-artifact-specification" class="elem-anchor"></a>
+<h3>Example Artifact Specification<a href="#example-artifact-specification" class="anchor-link"><span></span></a></h3>
+<p>For example, to specify the <code class="code highlight language-text">jps-model-serialization</code> module:</p>
+<ul>
+  <li><em>groupId</em> = <code class="code highlight language-text">com.jetbrains.intellij.platform</code></li>
+  <li><em>artifactId</em> = <code class="code highlight language-text">jps-model-serialization</code></li>
+  <li><em>classifier</em> = <code class="code highlight language-text">""</code></li>
+  <li><em>packaging</em> = <code class="code highlight language-text">jar</code></li>
+</ul>
+
+<a name="gradle-example-for-an-individual-module-from-the-intellij-platform" class="elem-anchor"></a>
+<h2>Gradle Example for an Individual Module from the IntelliJ Platform<a href="#gradle-example-for-an-individual-module-from-the-intellij-platform" class="anchor-link"><span></span></a></h2>
+<p>This section presents an example of using a Gradle script to incorporate an IntelliJ Platform module and repository in a <code class="code highlight language-text">build.gradle</code> file. 
+The example illustrates declaring the artifact URL, Maven coordinates, and version for the <code class="code highlight language-text">jps-model-serialization</code> module artifact. 
+There are two parts to the example: the repository and the dependency sections.</p>
+
+<a name="repositories-section" class="elem-anchor"></a>
+<h3>Repositories Section<a href="#repositories-section" class="anchor-link"><span></span></a></h3>
+<p>This code snippet selects the release repository with the first URL, and repository of IntelliJ Platform dependencies with the second URL.
+The second URL is needed because this example selects individual modules.</p>
+<div class="code-block" data-lang="groovy"><code class="code-block__wrapper"><span class="n">repositories</span> <span class="o">{</span>
+	<span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"https://www.jetbrains.com/intellij-repository/releases"</span> <span class="o">}</span>
+	<span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"https://jetbrains.bintray.com/intellij-third-party-dependencies"</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="dependencies-section" class="elem-anchor"></a>
+<h3>Dependencies Section<a href="#dependencies-section" class="anchor-link"><span></span></a></h3>
+<p>This code snippet specifies the desired module artifacts.</p>
+<div class="code-block" data-lang="groovy"><code class="code-block__wrapper"><span class="n">dependencies</span> <span class="o">{</span>
+	<span class="n">compile</span> <span class="s2">"com.jetbrains.intellij.platform:jps-model-serialization:182.2949.4"</span>
+	<span class="n">compile</span> <span class="s2">"com.jetbrains.intellij.platform:jps-model-impl:182.2949.4"</span>
+<span class="o">}</span>
+</code></div>
+<p>Note:</p>
+<ul>
+  <li>The artifact version (<code class="code highlight language-text">182.2949.4</code>) must match in both statements.</li>
+  <li>In this example <code class="code highlight language-text">jps-model-serialization</code> declares the APIs and <code class="code highlight language-text">jps-model-impl</code> provides the implementation, so both
+are required dependencies.</li>
+</ul>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/plugin_structure/dynamic_plugins.html">Dynamic Plugins</a>
+                        <a class="navigation-links__next" href="/tutorials/kotlin.html">Kotlin for Plugin Developers</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,181 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Setting Up a Development Environment / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//basics/getting_started/setting_up_environment.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Setting Up a Development Environment" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Setting Up a Development Environment" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="basics/getting_started/setting_up_environment">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        
+                        <a class="navigation-links__next" href="/basics/getting_started/creating_plugin_project.html">Creating a Plugin Project</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/basics/getting_started/setting_up_environment.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Setting Up a Development Environment</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<a name="preliminary-steps" class="elem-anchor"></a>
+<h3>Preliminary Steps<a href="#preliminary-steps" class="anchor-link"><span></span></a></h3>
+
+<p>Use the following checklist to ensure that you are ready to develop your custom plugins.</p>
+
+<ul>
+  <li><strong>Get IntelliJ IDEA CE source code</strong> on your local computer. Getting IntelliJ IDEA CE source code is not a requirement for plugin development, but having it makes debugging your plugins much easier. For detailed instructions refer to the <em>Getting IntelliJ IDEA Community Edition Source Code</em> section of <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/README.md" data-bypass="yes" target="_blank"><span>Check Out And Build Community Edition</span></a>. Note that building IntelliJ IDEA CE from source code is not required for plugin development.</li>
+  <li><strong>Plugin DevKit</strong> plugin must be <a href="https://www.jetbrains.com/help/idea/managing-plugins.html" data-bypass="yes" target="_blank"><span>enabled in IntelliJ IDEA</span></a></li>
+  <li><strong>IntelliJ Platform SDK</strong> must be configured for your IDEA project. For more information, see below.</li>
+</ul>
+
+<a name="configuring-intellij-platform-sdk" class="elem-anchor"></a>
+<h3>Configuring IntelliJ Platform SDK<a href="#configuring-intellij-platform-sdk" class="anchor-link"><span></span></a></h3>
+
+<p>To set up your plugin development environment:</p>
+
+<ul>
+  <li>
+    <p>Create a new <em>IntelliJ Platform SDK</em> under <strong>File | Project Structure</strong>:</p>
+
+    <p><img src="img/create_intellij_idea_sdk.png" alt="Create IntelliJ Platform SDK" />
+<br />
+<br /></p>
+  </li>
+  <li>Specify the installation folder of <em>IntelliJ IDEA Community Edition</em> as the home directory.
+    <aside class="warning">
+      <p> You may use IntelliJ IDEA Ultimate as an alternative, but debugging the core code will only work with the <em>Community Edition</em>.</p>
+    </aside>
+
+    <p><img src="img/set_home_directory.png" alt="Set Home Directory" />
+<br />
+<br /></p>
+  </li>
+  <li>
+    <p>Select <strong>1.8</strong> as the default Java SDK. See the <em>IntelliJ Build Configuration</em> section of <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/README.md" data-bypass="yes" target="_blank"><span>Check Out And Build Community Edition</span></a> for instructions about creating <strong>1.8</strong> Java SDK.</p>
+
+    <p><img src="img/set_java_sdk.png" alt="Set IDEA JDK" />
+<br />
+<br /></p>
+  </li>
+  <li>
+    <p>In the Sourcepath tab of the SDK settings, click the <em>Add</em> button:</p>
+
+    <p><img src="img/add_sourcepath.png" alt="Add Sourcepath" />
+<br />
+<br /></p>
+  </li>
+  <li>
+    <p>Specify the source code directory for the <em>IntelliJ IDEA Community Edition</em>:</p>
+
+    <p><img src="img/community_sources_directory.png" alt="Specify Source Paths" />
+<br />
+<br /></p>
+  </li>
+  <li>
+    <p>Specify the <strong>Sandbox Home</strong> directory.<br />
+The <em>Sandbox Home</em> directory stores the settings of the IDE development instance launched from a Plugin Project’s <strong>Run</strong> configuration.
+Shown below is the default <em>Sandbox Home</em> directory for a user on Mac OS X. Any directory can be chosen as the <em>Sandbox Home</em> location. 
+Use the ellipsis button (shown below) to define a custom location.</p>
+
+    <p>See the <a href="/intellij/sdk/docs/basics/ide_development_instance.html"><span>IDE Development Instances</span></a> page for more information about default <em>Sandbox Home</em> directory
+locations and contents.</p>
+
+    <p><img src="img/plugins-sandbox.png" alt="Specify Sandbox Path" /></p>
+  </li>
+</ul>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        
+                        <a class="navigation-links__next" href="/basics/getting_started/creating_plugin_project.html">Creating a Plugin Project</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

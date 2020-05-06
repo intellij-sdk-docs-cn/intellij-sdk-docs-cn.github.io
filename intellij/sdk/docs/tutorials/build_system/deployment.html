@@ -1,0 +1,246 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Publishing Plugins with Gradle / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//tutorials/build_system/deployment.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Publishing Plugins with Gradle" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-03-06T11:10:08+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Publishing Plugins with Gradle" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="tutorials/build_system/deployment">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/tutorials/build_system/gradle_guide.html">Configuring Gradle for IntelliJ Platform Plugins</a>
+                        
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/tutorials/build_system/deployment.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Publishing Plugins with Gradle</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>Once you have configured Gradle support, you can automatically build and deploy your plugin to the <a href="https://plugins.jetbrains.com" data-bypass="yes" target="_blank"><span>JetBrains Plugin Repository</span></a>. 
+To automatically deploy a plugin, you need to have <em>already published the plugin to the plugin repository at least once.</em> 
+Please see the guide page for manually <a href="../../basics/getting_started/publishing_plugin.html"><span>publishing a plugin</span></a> for the first time.</p>
+
+<aside class="warning">
+  <p> When adding additional repositories to your Gradle build script, make sure to always use HTTPS protocol.</p>
+</aside>
+
+<ul id="markdown-toc">
+  <li><a href="#building-distribution" id="markdown-toc-building-distribution"><span>Building Distribution</span></a></li>
+  <li><a href="#providing-your-hub-permanent-token-to-gradle" id="markdown-toc-providing-your-hub-permanent-token-to-gradle"><span>Providing Your Hub Permanent Token to Gradle</span></a>    <ul>
+      <li><a href="#using-gradle-properties" id="markdown-toc-using-gradle-properties"><span>Using Gradle Properties</span></a></li>
+      <li><a href="#using-environment-variables" id="markdown-toc-using-environment-variables"><span>Using Environment Variables</span></a></li>
+      <li><a href="#using-parameters-for-the-gradle-task" id="markdown-toc-using-parameters-for-the-gradle-task"><span>Using Parameters for the Gradle Task</span></a></li>
+    </ul>
+  </li>
+  <li><a href="#deploying-a-plugin-with-gradle" id="markdown-toc-deploying-a-plugin-with-gradle"><span>Deploying a Plugin with Gradle</span></a>    <ul>
+      <li><a href="#publishing-a-plugin" id="markdown-toc-publishing-a-plugin"><span>Publishing a Plugin</span></a></li>
+      <li><a href="#specifying-a-release-channel" id="markdown-toc-specifying-a-release-channel"><span>Specifying a Release Channel</span></a></li>
+    </ul>
+  </li>
+</ul>
+
+<a name="building-distribution" class="elem-anchor"></a>
+<h2>Building Distribution<a href="#building-distribution" class="anchor-link"><span></span></a></h2>
+<p>For manual distribution or local installation, invoke <code class="code highlight language-text">gradle buildPlugin</code> target to create the plugin distribution.
+The resulting JAR/ZIP is located in <code class="code highlight language-text">build/distributions</code> and can then be <a href="https://www.jetbrains.com/help/idea/managing-plugins.html#installing-plugins-from-disk" data-bypass="yes" target="_blank"><span>installed</span></a> manually.</p>
+
+<a name="providing-your-hub-permanent-token-to-gradle" class="elem-anchor"></a>
+<h2>Providing Your Hub Permanent Token to Gradle<a href="#providing-your-hub-permanent-token-to-gradle" class="anchor-link"><span></span></a></h2>
+<p>To deploy a plugin to the plugin repository, you need to supply your <a href="https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html" data-bypass="yes" target="_blank"><span>JetBrains Hub Permanent Token</span></a>. 
+This page describes three options to supply your <em>Hub Permanent Token</em> via Gradle using:</p>
+<ul>
+  <li>Gradle properties,</li>
+  <li>Environment variables,</li>
+  <li>Parameters to the Gradle task.</li>
+</ul>
+
+<a name="using-gradle-properties" class="elem-anchor"></a>
+<h3>Using Gradle Properties<a href="#using-gradle-properties" class="anchor-link"><span></span></a></h3>
+<p>You can store the Hub Token in <a href="https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_configuration_properties" data-bypass="yes" target="_blank"><span>Gradle properties</span></a>.</p>
+
+<aside class="warning">
+  <p> You must not check the Gradle properties file containing the Hub Token into source control.</p>
+</aside>
+
+<p>If you place a <code class="code highlight language-text">gradle.properties</code> file containing your Hub Permanent Token in your project’s root directory, please ensure your version control tool ignores this file. 
+For example in Git, you can add the following line to your <code class="code highlight language-text">.gitignore</code> file:</p>
+<div class="code-block" data-lang="text"><code class="code-block__wrapper">gradle.properties
+</code></div>
+
+<p>To add the Hub Token to a Gradle properties file, place the following information in:</p>
+<ul>
+  <li>The file <code class="code highlight language-text">GRADLE_HOME/gradle.properties</code>,</li>
+  <li>Or inside a file called <code class="code highlight language-text">gradle.properties</code> under your project’s root directory.</li>
+</ul>
+
+<div class="code-block" data-lang="text"><code class="code-block__wrapper">intellijPublishToken=YOUR_HUB_TOKEN_HERE
+</code></div>
+
+<p>Then refer to these values in <code class="code highlight language-text">publishPlugin</code> task in your <code class="code highlight language-text">build.gradle</code> file:</p>
+<div class="code-block" data-lang="groovy"><code class="code-block__wrapper"><span class="n">publishPlugin</span> <span class="o">{</span>
+    <span class="n">token</span> <span class="n">intellijPublishToken</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="using-environment-variables" class="elem-anchor"></a>
+<h3>Using Environment Variables<a href="#using-environment-variables" class="anchor-link"><span></span></a></h3>
+<p>Alternatively, and possibly slightly safer because you cannot accidentally commit your token to version control, you can provide your token via an environment variable. 
+For example, start by defining an environment variable such as:</p>
+<div class="code-block" data-lang="bash"><code class="code-block__wrapper"><span class="nb">export </span><span class="nv">ORG_GRADLE_PROJECT_intellijPublishToken</span><span class="o">=</span><span class="s1">'YOUR_HUB_TOKEN_HERE'</span>
+</code></div>
+
+<aside class="note">
+  <p> On macOS systems environment variables defined in <code class="code highlight language-text">.bash_profile</code> are only visible to processes you run from bash. 
+Environment variables visible to all processes need to be defined in <a href="https://developer.apple.com/library/archive/qa/qa1067/_index.html" data-bypass="yes" target="_blank"><span>Environment.plist</span></a></p>
+</aside>
+
+<p>Now provide the environment variable in the run configuration with which you run the <code class="code highlight language-text">publishPlugin</code> task locally. 
+To do so, create a Gradle run configuration (if not already done), choose your Gradle project, specify the <code class="code highlight language-text">publishPlugin</code> task, and then add the environment variable.</p>
+<div class="code-block" data-lang="groovy"><code class="code-block__wrapper"><span class="n">publishPlugin</span> <span class="o">{</span>
+  <span class="n">token</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s2">"ORG_GRADLE_PROJECT_intellijPublishToken"</span><span class="o">)</span>
+<span class="o">}</span>
+</code></div>
+
+<p>Note that you still need to put some default values (can be empty) in the Gradle properties because otherwise, you will get a compilation error.</p>
+
+<a name="using-parameters-for-the-gradle-task" class="elem-anchor"></a>
+<h3>Using Parameters for the Gradle Task<a href="#using-parameters-for-the-gradle-task" class="anchor-link"><span></span></a></h3>
+<p>Similar to using environment variables, you can also pass your token as a parameter to the Gradle task.
+For example, you can to provide the parameter <code class="code highlight language-text">-Dorg.gradle.project.intellijPublishToken=YOUR_HUB_TOKEN_HERE</code> on the command line or by putting it in the arguments of your run configuration.</p>
+
+<p>Note that also, in this case, you still need to put some default values in your Gradle properties.</p>
+
+<a name="deploying-a-plugin-with-gradle" class="elem-anchor"></a>
+<h2>Deploying a Plugin with Gradle<a href="#deploying-a-plugin-with-gradle" class="anchor-link"><span></span></a></h2>
+<p>The first step when deploying a plugin is to confirm that it works correctly. 
+You may wish to verify this by <a href="https://www.jetbrains.com/help/idea/managing-plugins.html" data-bypass="yes" target="_blank"><span>installing your plugin from disk</span></a> on a fresh instance of your target IDE(s).</p>
+
+<a name="publishing-a-plugin" class="elem-anchor"></a>
+<h3>Publishing a Plugin<a href="#publishing-a-plugin" class="anchor-link"><span></span></a></h3>
+<p>Once you are confident the plugin works as intended, make sure the plugin version is updated, as the JetBrains Plugin repository won’t accept multiple artifacts with the same version. 
+To deploy a new version of your plugin to the JetBrains plugin repository, execute the following Gradle command:</p>
+<div class="code-block" data-lang="bash"><code class="code-block__wrapper">gradle publishPlugin
+</code></div>
+
+<p>Now check the most recent version of your plugin appears on the <a href="https://plugins.jetbrains.com/" data-bypass="yes" target="_blank"><span>Plugin Repository</span></a>. 
+If successfully deployed, any users who currently have your plugin installed on an eligible version of the IntelliJ Platform are notified of a new update available on the following restart.</p>
+
+<a name="specifying-a-release-channel" class="elem-anchor"></a>
+<h3>Specifying a Release Channel<a href="#specifying-a-release-channel" class="anchor-link"><span></span></a></h3>
+<p>You may also deploy plugins to a release channel of your choosing, by configuring the <code class="code highlight language-text">publishPlugin.channels</code> property. 
+For example:</p>
+<div class="code-block" data-lang="groovy"><code class="code-block__wrapper"><span class="n">publishPlugin</span> <span class="o">{</span>
+    <span class="n">channels</span> <span class="s1">'beta'</span>
+<span class="o">}</span>
+</code></div>
+
+<p>When empty, this uses the default plugin repository, available to all <a href="https://plugins.jetbrains.com/" data-bypass="yes" target="_blank"><span>JetBrains plugin repository</span></a> users. 
+However, you can publish to an arbitrarily-named channel. 
+These non-default release channels are treated as separate repositories. 
+When using a non-default release channel, users need to add a new <a href="https://www.jetbrains.com/help/idea/managing-plugins.html#repos" data-bypass="yes" target="_blank"><span>custom plugin repository</span></a> to install your plugin. 
+For example, if you specify <code class="code highlight language-text">publishPlugin.channels 'canary'</code>, then users need to add the <code class="code highlight language-text">https://plugins.jetbrains.com/plugins/canary/list</code> repository to install the plugin and receive updates. 
+Popular channel names include:</p>
+<ul>
+  <li><code class="code highlight language-text">alpha</code>: https://plugins.jetbrains.com/plugins/alpha/list</li>
+  <li><code class="code highlight language-text">beta</code>: https://plugins.jetbrains.com/plugins/beta/list</li>
+  <li><code class="code highlight language-text">eap</code>: https://plugins.jetbrains.com/plugins/eap/list</li>
+</ul>
+
+<p>More information about the available configuration options is in the <a href="https://github.com/JetBrains/gradle-intellij-plugin/blob/master/README.md#publishing-dsl" data-bypass="yes" target="_blank"><span>documentation of the intellij gradle plugin</span></a>.</p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/tutorials/build_system/gradle_guide.html">Configuring Gradle for IntelliJ Platform Plugins</a>
+                        
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 6 March 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

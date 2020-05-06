@@ -1,0 +1,26 @@
+{% capture _t %}
+    {% assign product_name = site.product_name %}
+    {% assign product_version = site.product_version %}
+    {% assign page_title = page.title %}
+    {% assign page_title_with_h1 = '' %}
+    {% if page.title %}
+        {% capture page_title_with_h1 %}<h1>{{page.title}}</h1>{% endcapture %}
+    {% endif %}
+    {% assign page_id = page.url | to_id %}
+    {% assign page_content = content %}
+    {% assign is_show_shortcut_switcher = 'false' %}
+    {% assign current_year = 'now' | date:'%Y' %}
+    {% if page.git %}
+        {% assign last_modified_time = page.git.last_commit.commit_date %}
+    {% else %}
+        {% assign last_modified_time = site.time %}
+    {% endif %}
+    {% capture last_modified %}Last modified: {{ last_modified_time | date: '%-d %B %Y' }}{% endcapture %}
+    {% capture last_modified_iso %}{{ last_modified_time | date_to_xmlschema }}{% endcapture %}
+    {% assign disqus = '' %}
+    {% assign app_baseurl = site.baseurl %}
+    {% capture edit_on_github_url %}https://github.com/{{ site.github_repo }}/edit/master/{{ page.path }}{% endcapture %}
+{% endcapture %}
+{% capture rendered_content %}{% include page.html %}{% endcapture %}
+{% capture local_style_sheet %}<link  rel="stylesheet" href="{{app_baseurl}}app/styles.css"></head>{% endcapture %}
+{{ rendered_content | replace:'</head>', local_style_sheet }}

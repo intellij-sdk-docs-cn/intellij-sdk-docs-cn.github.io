@@ -1,0 +1,192 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Structure / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//basics/project_structure.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Project Structure" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Project Structure" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="basics/project_structure">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/localization_guide.html">Localization Guide</a>
+                        <a class="navigation-links__next" href="/reference_guide/project_model/project.html">Project</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/basics/project_structure.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Project Structure</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<!--TODO split into parts accordingly to the table of contents-->
+
+<p>This topic considers the concept of projects based on the IntelliJ Platform and related subjects, such as <em>modules</em>, <em>facets</em>, <em>libraries</em>, and <em>SDK</em>. 
+The project structure and Java classes available to manage projects and modules are discussed.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#project-and-its-components" id="markdown-toc-project-and-its-components"><span>Project and Its Components</span></a>    <ul>
+      <li><a href="#project" id="markdown-toc-project"><span>Project</span></a></li>
+      <li><a href="#module" id="markdown-toc-module"><span>Module</span></a></li>
+      <li><a href="#library" id="markdown-toc-library"><span>Library</span></a></li>
+      <li><a href="#sdk" id="markdown-toc-sdk"><span>SDK</span></a></li>
+      <li><a href="#facet" id="markdown-toc-facet"><span>Facet</span></a></li>
+    </ul>
+  </li>
+  <li><a href="#additional-information" id="markdown-toc-additional-information"><span>Additional Information</span></a></li>
+</ul>
+
+<a name="project-and-its-components" class="elem-anchor"></a>
+<h2>Project and Its Components<a href="#project-and-its-components" class="anchor-link"><span></span></a></h2>
+<p>This section briefly discusses the IDEA project structure, project components and related terms.<br />
+For more information about projects and their components, refer to <a href="https://www.jetbrains.com/help/idea/about-projects.html" data-bypass="yes" target="_blank"><span>Project</span></a>, <a href="https://www.jetbrains.com/help/idea/creating-and-managing-modules.html" data-bypass="yes" target="_blank"><span>Module</span></a>, <a href="https://www.jetbrains.com/help/idea/working-with-libraries.html" data-bypass="yes" target="_blank"><span>Library</span></a>, <a href="https://www.jetbrains.com/help/idea/adding-support-for-frameworks-and-technologies.html#facets" data-bypass="yes" target="_blank"><span>Facet</span></a> in the IntelliJ IDEA Web Help.</p>
+
+<a name="project" class="elem-anchor"></a>
+<h3>Project<a href="#project" class="anchor-link"><span></span></a></h3>
+<p>In the IntelliJ Platform, a <em>project</em> encapsulates all of a project’s source code, libraries, and build instructions into a single organizational unit. 
+Everything done using the IntelliJ Platform SDK is done within the context of a project. 
+A project defines collections referred to as <em>modules</em> and <em>libraries</em>. 
+Depending on the logical and functional requirements for the project, you can create a <em>single-module</em> or a <em>multi-module</em> project.</p>
+
+<a name="module" class="elem-anchor"></a>
+<h3>Module<a href="#module" class="anchor-link"><span></span></a></h3>
+<p>A <em>module</em> is a discrete unit of functionality that can be run, tested, and debugged independently. 
+Modules include such things as source code, build scripts, unit tests, deployment descriptors, etc. 
+In a project, each module can use a specific SDK or inherit the SDK defined at the project level (see the <a href="#sdk"><span>SDK</span></a> section below in this document). 
+A module can depend on other modules of the project.</p>
+
+<a name="library" class="elem-anchor"></a>
+<h3>Library<a href="#library" class="anchor-link"><span></span></a></h3>
+<p>A <em>library</em> is an archive of compiled code (such as JAR files) on which modules depend. 
+The IntelliJ Platform supports three types of libraries:</p>
+<ul>
+  <li><strong>Module Library</strong>: the library classes are visible only in this module and the library information is recorded in the module’s <code class="code highlight language-text">.iml</code> file.</li>
+  <li><strong>Project Library</strong>: the library classes are visible within the project and the library information is recorded in the project’s <code class="code highlight language-text">.ipr</code> file or in <code class="code highlight language-text">.idea/libraries</code>.</li>
+  <li><strong>Global Library</strong>: the library information is recorded in the <code class="code highlight language-text">applicationLibraries.xml</code> file in the <code class="code highlight language-text">~/.IntelliJIdea/config/options</code> directory. Global libraries are similar to project libraries, but are visible for different projects.</li>
+</ul>
+
+<p>For more information about libraries, refer to <a href="https://www.jetbrains.com/help/idea/working-with-libraries.html" data-bypass="yes" target="_blank"><span>Library</span></a>.</p>
+
+<a name="sdk" class="elem-anchor"></a>
+<h3>SDK<a href="#sdk" class="anchor-link"><span></span></a></h3>
+<p>Every project uses a Software Development Kit (<em>SDK</em>). For Java projects, SDK is referred to as JDK (Java Development Kit).</p>
+
+<p>The SDK determines which API library is used to build the project. 
+If a project is multi-module, the project SDK is common for all modules within the project by default.
+Optionally, a project can configure an individual SDK for each module.</p>
+
+<p>For more information about SDKs, see <a href="https://www.jetbrains.com/help/idea/working-with-sdks.html" data-bypass="yes" target="_blank"><span>Working with SDKs</span></a> in the IntelliJ IDEA Web Help.</p>
+
+<a name="facet" class="elem-anchor"></a>
+<h3>Facet<a href="#facet" class="anchor-link"><span></span></a></h3>
+<p>A <em>facet</em> represents a certain configuration, specific for a particular framework/technology associated with a module. 
+A module can have multiple facets. 
+E.g. Spring specific configuration is stored in a Spring facet.</p>
+
+<p>Facets are documented under <a href="https://www.jetbrains.com/help/idea/adding-support-for-frameworks-and-technologies.html#facets" data-bypass="yes" target="_blank"><span>Facet</span></a> and <a href="https://www.jetbrains.com/help/idea/language-and-framework-specific-guidelines.html" data-bypass="yes" target="_blank"><span>Language and Framework Specific Guidelines</span></a> in the IntelliJ IDEA Web Help.</p>
+
+<a name="additional-information" class="elem-anchor"></a>
+<h2>Additional Information<a href="#additional-information" class="anchor-link"><span></span></a></h2>
+<p>For more information on each of these entities, see:</p>
+
+<ul>
+  <li><a href="/intellij/sdk/docs/reference_guide/project_model/project.html"><span>Project</span></a></li>
+  <li><a href="/intellij/sdk/docs/reference_guide/project_model/module.html"><span>Module</span></a></li>
+  <li><a href="/intellij/sdk/docs/reference_guide/project_model/sdk.html"><span>SDK</span></a></li>
+  <li><a href="/intellij/sdk/docs/reference_guide/project_model/library.html"><span>Library</span></a></li>
+  <li><a href="/intellij/sdk/docs/reference_guide/frameworks_and_external_apis/external_system_integration.html"><span>External system integration</span></a> (for projects imported from Gradle or similar build systems)</li>
+</ul>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/localization_guide.html">Localization Guide</a>
+                        <a class="navigation-links__next" href="/reference_guide/project_model/project.html">Project</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

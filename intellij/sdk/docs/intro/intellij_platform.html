@@ -1,0 +1,185 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>What is the IntelliJ Platform? / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//intro/intellij_platform.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="What is the IntelliJ Platform?" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-03-18T18:42:50+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="What is the IntelliJ Platform?" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="intro/intellij_platform">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/intro/welcome.html">IntelliJ Platform SDK</a>
+                        <a class="navigation-links__next" href="/intro/about.html">About this Guide</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/intro/intellij_platform.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>What is the IntelliJ Platform?</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>The <em>IntelliJ Platform</em> is not a product in and of itself but provides a platform for building IDEs. It is used to power JetBrains products such as <a href="https://www.jetbrains.com/idea/" data-bypass="yes" target="_blank"><span>IntelliJ IDEA</span></a>. It is also Open Source and can be used by third parties to build IDEs, such as <a href="https://developer.android.com/studio/index.html" data-bypass="yes" target="_blank"><span>Android Studio</span></a> from Google.</p>
+
+<p>The IntelliJ Platform provides all of the infrastructure that these IDEs need to provide rich language tooling support. It provides a component driven, cross-platform JVM based application host with a high-level user interface toolkit for creating tool windows, tree views and lists (supporting fast search) as well as popup menus and dialogs.</p>
+
+<p>It also includes an image editor as well as a full text editor, and provides abstract implementations of syntax highlighting, code folding, code completion, and other rich text editing features.</p>
+
+<p>Furthermore, it includes open APIs to build common IDE functionality, such as a project model and a build system. It also provides infrastructure for a very rich debugging experience, with language agnostic advanced breakpoint support, call stacks, watch windows, and expression evaluation.</p>
+
+<p>But the IntelliJ Platform’s real power comes from the Program Structure Interface (PSI). This is a set of functionality that can be used to parse files and build rich syntactic and semantic models of the code, and to build indexes from this data. This powers a lot of functionality, from quick navigating to files, types and symbols, to the contents of code completion windows and find usages, code inspections and code rewriting, for quick fixes or refactorings, as well as many other features.</p>
+
+<p>The IntelliJ Platform includes parsers and a PSI model for a number of languages, and its extensible nature means that it is possible to add support for other languages.</p>
+
+<a name="plugins" class="elem-anchor"></a>
+<h2>Plugins<a href="#plugins" class="anchor-link"><span></span></a></h2>
+
+<p>Products built on the IntelliJ Platform are extensible applications, with the platform being responsible for the creation of components, and the injection of dependencies into classes. The IntelliJ Platform fully supports plugins, and JetBrains hosts a <a href="https://plugins.jetbrains.com" data-bypass="yes" target="_blank"><span>plugin repository</span></a> that can be used to distribute plugins that support one or more of the products. It is also possible to host your own repositories, and distribute plugins separately.</p>
+
+<p>Plugins can extend the platform in lots of ways, from adding a simple menu item to adding support for a complete language, build system and debugger. A lot of the existing functionality in the IntelliJ Platform is written as plugins that can be included or excluded depending on the needs of the end product. See the <a href="/intellij/sdk/docs/basics/basics.html"><span>Quick Start Guide</span></a> for more details.</p>
+
+<p>The IntelliJ Platform is a JVM application, written mostly in Java and Kotlin. You should be experienced with these languages, large libraries written in them, their associated tooling, and large open source projects to write plugins for products based on the IntelliJ Platform. At this time, it’s not possible to extend the IntelliJ Platform in non-JVM languages.</p>
+
+<a name="open-source" class="elem-anchor"></a>
+<h2>Open Source<a href="#open-source" class="anchor-link"><span></span></a></h2>
+
+<p>The IntelliJ Platform is Open Source, under the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/LICENSE.txt" data-bypass="yes" target="_blank"><span>Apache license</span></a>, and <a href="https://github.com/JetBrains/intellij-community" data-bypass="yes" target="_blank"><span>hosted on GitHub</span></a>.</p>
+
+<p>While this guide refers to the IntelliJ Platform as a separate entity, there is no “IntelliJ Platform” GitHub repo. Instead, the platform is considered to be an almost complete overlap with the IntelliJ IDEA Community Edition, which is a free and Open Source version of IntelliJ IDEA Ultimate (the GitHub repo linked above is the <a href="https://github.com/JetBrains/intellij-community" data-bypass="yes" target="_blank"><span>JetBrains/intellij-community</span></a> repo).</p>
+
+<p>The version of the IntelliJ Platform is defined by the version of the corresponding release of IntelliJ IDEA Community Edition. 
+For example, to build a plugin against IntelliJ IDEA (2019.1.1,) build #191.6707.61, means specifying the same build number tag to get the correct Intellij Platform files from the <code class="code highlight language-text">intellij-community</code> repo. 
+See the <a href="/intellij/sdk/docs/basics/getting_started/build_number_ranges.html"><span>build number ranges</span></a> page for more information about build numbers corresponding to version numbering.</p>
+
+<p>Typically, an IDE that is based on the IntelliJ Platform will include the <code class="code highlight language-text">intellij-community</code> repo as a Git submodule and provide configuration to describe which plugins from the <code class="code highlight language-text">intellij-community</code>, and which custom plugins will make up the product. This is how the IDEA Ultimate team work, and they contribute code to both the custom plugins and the IntelliJ Platform itself.</p>
+
+<a name="ides-based-on-the-intellij-platform" class="elem-anchor"></a>
+<h3>IDEs Based on the IntelliJ Platform<a href="#ides-based-on-the-intellij-platform" class="anchor-link"><span></span></a></h3>
+<p>The IntelliJ Platform underlies many JetBrains IDEs. 
+IntelliJ IDEA Ultimate is a superset of the IntelliJ IDEA Community Edition, but includes closed source plugins (<a href="https://www.jetbrains.com/idea/features/editions_comparison_matrix.html" data-bypass="yes" target="_blank"><span>see this feature comparison</span></a>). Similarly, other products such as WebStorm and DataGrip are based on the IntelliJ IDEA Community Edition, but with a different set of plugins included and excluding other default plugins.
+This allows plugins to target multiple products, as each product will include base functionality and a selection of plugins from the IntelliJ IDEA Community Edition repo.</p>
+
+<p>The following IDEs are based on the IntelliJ Platform:</p>
+<ul>
+  <li>JetBrains IDEs
+    <ul>
+      <li><a href="https://www.jetbrains.com/objc/" data-bypass="yes" target="_blank"><span>AppCode</span></a></li>
+      <li><a href="https://www.jetbrains.com/clion/" data-bypass="yes" target="_blank"><span>CLion</span></a></li>
+      <li><a href="https://www.jetbrains.com/datagrip/" data-bypass="yes" target="_blank"><span>DataGrip</span></a></li>
+      <li><a href="https://www.jetbrains.com/go/" data-bypass="yes" target="_blank"><span>GoLand</span></a></li>
+      <li><a href="https://www.jetbrains.com/idea/" data-bypass="yes" target="_blank"><span>IntelliJ IDEA</span></a></li>
+      <li><a href="https://www.jetbrains.com/mps/" data-bypass="yes" target="_blank"><span>MPS</span></a></li>
+      <li><a href="https://www.jetbrains.com/phpstorm/" data-bypass="yes" target="_blank"><span>PhpStorm</span></a></li>
+      <li><a href="https://www.jetbrains.com/pycharm/" data-bypass="yes" target="_blank"><span>PyCharm</span></a></li>
+      <li><a href="#rider"><span>Rider</span></a></li>
+      <li><a href="https://www.jetbrains.com/ruby/" data-bypass="yes" target="_blank"><span>RubyMine</span></a></li>
+      <li><a href="https://www.jetbrains.com/webstorm/" data-bypass="yes" target="_blank"><span>WebStorm</span></a></li>
+    </ul>
+  </li>
+  <li><a href="https://developer.android.com/studio/index.html" data-bypass="yes" target="_blank"><span>Android Studio</span></a> IDE from Google.</li>
+  <li><a href="https://commaide.com/" data-bypass="yes" target="_blank"><span>Comma</span></a> IDE for Raku (formerly known as Perl 6)</li>
+  <li><a href="https://www.cuba-platform.com/" data-bypass="yes" target="_blank"><span>CUBA Studio</span></a></li>
+  <li><a href="https://cursive-ide.com/" data-bypass="yes" target="_blank"><span>Cursive</span></a> IDE for Clojure</li>
+</ul>
+
+<a name="rider" class="elem-anchor"></a>
+<h4>Rider</h4>
+<p>JetBrains <a href="https://www.jetbrains.com/rider/" data-bypass="yes" target="_blank"><span>Rider</span></a> uses the IntelliJ Platform differently than other IntelliJ based IDEs. It uses the IntelliJ Platform to provide the user interface for a C# and .NET IDE, with the standard IntelliJ editors, tool windows, debugging experience and so on. It also integrates into the standard Find Usages and Search Everywhere UI, and makes use of code completion, syntax highlighting, and so on.</p>
+
+<p>However, Rider doesn’t create a full PSI (syntactic and semantic) model for C# files. Instead, it reuses <a href="https://www.jetbrains.com/resharper/" data-bypass="yes" target="_blank"><span>ReSharper</span></a> to provide language functionality. All of the C# PSI model and all inspections and code rewriting, such as quick fixes and refactorings are run out of process, in a command line version of ReSharper. This means that creating a plugin for Rider involves two parts - a plugin that lives in the IntelliJ “front end” to show user interface, and a plugin that lives in the ReSharper “back end” to analyze and work with the C# PSI.</p>
+
+<p>Fortunately, many plugins can simply work with the ReSharper backend - Rider takes care of displaying the results of inspections and code completion, and many plugins can be written that don’t require an IntelliJ UI component. More details can be found in the Product Specific section.</p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/intro/welcome.html">IntelliJ Platform SDK</a>
+                        <a class="navigation-links__next" href="/intro/about.html">About this Guide</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 18 March 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

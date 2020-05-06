@@ -1,0 +1,210 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Plugin Listeners / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//basics/plugin_structure/plugin_listeners.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Plugin Listeners" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Plugin Listeners" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="basics/plugin_structure/plugin_listeners">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/plugin_structure/plugin_services.html">Plugin Services</a>
+                        <a class="navigation-links__next" href="/basics/plugin_structure/plugin_extension_points.html">Plugin Extension Points</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/basics/plugin_structure/plugin_listeners.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Plugin Listeners</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<aside class="note">
+  <p> Defining listeners in <code class="code highlight language-text">plugin.xml</code> is supported starting with version 2019.3 of the platform.</p>
+</aside>
+
+<p><em>Listeners</em> allow plugins to declaratively subscribe to events delivered through the
+<a href="/intellij/sdk/docs/reference_guide/messaging_infrastructure.html"><span>message bus</span></a>. You can define both application- and project-level
+listeners.</p>
+
+<p>Declarative registration of listeners allows you to achieve better performance compared to registering listeners
+from code, because listener instances are created lazily (the first time an event is sent to the topic), and not
+during application startup or project opening.</p>
+
+<a name="defining-application-level-listeners" class="elem-anchor"></a>
+<h2>Defining Application-Level Listeners<a href="#defining-application-level-listeners" class="anchor-link"><span></span></a></h2>
+
+<p>To define an application-level listener, add the following section to your <code class="code highlight language-text">plugin.xml</code>:</p>
+
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper"><span class="nt">&lt;applicationListeners&gt;</span>
+  <span class="nt">&lt;listener</span> <span class="na">class=</span><span class="s">"myPlugin.MyListenerClass"</span> <span class="na">topic=</span><span class="s">"BaseListenerInterface"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/applicationListeners&gt;</span>
+</code></div>
+
+<p>The <code class="code highlight language-text">topic</code> attribute specifies the listener interface corresponding to the type of events you want to receive.
+Normally, this is the interface used as the type parameter of the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/extensions/src/com/intellij/util/messages/Topic.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">Topic</code></span></a> instance for the type of events.
+The <code class="code highlight language-text">class</code> attribute specifies the class in your plugin that implements the listener interface and receives
+the events.</p>
+
+<p>As a specific example, if you want to receive events about all changes in the virtual file system, you need
+to implement the <code class="code highlight language-text">BulkFileListener</code> interface, corresponding to the topic <code class="code highlight language-text">VirtualFileManager.VFS_CHANGES</code>.
+To subscribe to this topic from code, you could use something like the following snippet:</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="n">messageBus</span><span class="o">.</span><span class="na">connect</span><span class="o">().</span><span class="na">subscribe</span><span class="o">(</span><span class="n">VirtualFileManager</span><span class="o">.</span><span class="na">VFS_CHANGES</span><span class="o">,</span> <span class="k">new</span> <span class="n">BulkFileListener</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">after</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">VFileEvent</span><span class="o">&gt;</span> <span class="n">events</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// handle the events</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</code></div>
+
+<p>To use declarative registration, you no longer need to reference the <code class="code highlight language-text">Topic</code> instance. Instead, you refer directly
+to the listener interface class:</p>
+
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper"><span class="nt">&lt;applicationListeners&gt;</span>
+  <span class="nt">&lt;listener</span> <span class="na">class=</span><span class="s">"myPlugin.MyVfsListener"</span> <span class="na">topic=</span><span class="s">"com.intellij.openapi.vfs.newvfs.BulkFileListener"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/applicationListeners&gt;</span>
+</code></div>
+
+<p>Then you provide the listener implementation as a top-level class:</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyVfsListener</span> <span class="kd">implements</span> <span class="n">BulkFileListener</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">after</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">VFileEvent</span><span class="o">&gt;</span> <span class="n">events</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// handle the events</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="defining-project-level-listeners" class="elem-anchor"></a>
+<h2>Defining Project-level Listeners<a href="#defining-project-level-listeners" class="anchor-link"><span></span></a></h2>
+
+<p>Project-level listeners are registered in the same way, except that the top-level tag is 
+<code class="code highlight language-text">&lt;projectListeners&gt;</code>. They can be used to listen to project-level events, for example, tool window operations:</p>
+
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper"><span class="nt">&lt;projectListeners&gt;</span>
+    <span class="nt">&lt;listener</span> <span class="na">class=</span><span class="s">"MyToolwindowListener"</span> <span class="na">topic=</span><span class="s">"com.intellij.openapi.wm.ex.ToolWindowManagerListener"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/projectListeners&gt;</span>
+</code></div>
+
+<p>The class implementing the listener interface can define a one-argument constructor accepting a <code class="code highlight language-text">Project</code>,
+and it will receive the instance of the project for which the listener is created:</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyToolwindowListener</span> <span class="kd">implements</span> <span class="n">ToolWindowManagerListener</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Project</span> <span class="n">project</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">MyToolwindowListener</span><span class="o">(</span><span class="n">Project</span> <span class="n">project</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">project</span> <span class="o">=</span> <span class="n">project</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">stateChanged</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// handle the state change</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="additional-attributes" class="elem-anchor"></a>
+<h2>Additional attributes<a href="#additional-attributes" class="anchor-link"><span></span></a></h2>
+
+<p>Registration of listeners can be restricted using the following attributes:</p>
+
+<ul>
+  <li><code class="code highlight language-text">os</code> - allows to restrict listener to given OS, e.g., <code class="code highlight language-text">os="windows"</code> for Windows only (2020.1 and later)</li>
+  <li><code class="code highlight language-text">activeInTestMode</code> - set to <code class="code highlight language-text">false</code> to disable listener if <code class="code highlight language-text">com.intellij.openapi.application.Application.isUnitTestMode()</code>==<code class="code highlight language-text">true</code></li>
+  <li><code class="code highlight language-text">activeInHeadlessMode</code> - set to <code class="code highlight language-text">false</code> to disable listener if <code class="code highlight language-text">com.intellij.openapi.application.Application.isHeadlessEnvironment()</code>==<code class="code highlight language-text">true</code>. Also covers <code class="code highlight language-text">activeInTestMode</code> as test mode implies headless mode.</li>
+</ul>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/plugin_structure/plugin_services.html">Plugin Services</a>
+                        <a class="navigation-links__next" href="/basics/plugin_structure/plugin_extension_points.html">Plugin Extension Points</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

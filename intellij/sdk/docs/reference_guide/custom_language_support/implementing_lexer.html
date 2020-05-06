@@ -1,0 +1,216 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>实现词法分析器 / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//reference_guide/custom_language_support/implementing_lexer.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="实现词法分析器" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-03-30T08:22:23+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="实现词法分析器" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="reference_guide/custom_language_support/implementing_lexer">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/custom_language_support/registering_file_type.html">注册文件类型</a>
+                        <a class="navigation-links__next" href="/reference_guide/custom_language_support/implementing_parser_and_psi.html">实现解析器与 PSI</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/reference_guide/custom_language_support/implementing_lexer.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>实现词法分析器</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>Lexer，或称为
+<a href="https://en.wikipedia.org/wiki/Lexical_analysis" data-bypass="yes" target="_blank"><span>词法分析器</span></a>，
+它定义了如何将文件的内容分解为 token。
+词法分析器是自定义语言插件几乎所有特性的基础，从基础语法高亮，到高级代码分析特性。
+Lexer 的 API 被定义在
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/lexer/Lexer.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">Lexer</code></span></a> 接口中。</p>
+
+<p>IDE 在三个主要的上下文中调用 lexer，并且插件可以为这些上下文提供不同的 lexer 实现：</p>
+
+<ul>
+  <li>
+    <p>语法高亮: Lexer 将从
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/openapi/fileTypes/SyntaxHighlighterFactory.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">SyntaxHighlighterFactory</code></span></a>
+接口的实现中被返回，该接口在 <code class="code highlight language-text">com.intellij.lang.syntaxHighlighterFactory</code> 扩展点中被注册。</p>
+  </li>
+  <li>
+    <p>构建文件的语法树：Lexer 预期从
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/lang/ParserDefinition.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ParserDefinition.createLexer()</code></span></a>,
+中返回，并且
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/lang/ParserDefinition.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ParserDefinition</code></span></a>
+接口在 <code class="code highlight language-text">com.intellij.lang.parserDefinition</code> 扩展点中被注册。</p>
+  </li>
+  <li>
+    <p>构建文件中包含的单词的索引：
+如果使用了基于 lexer 的单词扫描器的实现，lexer 将被传递到
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/indexing-api/src/com/intellij/lang/cacheBuilder/DefaultWordsScanner.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">DefaultWordsScanner</code></span></a>
+的构造器中。</p>
+  </li>
+</ul>
+
+<p>用于语法高亮的 lexer 可以被增量调用，以仅处理文件中被修改的部分，而在其他情况下的 lexer 总是被调用来处理整个文件，或以不同的语言嵌入到文件的完整语言结构中。</p>
+
+<p>增量地使用 Lexer 可能需要返回它的<em>状态</em>，这意味着上下文对应着文件中的每个位置。
+例如，对于顶级上下文，注释上下文与字面字符串上下文，
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/java/java-psi-impl/src/com/intellij/lang/java/lexer/JavaLexer.java" data-bypass="yes" target="_blank"><span>Java lexer</span></a>
+可以拥有独立的状态。
+对于语法高亮 lexer 的一个重要需求是：当词法分析从文件的中间恢复时，它的状态必须通过单个整型数字表示，这个数字从
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/lexer/Lexer.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">Lexer.getState()</code></span></a> 中被返回。
+那个状态将被传递到
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/lexer/Lexer.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">Lexer.start()</code></span></a>
+方法中，以及要处理的片段的起始偏移量。
+用于其他上下文的 Lexer 可以总是从 <code class="code highlight language-text">getState()</code> 方法中返回 <code class="code highlight language-text">0</code>。</p>
+
+<p>最简单的为自定义语言查案件创建 lexer 的方式是使用 <a href="https://jflex.de" data-bypass="yes" target="_blank"><span>JFlex</span></a>。
+类
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/lexer/FlexLexer.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">FlexLexer</code></span></a>
+与
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/lexer/FlexAdapter.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">FlexAdapter</code></span></a>
+使 JFlex lexer 适配 IntelliJ Platform Lexer API。
+我们有一个
+<a href="https://github.com/JetBrains/intellij-deps-jflex" data-bypass="yes" target="_blank"><span>JFlex 的修补版本</span></a>，
+可以与在
+<a href="https://github.com/JetBrains/intellij-community" data-bypass="yes" target="_blank"><span>IntelliJ IDEA Community Edition</span></a>
+源代码中位于 <em>tools/lexer/idea-flex.skeleton</em> 的 lexer skeleton 文件一起使用，以创建与
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/lexer/FlexAdapter.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">FlexAdapter</code></span></a> 相兼容的 lexer。
+JFlex 的修复版本提供了一个新的命令行选项 <code class="code highlight language-text">--charat</code>，它可以改变 JFlex 生成的代码从而使其与 IntelliJ Platform skeleton 一起工作。
+为词法解析启用 <code class="code highlight language-text">--charat</code> 选项传递的数据类型为
+<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/CharSequence.html" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">CharSequence</code></span></a>
+而不是一个字符数组。</p>
+
+<p>对于使用 JFlex 开发 lexer，<a href="https://plugins.jetbrains.com/plugin/6606-grammar-kit" data-bypass="yes" target="_blank"><span>GrammarKit plugin</span></a> 是很有用的。
+它为编译 JFlex 文件提供语法高亮和其他有用的特性。</p>
+
+<aside class="注意">
+  <p> Lexer，尤其是基于 JFlex 的 lexer，需要以始终与文件的全部内容匹配的方式创建，token 之间没有任何间隔，并且为在其位置的无效字符生成特殊 token。
+Lexer 必须不能因为一个无效的字符而过早地 abort。</p>
+</aside>
+
+<p><strong>示例</strong>:</p>
+<ul>
+  <li>针对 <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/plugins/properties" data-bypass="yes" target="_blank"><span>Properties language plugin</span></a>
+的
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/plugins/properties/src/com/intellij/lang/properties/parsing/Properties.flex" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">Lexer</code></span></a> 定义</li>
+  <li><a href="/intellij/sdk/docs/tutorials/custom_language_support/lexer_and_parser_definition.html"><span>自定义语言支持教程：Lexer</span></a></li>
+</ul>
+
+<p>用于 lexer 的 token 的类型通过
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/tree/IElementType.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">IElementType</code></span></a> 的实例定义。
+所有语言通用的许多 token 类型定义在
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/TokenType.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">TokenType</code></span></a>
+接口中。
+自定义语言插件应该在适用的情况下重用这些 token 类型。
+对于所有其他 token 类型，插件需要去创建新的
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/tree/IElementType.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">IElementType</code></span></a>
+实例并与使用 token 类型的语言相关联。
+每当 lexer 遇到特定的 token 类型时，都应该返回相同的 
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/tree/IElementType.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">IElementType</code></span></a>
+实例。</p>
+
+<p><strong>示例:</strong>
+针对
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/plugins/properties" data-bypass="yes" target="_blank"><span>Properties language plugin</span></a> 的
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/plugins/properties/properties-psi-api/src/com/intellij/lang/properties/parsing/PropertiesTokenTypes.java" data-bypass="yes" target="_blank"><span>Token 类型</span></a></p>
+
+<p>可以在 lexer 级别中实现的一个重要特性是在文件中混合语言，例如，嵌入 Java 代码片段到某些模板语言中。
+如果一个语言支持（动词）将其代码片段嵌入另一种语言，则它需要为可以嵌入的不同类型的片段定义变色龙（译者注：原文为 chameleon） token 类型，并且这些 token 类型需要实现
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/tree/ILazyParseableElementType.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ILazyParseableElementType</code></span></a>
+接口。
+封闭语言的 lexer 需要把嵌入式语言的整个片段作为单个变色龙 token 返回，类型由嵌入语言定义。
+为了解析变色龙 token 的内容，IDE 将会通过调用
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/tree/ILazyParseableElementType.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ILazyParseableElementType.parseContents()</code></span></a> 来调用嵌入式语言的解析器。</p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/custom_language_support/registering_file_type.html">注册文件类型</a>
+                        <a class="navigation-links__next" href="/reference_guide/custom_language_support/implementing_parser_and_psi.html">实现解析器与 PSI</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 30 March 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

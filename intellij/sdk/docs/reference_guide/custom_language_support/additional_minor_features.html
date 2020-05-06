@@ -1,0 +1,238 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Additional Minor Features / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//reference_guide/custom_language_support/additional_minor_features.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Additional Minor Features" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Additional Minor Features" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="reference_guide/custom_language_support/additional_minor_features">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/custom_language_support/documentation.html">Documentation</a>
+                        
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/reference_guide/custom_language_support/additional_minor_features.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Additional Minor Features</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>A number of minor features are listed in the following format:</p>
+
+<hr />
+<p><em>EP: <code class="code highlight language-text">fully.qualified.extensionPointName</code></em> - Extension Point Name (must be specified in <code class="code highlight language-text">plugin.xml</code>)</p>
+
+<p><em><code class="code highlight language-text">com.extensionPoint.class</code></em> <em>description text</em> - Extension Point class/interface to provide functionality</p>
+
+<p><em>- Sample 1</em> - Sample implementation</p>
+
+<hr />
+
+<a name="brace-matching" class="elem-anchor"></a>
+<h3>Brace Matching<a href="#brace-matching" class="anchor-link"><span></span></a></h3>
+<p>EP: <code class="code highlight language-text">com.intellij.lang.braceMatcher</code></p>
+
+<p><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/lang-api/src/com/intellij/lang/PairedBraceMatcher.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PairedBraceMatcher</code></span></a>
+Returns an array of brace pairs (
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/lang-api/src/com/intellij/lang/BracePair.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">BracePair</code></span></a>
+) specifying the characters for the opening and closing braces and the lexer token types for these characters.
+(In principle, it is possible to return multi-character tokens, like “begin” and “end”, as the start and end tokens of a brace pair.
+The IDE will match such braces, but the highlighting for such braces will not be fully correct.)</p>
+
+<p>Certain types of braces can be marked as structural.
+Structural braces have higher priority than regular braces: they are matched with each other even if there are unmatched braces of other types between them.
+An opening non-structural brace is not matched with a closing one if one of them is inside a pair of matched structural braces and another is outside.</p>
+
+<a name="comment-code" class="elem-anchor"></a>
+<h3>Comment Code<a href="#comment-code" class="anchor-link"><span></span></a></h3>
+<p>EP: <code class="code highlight language-text">com.intellij.lang.commenter</code></p>
+
+<p><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/lang/Commenter.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">Commenter</code></span></a> 
+Returns the prefix for the line comment, and the prefix and suffix for the block comment, if supported by the language.</p>
+
+<ul>
+  <li><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/plugins/properties/properties-psi-impl/src/com/intellij/lang/properties/PropertiesCommenter.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">Commenter</code></span></a>
+for <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/plugins/properties/" data-bypass="yes" target="_blank"><span>Properties language plugin</span></a></li>
+  <li><a href="/intellij/sdk/docs/tutorials/custom_language_support/commenter.html"><span>Custom Language Support Tutorial: Commenter</span></a></li>
+</ul>
+
+<a name="code-folding" class="elem-anchor"></a>
+<h3>Code Folding<a href="#code-folding" class="anchor-link"><span></span></a></h3>
+<p>EP: <code class="code highlight language-text">com.intellij.lang.foldingBuilder</code></p>
+
+<p><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/lang/folding/FoldingBuilder.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">FoldingBuilder</code></span></a>
+Returns the list of text ranges that are foldable (as an array of
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/lang/folding/FoldingDescriptor.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">FoldingDescriptor</code></span></a>
+objects), the replacement text which is shown for each range when it is folded, and the default state of each folding region (folded or unfolded).</p>
+
+<ul>
+  <li><a href="/intellij/sdk/docs/tutorials/custom_language_support/folding_builder.html"><span>Custom Language Support Tutorial: Folding Builder</span></a></li>
+</ul>
+
+<a name="join-lines" class="elem-anchor"></a>
+<h3>Join Lines<a href="#join-lines" class="anchor-link"><span></span></a></h3>
+<p>EP: <code class="code highlight language-text">com.intellij.joinLinesHandler</code></p>
+
+<p><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/lang-api/src/com/intellij/codeInsight/editorActions/JoinLinesHandlerDelegate.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">JoinLinesHandlerDelegate</code></span></a>
+allows extending support smart/semantic <em>Edit | Join Lines</em> (e.g., String literal split on multiple lines).</p>
+
+<a name="smart-enter" class="elem-anchor"></a>
+<h3>Smart Enter<a href="#smart-enter" class="anchor-link"><span></span></a></h3>
+<p>EP: <code class="code highlight language-text">com.intellij.lang.smartEnterProcessor</code></p>
+
+<p><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/lang-api/src/com/intellij/codeInsight/editorActions/smartEnter/SmartEnterProcessor.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">SmartEnterProcessor</code></span></a>
+handles <em>Edit | Complete Statement</em> (e.g., autocomplete missing semicolon/parentheses).</p>
+
+<a name="naming-suggestions" class="elem-anchor"></a>
+<h3>Naming Suggestions<a href="#naming-suggestions" class="anchor-link"><span></span></a></h3>
+<p>EP: <code class="code highlight language-text">com.intellij.nameSuggestionProvider</code></p>
+
+<p><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/lang-api/src/com/intellij/refactoring/rename/NameSuggestionProvider.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">NameSuggestionProvider</code></span></a>.
+provides name suggestions for the given element, e.g., for Rename refactoring.</p>
+
+<a name="semantic-highlight-usages" class="elem-anchor"></a>
+<h3>Semantic Highlight Usages<a href="#semantic-highlight-usages" class="anchor-link"><span></span></a></h3>
+<p>EP: <code class="code highlight language-text">com.intellij.highlightUsagesHandlerFactory</code></p>
+
+<p><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/lang-impl/src/com/intellij/codeInsight/highlighting/HighlightUsagesHandlerFactory.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">HighlightUsagesHandlerFactory</code></span></a>
+allows highlighting e.g. Exit Points or Exceptions.</p>
+
+<a name="parameter-info" class="elem-anchor"></a>
+<h3>Parameter Info<a href="#parameter-info" class="anchor-link"><span></span></a></h3>
+<p>EP: <code class="code highlight language-text">com.intellij.codeInsight.parameterInfo</code></p>
+
+<p><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/lang-api/src/com/intellij/lang/parameterInfo/ParameterInfoHandler.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ParameterInfoHandler</code></span></a>
+provides support for <em>View | Parameter Info</em>.</p>
+
+<a name="to-do-view" class="elem-anchor"></a>
+<h3>To Do View<a href="#to-do-view" class="anchor-link"><span></span></a></h3>
+<p>EP: n/a</p>
+
+<p><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/lang/ParserDefinition.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ParserDefinition.getCommentTokens()</code></span></a>
+must return the set of tokens treated as comments to populate <em>To Do View</em>.</p>
+
+<a name="context-info" class="elem-anchor"></a>
+<h3>Context Info<a href="#context-info" class="anchor-link"><span></span></a></h3>
+<p>EP: <code class="code highlight language-text">com.intellij.declarationRangeHandler</code></p>
+
+<p><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/lang-api/src/com/intellij/codeInsight/hint/DeclarationRangeHandler.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">DeclarationRangeHandler</code></span></a>
+provides <em>View | Context Info</em> for custom languages with structure view implementation based on a
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/ide/structureView/TreeBasedStructureViewBuilder.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">TreeBasedStructureViewBuilder</code></span></a>.</p>
+
+<a name="spellchecking" class="elem-anchor"></a>
+<h3>Spellchecking<a href="#spellchecking" class="anchor-link"><span></span></a></h3>
+<p>EP: <code class="code highlight language-text">com.intellij.spellchecker.support</code></p>
+
+<p><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/spellchecker/src/com/intellij/spellchecker/tokenizer/SpellcheckingStrategy.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">SpellcheckingStrategy</code></span></a>
+provides <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/spellchecker/src/com/intellij/spellchecker/tokenizer/Tokenizer.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">Tokenizer</code></span></a>
+to use for given <code class="code highlight language-text">PsiElement</code> (return <code class="code highlight language-text">EMPTY_TOKENIZER</code> for no spellchecking).</p>
+
+<a name="reference-injection" class="elem-anchor"></a>
+<h3>Reference Injection<a href="#reference-injection" class="anchor-link"><span></span></a></h3>
+<p>EP: <code class="code highlight language-text">com.intellij.referenceInjector</code></p>
+
+<p><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/lang-api/src/com/intellij/psi/injection/ReferenceInjector.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ReferenceInjector</code></span></a>
+allows users to inject pre-defined references (e.g., “Encoding”, “File Reference”) into <code class="code highlight language-text">PsiLanguageInjectionHost</code> elements (IntelliLang plugin required).</p>
+
+<a name="color-previewchooser" class="elem-anchor"></a>
+<h3>Color Preview/Chooser<a href="#color-previewchooser" class="anchor-link"><span></span></a></h3>
+<p>EP: <code class="code highlight language-text">com.intellij.colorProvider</code></p>
+
+<p><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/lang-api/src/com/intellij/openapi/editor/ElementColorProvider.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ElementColorProvider</code></span></a>
+renders gutter icon for element containing color information.</p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/custom_language_support/documentation.html">Documentation</a>
+                        
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

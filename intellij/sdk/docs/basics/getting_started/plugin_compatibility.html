@@ -1,0 +1,382 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Plugin Compatibility with IntelliJ Platform Products / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//basics/getting_started/plugin_compatibility.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Plugin Compatibility with IntelliJ Platform Products" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Plugin Compatibility with IntelliJ Platform Products" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="basics/getting_started/plugin_compatibility">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/products/dev_alternate_products.html">Plugins Targeting IntelliJ Platform-Based IDEs</a>
+                        <a class="navigation-links__next" href="/products/android_studio.html">Android Studio Plugin Development</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/basics/getting_started/plugin_compatibility.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Plugin Compatibility with IntelliJ Platform Products</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<style>
+  table {
+    width:100%;
+  }
+  th:first-child, td:first-child {
+    width: 32%;
+  }
+</style>
+
+<a name="introduction" class="elem-anchor"></a>
+<h2>Introduction<a href="#introduction" class="anchor-link"><span></span></a></h2>
+<p>All products based on the <em>IntelliJ Platform</em> are built on the same underlying API. 
+Some of these products share features built on top of the platform, such as Java support in IntelliJ IDEA and Android Studio. 
+Underlying those shared features are shared components. 
+When authoring a plugin for the IntelliJ Platform, it is important to understand and declare dependencies on these components. 
+Otherwise, it may not be possible to load or run the plugin in a product because the components on which it depends aren’t available.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction"><span>Introduction</span></a></li>
+  <li><a href="#declaring-plugin-dependencies" id="markdown-toc-declaring-plugin-dependencies"><span>Declaring Plugin Dependencies</span></a></li>
+  <li><a href="#modules" id="markdown-toc-modules"><span>Modules</span></a>    <ul>
+      <li><a href="#modules-available-in-all-products" id="markdown-toc-modules-available-in-all-products"><span>Modules Available in All Products</span></a></li>
+      <li><a href="#modules-specific-to-functionality" id="markdown-toc-modules-specific-to-functionality"><span>Modules Specific to Functionality</span></a></li>
+    </ul>
+  </li>
+  <li><a href="#exploring-module-and-plugin-apis" id="markdown-toc-exploring-module-and-plugin-apis"><span>Exploring Module and Plugin APIs</span></a>    <ul>
+      <li><a href="#exploring-apis-as-a-consumer" id="markdown-toc-exploring-apis-as-a-consumer"><span>Exploring APIs as a Consumer</span></a></li>
+      <li><a href="#exploring-apis-as-an-extender" id="markdown-toc-exploring-apis-as-an-extender"><span>Exploring APIs as an Extender</span></a></li>
+    </ul>
+  </li>
+  <li><a href="#verifying-dependency" id="markdown-toc-verifying-dependency"><span>Verifying Dependency</span></a></li>
+  <li><a href="#platform-api-version-compatibility" id="markdown-toc-platform-api-version-compatibility"><span>Platform API Version Compatibility</span></a></li>
+</ul>
+
+<a name="declaring-plugin-dependencies" class="elem-anchor"></a>
+<h2>Declaring Plugin Dependencies<a href="#declaring-plugin-dependencies" class="anchor-link"><span></span></a></h2>
+<p>For the purposes of dependencies, a <em>module</em> can be thought of like a built-in plugin that ships as a non-removable part of a product. 
+A working definition of a dependency is that a plugin project cannot be run without the module present in an IntelliJ Platform-based product. 
+Declaring a dependency on a module also expresses a plugin’s compatibility with a product in that the IntelliJ Platform determines whether a product contains the correct modules to support a plugin before loading it.</p>
+
+<p><a href="/intellij/sdk/docs/basics/plugin_structure/plugin_dependencies.html"><span>Part I</span></a> of this document describes the syntax for declaring plugin dependencies and optional plugin dependencies.<br />
+Part II of this document (below) describes the functionality of the IntelliJ Platform modules to aid in determining the dependencies of a plugin.</p>
+
+<p>The way dependency declarations are handled by the Intellij Platform is determined by the contents of the <code class="code highlight language-text">plugin.xml</code> file:</p>
+<ul>
+  <li>If a plugin does not declare any dependencies in its <code class="code highlight language-text">plugin.xml</code> file, or if it declares dependencies only on other plugins but not modules, it’s assumed to be a legacy plugin and is loaded only in IntelliJ IDEA.
+This configuration of dependency declaration is deprecated; do not use it for new plugin projects.</li>
+  <li>If a plugin declares at least <em>one</em> module dependency in its <code class="code highlight language-text">plugin.xml</code> file, the plugin is loaded if an IntelliJ Platform-based product contains <em>all the modules and plugins</em> on which the plugin has declared a dependency.</li>
+</ul>
+
+<a name="modules" class="elem-anchor"></a>
+<h2>Modules<a href="#modules" class="anchor-link"><span></span></a></h2>
+<p>A <em>module</em> represents a built-in plugin that is a non-removable part of a product. 
+Some modules are available in all products, and some modules are available only in some, or even just one product. 
+This section identifies and discusses modules of both types.</p>
+
+<a name="modules-available-in-all-products" class="elem-anchor"></a>
+<h3>Modules Available in All Products<a href="#modules-available-in-all-products" class="anchor-link"><span></span></a></h3>
+<p>A core set of modules are available in all products based on the IntelliJ Platform. 
+These modules provide a set of shared functionality. 
+The following table lists modules that are currently available in all products.</p>
+
+<aside class="note">
+  <p> All plugins should declare a dependency on <strong><code class="code highlight language-text">com.intellij.modules.platform</code></strong> as an indication of dependence on shared functionality.</p>
+</aside>
+
+<table>
+  <thead>
+    <tr>
+      <th>Module for <code class="code highlight language-text">&lt;depends&gt;</code> Element<br />Declaration in <code class="code highlight language-text">plugin.xml</code> File</th>
+      <th><br />Functionality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><code class="code highlight language-text">com.intellij.modules.platform</code></strong></td>
+      <td>Messaging, UI Themes, UI Components, Files, Documents, Actions, Components, Services, Extensions, Editors</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.modules.lang</code></td>
+      <td>File Type, Lexer, Parser, Highlighting, References, Code Completion, Find, Rename, Formatter, Code Navigation</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.modules.xml</code></td>
+      <td>XML, XML DOM, XSD/DTD, DOM Model</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.modules.vcs</code></td>
+      <td>VCS Revision Numbers, File Status, Change Lists, File History, Annotations</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.modules.xdebugger</code></td>
+      <td>Debug Session, Stack Frames, Break Points, Source Positions, Memory Views, Tracked Instances</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>As of this writing, if a plugin: <strong>A)</strong> is dependent <em>only</em> on one or more of the modules in the table above, <strong>and B)</strong> declares those module dependencies in <code class="code highlight language-text">plugin.xml</code>, then any product developed by JetBrains based on the IntelliJ Platform will load it.</p>
+
+<a name="modules-specific-to-functionality" class="elem-anchor"></a>
+<h3>Modules Specific to Functionality<a href="#modules-specific-to-functionality" class="anchor-link"><span></span></a></h3>
+<p>More specialized functionality is also delivered via modules and plugins in IntelliJ Platform-based products. 
+For example, the <code class="code highlight language-text">com.intellij.modules.python</code> module supports the Python language-specific functionality. 
+If a plugin uses functionality from this module, such as Python-specific inspections and refactoring, it must declare a dependency on this module.</p>
+
+<p>Note that not all products define and declare modules. 
+For example, PhpStorm does not have its own module, but the product itself depends on (and ships with) the PHP language plugin. 
+A plugin project is compatible with PHP functionality if it declares a dependency on this PHP language plugin.</p>
+
+<p>The following table lists(1) modules or built-in plugins that provide specific functionality, and the products that currently ship with them.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Module or Plugin for <code class="code highlight language-text">&lt;depends&gt;</code> Element<br />Declaration in <code class="code highlight language-text">plugin.xml</code> File</th>
+      <th><br />Functionality</th>
+      <th>IntelliJ Platform-Based<br />Product Compatibility</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.modules.java</code> See (2) below. <br /><code class="code highlight language-text">com.intellij.java</code></td>
+      <td><strong>Java</strong> language PSI Model, Inspections, Intentions, Completion, Refactoring, Test Framework</td>
+      <td>IntelliJ IDEA, Android Studio</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.modules.ultimate</code></td>
+      <td>All functionality unique to IntelliJ IDEA Ultimate</td>
+      <td>IntelliJ IDEA Ultimate Edition</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.modules.androidstudio</code></td>
+      <td>Android SDK Platform, Build Tools, Platform Tools, SDK Tools</td>
+      <td>Android Studio</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.modules.appcode</code></td>
+      <td>CocoaPods, Core Data Objects, Device &amp; Simulator Support</td>
+      <td>AppCode</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.modules.cidr.lang</code></td>
+      <td><strong>C, C++, Objective-C/C++</strong> language PSI Model, Swift/Objective-C Interaction, Inspections, Intentions, Completion, Refactoring, Test Framework</td>
+      <td>AppCode, CLion</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.modules.cidr.debugger</code></td>
+      <td>Debugger Watches, Evaluations, Breakpoints, Inline Debugging</td>
+      <td>AppCode, CLion, RubyMine</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.modules.clion</code></td>
+      <td>CMake, Profiler, Embedded Development, Remote Development, Remote Debug, Disassembly</td>
+      <td>CLion</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.database</code></td>
+      <td><strong>Database Tools and SQL</strong> language PSI Model, Inspections, Completion, Refactoring, Queries</td>
+      <td>DataGrip, IntelliJ IDEA Ultimate, AppCode, PhpStorm, PyCharm Professional, RubyMine, CLion, GoLand, Rider, and WebStorm if the Database Tools and SQL plugin is installed.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.modules.go</code></td>
+      <td><strong>Go</strong> language PSI Model, Inspections, Intentions, Completion, Refactoring, Test Framework</td>
+      <td>GoLand</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.modules.python</code></td>
+      <td><strong>Python</strong> language PSI Model, Inspections, Intentions, Completion, Refactoring, Test Framework</td>
+      <td>PyCharm, and other products if the Python plugin is installed.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.modules.rider</code></td>
+      <td>Connection to <strong>ReSharper</strong> Process in Background</td>
+      <td>Rider</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.intellij.modules.ruby</code></td>
+      <td><strong>Ruby</strong> language PSI Model, Inspections, Intentions, Completion, Refactoring, Test Framework</td>
+      <td>RubyMine, and IntelliJ IDEA Ultimate if the Ruby plugin is installed.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">com.jetbrains.php</code></td>
+      <td><strong>PHP</strong> language PSI Model, Inspections, Intentions, Completion, Refactoring, Test Framework</td>
+      <td>PhpStorm, and other products if the PHP plugin is installed.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">JavaScript</code></td>
+      <td><strong>JavaScript</strong> language PSI Model, Inspections, Intentions, Completion, Refactoring, Test Framework</td>
+      <td>WebStorm, and other products if the JavaScript plugin is installed</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Notes about Module and Plugin Dependency:</strong><br />
+<strong>(1)</strong> This table is not exhaustive, there are other modules currently available in JetBrains’ IntelliJ Platform-based IDEs. 
+To see a list of modules, invoke the <a href="https://www.jetbrains.com/help/idea/auto-completing-code.html#4eac28ba" data-bypass="yes" target="_blank"><span>code completion</span></a> feature for the <code class="code highlight language-text">&lt;depends&gt;</code> element contents while editing the <code class="code highlight language-text">plugin.xml</code> file.</p>
+
+<p><strong>(2)</strong> The <a href="https://blog.jetbrains.com/platform/2019/06/java-functionality-extracted-as-a-plugin/" data-bypass="yes" target="_blank"><span>Java language functionality</span></a> was extracted as a plugin in version 2019.2 of the IntelliJ Platform. 
+This refactoring separated the Java implementation from the other, non-language portions of the platform. 
+Consequently, Java dependencies are expressed differently in <code class="code highlight language-text">plugin.xml</code> depending on the version of the IntelliJ Platform being targeted:</p>
+<ul>
+  <li>Syntax <em>required</em> for releases prior to 2019.2, <em>allowable</em> in all releases:
+    <ul>
+      <li><code class="code highlight language-text">plugin.xml</code> include <code class="code highlight language-text">&lt;depends&gt;com.intellij.modules.java&lt;/depends&gt;</code></li>
+    </ul>
+  </li>
+  <li>Syntax for 2019.2 and later releases:
+    <ul>
+      <li><code class="code highlight language-text">plugin.xml</code> <em>allowable</em> alternative include <code class="code highlight language-text">&lt;depends&gt;com.intellij.java&lt;/depends&gt;</code></li>
+      <li><code class="code highlight language-text">build.gradle</code> <em>required</em> to include <code class="code highlight language-text">intellij.plugins 'java'</code></li>
+    </ul>
+  </li>
+</ul>
+
+<a name="exploring-module-and-plugin-apis" class="elem-anchor"></a>
+<h2>Exploring Module and Plugin APIs<a href="#exploring-module-and-plugin-apis" class="anchor-link"><span></span></a></h2>
+<p>Once the <a href="/intellij/sdk/docs/basics/plugin_structure/plugin_dependencies.html"><span>dependency on a module or plugin</span></a> is declared in <code class="code highlight language-text">plugin.xml</code>, it’s useful to explore the packages and classes available in that dependency.
+The section below gives some recommended procedures for discovering what’s available in a module or plugin on which a project depends.
+These procedures assume a project has the <code class="code highlight language-text">build.gradle</code> and <code class="code highlight language-text">plugin.xml</code> dependencies configured correctly.</p>
+
+<a name="exploring-apis-as-a-consumer" class="elem-anchor"></a>
+<h3>Exploring APIs as a Consumer<a href="#exploring-apis-as-a-consumer" class="anchor-link"><span></span></a></h3>
+<p>Exploring the available packages and classes in a plugin or module utilizes features in the IntelliJ IDEA IDE.</p>
+
+<p>If the project is not up to date, <a href="https://www.jetbrains.com/help/idea/work-with-gradle-projects.html#gradle_refresh_project" data-bypass="yes" target="_blank"><span>Reimport the Gradle project</span></a> as a first step.
+Reimporting the project will automatically update the dependencies.</p>
+
+<p>In the Project Window, select Project View and scroll to the bottom to see <a href="https://www.jetbrains.com/help/idea/project-tool-window.html#content_pane" data-bypass="yes" target="_blank"><span>External Libraries</span></a>.
+Look for the library <code class="code highlight language-text">Gradle:unzipped.com.jetbrains.plugins:foo:</code>, where “foo” matches, or is similar to, the contents of the <code class="code highlight language-text">&lt;depends&gt;</code> tags in <code class="code highlight language-text">plugin.xml</code> or the <code class="code highlight language-text">intellij.plugins</code> declaration in <code class="code highlight language-text">build.gradle</code>.
+The image below shows the External Libraries for the example plugin project configuration explained in <a href="/intellij/sdk/docs/products/dev_alternate_products.html#configuring-buildgradle-using-the-intellij-idea-product-attribute"><span>Configuring build.gradle</span></a> and <a href="/intellij/sdk/docs/products/dev_alternate_products.html#configuring-pluginxml"><span>Configuring plugin.xml</span></a>.</p>
+
+<p><img src="img/php_prj_libs.png" alt="Example PhpStorm Project Libraries" width="700px" /></p>
+
+<p>Expand the External Library (as shown) to reveal the JAR files contained in the library.
+Drill down into the JAR files to expose the packages and (decompiled) classes.</p>
+
+<a name="exploring-apis-as-an-extender" class="elem-anchor"></a>
+<h3>Exploring APIs as an Extender<a href="#exploring-apis-as-an-extender" class="anchor-link"><span></span></a></h3>
+<p>If a project is dependent on a plugin or module, in some cases the project can also <a href="/intellij/sdk/docs/basics/plugin_structure/plugin_extensions.html"><span>extend</span></a> the functionality available from the plugin or module.</p>
+
+<p>To browse the opportunities for extension, start by placing the cursor on the contents of the <code class="code highlight language-text">&lt;depends&gt;</code> elements in the project’s <code class="code highlight language-text">plugin.xml</code> file.
+Use the <a href="https://www.jetbrains.com/help/idea/navigating-through-the-source-code.html#go_to_declaration" data-bypass="yes" target="_blank"><span>Go to Declaration</span></a> IDE feature to navigate to the <code class="code highlight language-text">plugin.xml</code> file for the plugin on which the project depends.</p>
+
+<p>For example, performing this procedure on the <code class="code highlight language-text">&lt;depends&gt;com.jetbrains.php&lt;/depends&gt;</code> declaration in a project’s <code class="code highlight language-text">plugin.xml</code> file will navigate to the <code class="code highlight language-text">plugin.xml</code> file for the <code class="code highlight language-text">com.jetbrains.php</code> (PHP) project.
+A common, but not universal, pattern in the IntelliJ platform is for a plugin (like PHP) to declare <code class="code highlight language-text">&lt;extensionPoints&gt;</code> and then implement each one as <code class="code highlight language-text">&lt;extensions&gt;</code>.
+Continuing the example, search the PHP plugin’s <code class="code highlight language-text">plugin.xml</code> file for:</p>
+<ul>
+  <li><code class="code highlight language-text">&lt;extensionPoints&gt;</code> to find the opportunities for extending the PHP plugin’s functionality.</li>
+  <li><code class="code highlight language-text">&lt;extensions defaultExtensionNs="com.jetbrains.php"&gt;</code> to find where the PHP plugin extends functionality.
+The extension namespace (in this example <code class="code highlight language-text">com.jetbrains.php</code>) will match the <code class="code highlight language-text">&lt;id&gt;</code> defined in the <code class="code highlight language-text">plugin.xml</code> file.</li>
+</ul>
+
+<a name="verifying-dependency" class="elem-anchor"></a>
+<h2>Verifying Dependency<a href="#verifying-dependency" class="anchor-link"><span></span></a></h2>
+<p>Before marking a plugin project as <em>dependent only on modules in a target product</em> in addition to <code class="code highlight language-text">com.intellij.modules.platform</code>, verify the plugin isn’t implicitly dependent on any APIs that are specific to IntelliJ IDEA. 
+To verify a plugin project’s independence, create an SDK pointing to an installation of the intended target IntelliJ Platform-based product, e.g., PhpStorm, rather than IntelliJ IDEA. 
+Use the same development version of the IntelliJ platform as the targeted product. 
+Additional product-specific information about developing for the IntelliJ Platform is documented in Part VIII.</p>
+
+<p>Based on the tables above, the <a href="https://plugins.jetbrains.com/" data-bypass="yes" target="_blank"><span>JetBrains plugin repository</span></a> automatically detects the JetBrains products with which a plugin is compatible, and makes the compatibility information available to plugin authors. 
+The compatibility information determines if plugins are available at the plugin repository to users of a particular JetBrains product.</p>
+
+<a name="platform-api-version-compatibility" class="elem-anchor"></a>
+<h2>Platform API Version Compatibility<a href="#platform-api-version-compatibility" class="anchor-link"><span></span></a></h2>
+<p>The API of <em>IntelliJ Platform</em> and bundled plugins may change between releases. 
+The significant changes that may break plugins are listed on <a href="/intellij/sdk/docs/reference_guide/api_changes_list.html"><span>Incompatible Changes in IntelliJ Platform and Plugins API</span></a> page.</p>
+
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/products/dev_alternate_products.html">Plugins Targeting IntelliJ Platform-Based IDEs</a>
+                        <a class="navigation-links__next" href="/products/android_studio.html">Android Studio Plugin Development</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

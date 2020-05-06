@@ -1,0 +1,225 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating Custom UI Themes / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//reference_guide/ui_themes/themes.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Creating Custom UI Themes" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Creating Custom UI Themes" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="reference_guide/ui_themes/themes">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        
+                        <a class="navigation-links__next" href="/reference_guide/ui_themes/themes_customize.html">Customizing UI Themes - Icons and UI Controls</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/reference_guide/ui_themes/themes.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Creating Custom UI Themes</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>Creating a custom UI Theme is a process of choosing a base IDE Theme (<em>Light</em> or <em>Darcula</em>,) then changing aspects of the base Theme definition. 
+Custom UI Themes can:</p>
+<ul>
+  <li>substitute icons,</li>
+  <li>change the colors of icons and UI controls,</li>
+  <li>alter the borders and insets of UI controls,</li>
+  <li>provide custom editor schemes,</li>
+  <li>add background images.</li>
+</ul>
+
+<a name="the-structure-of-a-ui-theme" class="elem-anchor"></a>
+<h2>The Structure of a UI Theme<a href="#the-structure-of-a-ui-theme" class="anchor-link"><span></span></a></h2>
+<p>UI Themes are components within IntelliJ Platform plugins. 
+Theme plugins should be stand-alone plugins, and not combined with other plugin functionality. 
+This approach is the best user experience because it avoids an IDE restart when installing a UI Theme plugin.</p>
+
+<p>UI Themes have several components:</p>
+<ul>
+  <li>A required Theme description (JSON) file in the plugin project’s <code class="code highlight language-text">resources</code> folder.</li>
+  <li>A required <code class="code highlight language-text">themeProvider</code> declaration in the plugin’s <code class="code highlight language-text">plugin.xml</code> file, located in the plugin project’s <code class="code highlight language-text">META-INF</code> folder.</li>
+  <li>An optional Editor Scheme description (XML) file derived from an exported IDE editor scheme. 
+This file is located in the plugin project’s <code class="code highlight language-text">resources</code> folder.</li>
+  <li>An optional background image file, located in the plugin project’s <code class="code highlight language-text">resources</code> folder.</li>
+  <li>Optional icon image files, located in the plugin project’s <code class="code highlight language-text">resources</code> folder.</li>
+</ul>
+
+<p><img src="img/theme_components.png" alt="UI Theme Components" /></p>
+
+<a name="custom-ui-theme-workflow" class="elem-anchor"></a>
+<h2>Custom UI Theme Workflow<a href="#custom-ui-theme-workflow" class="anchor-link"><span></span></a></h2>
+<p>Creating a UI Theme follows this general sequence:</p>
+<ul>
+  <li><a href="/intellij/sdk/docs/basics/getting_started/creating_plugin_project.html"><span>Start with a Plugin Project</span></a></li>
+  <li><a href="#creating-a-ui-theme-with-the-devkit-theme-wizard"><span>Add UI Theme components to the plugin</span></a> by using the DevKit UI Theme Wizard.</li>
+  <li><a href="themes_customize.html"><span>Customize the UI Theme</span></a> by adding data objects to the Theme description (JSON) file.</li>
+  <li><a href="themes_extras.html"><span>Add an Editor Scheme or Background Image</span></a> to the plugin.</li>
+  <li><a href="/intellij/sdk/docs/basics/getting_started/running_and_debugging_a_plugin.html"><span>Build and test</span></a> the UI Theme plugin.</li>
+  <li><a href="/intellij/sdk/docs/basics/getting_started/deploying_plugin.html"><span>Deploy the UI Theme plugin</span></a></li>
+  <li><a href="/intellij/sdk/docs/basics/getting_started/publishing_plugin.html"><span>Publish the UI Theme plugin</span></a></li>
+</ul>
+
+<a name="creating-custom-ui-themes" class="elem-anchor"></a>
+<h2>Creating Custom UI Themes<a href="#creating-custom-ui-themes" class="anchor-link"><span></span></a></h2>
+
+<p>A UI Theme is added to an IntelliJ Platform plugin using the DevKit UI Theme Wizard.</p>
+
+<a name="creating-a-ui-theme-with-the-devkit-theme-wizard" class="elem-anchor"></a>
+<h3>Creating a UI Theme with the DevKit Theme Wizard<a href="#creating-a-ui-theme-with-the-devkit-theme-wizard" class="anchor-link"><span></span></a></h3>
+<p>The DevKit Wizard is part of the DevKit plugin, which is bundled with IntelliJ IDEA. 
+This Wizard can be used for both DevKit-based and Gradle-based plugins.</p>
+
+<p>While a plugin project is open in IntelliJ IDEA, select the <code class="code highlight language-text">resources</code> folder in the <em>Project</em> tool window.
+From the main menu, select the <em><strong>New | Plugin DevKit | Theme</strong></em> action.</p>
+
+<p><img src="img/devkit_wiz_action.png" alt="DevKit Wizard Action" /></p>
+
+<p><br /></p>
+
+<p>The Wizard then prompts for the name of the new Theme, and the basis for the Theme:</p>
+
+<p><img src="img/devkit_wiz_dialog.png" alt="DevKit Dialog" /></p>
+
+<p>The best practice is to name the new Theme the same as the name of the plugin. 
+The checkbox indicates the basis for the Theme. 
+Checking <em>Dark theme</em> means basing the custom Theme on <em>Darcula</em>. 
+Leaving the box unchecked means basing the custom Theme on the default IntelliJ IDEA <em>Light</em> Theme. 
+For the SDK code sample <code class="code highlight language-text">theme_basics</code> the box is <em>unchecked</em>.</p>
+
+<p>Clicking the <em>OK</em> button creates a default Theme description file named <code class="code highlight language-text">[themeName].theme.json</code> in the plugin project’s <code class="code highlight language-text">resources</code> folder. 
+In this example, the file is named <code class="code highlight language-text">theme_basics.theme.json</code>. 
+The content of the default file is a short set of key–value pairs:</p>
+<div class="code-block" data-lang="json"><code class="code-block__wrapper"><span class="p">{</span><span class="w">
+ </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"theme_basics"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"dark"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"editorScheme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/theme_basics.xml"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"ui"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></div>
+
+<p>The <code class="code highlight language-text">value</code> of the <code class="code highlight language-text">name</code> key matches the first portion of the Theme description <code class="code highlight language-text">[themeName].theme.json</code> file name. 
+The <code class="code highlight language-text">value</code> of <code class="code highlight language-text">name</code> is displayed in the <a href="https://www.jetbrains.com/help/idea/settings-appearance.html" data-bypass="yes" target="_blank"><span>Theme</span></a>  <em>Preferences</em> dropdown when the UI Theme’s plugin is installed in the IDE. 
+The value of the <code class="code highlight language-text">author</code> key is by default empty.
+The <code class="code highlight language-text">editorScheme</code> section will be addressed in <a href="themes_extras.html#adding-a-custom-editor-scheme"><span>Adding a Custom Editor Scheme</span></a> 
+The <code class="code highlight language-text">ui</code> section will be addressed in <a href="themes_customize.html#customizing-ui-controls"><span>Customizing UI Control Colors</span></a>.</p>
+
+<p>The Wizard also creates a <code class="code highlight language-text">themeProvider</code> declaration in the <code class="code highlight language-text">&lt;extensions&gt;</code> section of the plugin’s <code class="code highlight language-text">plugin.xml</code> file. 
+This declaration binds the Theme description file to a theme provider extension using a generated unique <code class="code highlight language-text">id</code>.</p>
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper"><span class="nt">&lt;extensions</span> <span class="na">defaultExtensionNs=</span><span class="s">"com.intellij"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;themeProvider</span> <span class="na">id=</span><span class="s">"eb9b7461-397b-4b98-a422-224fc0a74564"</span> <span class="na">path=</span><span class="s">"/theme_basics.theme.json"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/extensions&gt;</span>
+</code></div>
+<aside class="warning">
+  <p> Do not modify or re-use an existing value of the generated <code class="code highlight language-text">id</code> attribute.</p>
+</aside>
+
+<p>At this point, the UI Theme <code class="code highlight language-text">theme_basics</code> is a valid UI Theme. 
+Its plugin can be built and tested in IntelliJ Platform-based IDEs, giving the user the opportunity to select <em>theme_basics</em> in the <a href="https://www.jetbrains.com/help/idea/settings-appearance.html" data-bypass="yes" target="_blank"><span>Theme</span></a> <em>Preferences</em> dropdown. 
+The custom Theme looks exactly like the IntelliJ IDEA default <code class="code highlight language-text">Light</code> Theme, but it is a valid custom Theme.</p>
+
+<a name="completing-the-default-ui-theme-description-file" class="elem-anchor"></a>
+<h3>Completing the Default UI Theme Description File<a href="#completing-the-default-ui-theme-description-file" class="anchor-link"><span></span></a></h3>
+<p>The default UI Theme definition can be directly edited to add or change some of the values for the default keys, if desired:
+The following values can be changed directly in the Theme (<code class="code highlight language-text">*.theme.json</code>) description file:</p>
+<ul>
+  <li>The value of the <code class="code highlight language-text">dark</code> key can be changed to <code class="code highlight language-text">true</code>, which would switch the basis of the Theme to <em>Darcula</em> instead of <em>Light</em>.</li>
+  <li>The value of the <code class="code highlight language-text">author</code> key, which defaults to an empty string, can be set to a <code class="code highlight language-text">String</code> literal. 
+In the case of the <code class="code highlight language-text">theme_basics</code> code sample, it is set to “IntelliJ Platform SDK”.</li>
+</ul>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        
+                        <a class="navigation-links__next" href="/reference_guide/ui_themes/themes_customize.html">Customizing UI Themes - Icons and UI Controls</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

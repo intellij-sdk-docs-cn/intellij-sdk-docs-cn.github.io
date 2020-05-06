@@ -1,0 +1,169 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Structure View / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//reference_guide/custom_language_support/structure_view.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Structure View" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Structure View" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="reference_guide/custom_language_support/structure_view">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/custom_language_support/code_inspections_and_intentions.html">Code Inspections and Intentions</a>
+                        <a class="navigation-links__next" href="/reference_guide/custom_language_support/surround_with.html">Surround With</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/reference_guide/custom_language_support/structure_view.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Structure View</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>The Structure View implementation used for a specific file type can be customized on many levels.
+If a custom language plugin provides an implementation of the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/ide/structureView/StructureView.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">StructureView</code></span></a>
+interface, it can completely replace the standard structure view implementation with a custom user interface component.
+However, for most languages this is not necessary, and the standard
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/ide/structureView/StructureView.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">StructureView</code></span></a>
+implementation provided by <em>IntelliJ Platform</em> can be reused.</p>
+
+<p>The starting point for the structure view is the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/lang/PsiStructureViewFactory.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiStructureViewFactory</code></span></a>
+interface, which is registered in the <code class="code highlight language-text">com.intellij.lang.psiStructureViewFactory</code> extension point.</p>
+
+<p><strong>Examples:</strong></p>
+<ul>
+  <li><a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/plugins/properties/src/com/intellij/lang/properties/structureView/PropertiesStructureViewBuilderFactory.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiStructureViewFactory</code></span></a>
+for
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/plugins/properties" data-bypass="yes" target="_blank"><span>Properties language plugin</span></a></li>
+  <li><a href="/intellij/sdk/docs/tutorials/custom_language_support/structure_view_factory.html"><span>Custom Language Support Tutorial: Structure View</span></a></li>
+</ul>
+
+<p>To reuse the <em>IntelliJ Platform</em> implementation of the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/ide/structureView/StructureView.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">StructureView</code></span></a>,
+the plugin returns a
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/ide/structureView/TreeBasedStructureViewBuilder.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">TreeBasedStructureViewBuilder</code></span></a>
+from its
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/lang/PsiStructureViewFactory.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiStructureViewFactory.getStructureViewBuilder()</code></span></a><!--#L35-->
+method.
+As the model for the builder, the plugin can specify a subclass of
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/ide/structureView/TextEditorBasedStructureViewModel.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">TextEditorBasedStructureViewModel</code></span></a>,
+and by overriding methods of this subclass it customizes the structure view for a specific language.</p>
+
+<p><strong>Example</strong>:
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/plugins/properties/properties-psi-impl/src/com/intellij/lang/properties/structureView/PropertiesFileStructureViewModel.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">StructureViewModel</code></span></a>
+for
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/plugins/properties" data-bypass="yes" target="_blank"><span>Properties language plugin</span></a></p>
+
+<p>The main method to override is <code class="code highlight language-text">getRoot()</code>, which returns the instance of a class implementing the
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/editor-ui-api/src/com/intellij/ide/structureView/StructureViewTreeElement.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">StructureViewTreeElement</code></span></a>
+interface.
+There exists no standard implementation of this interface, so a plugin will need to implement it completely.</p>
+
+<p>The structure view tree is usually built as a partial mirror of the PSI tree.
+In the implementation of
+<code class="code highlight language-text">StructureViewTreeElement.getChildren()</code>,
+the plugin can specify which of the child elements of a specific PSI tree node need to be represented as elements in the structure view.
+Another important method is <code class="code highlight language-text">getPresentation()</code>, which can be used to customize the text, attributes, and icon used to represent an element in the structure view.</p>
+
+<p>The implementation of <code class="code highlight language-text">StructureViewTreeElement.getChildren()</code> needs to be matched by <code class="code highlight language-text">TextEditorBasedStructureViewModel.getSuitableClasses()</code>.
+The latter method returns an array of <code class="code highlight language-text">PsiElement</code>-derived classes which can be shown as structure view elements. It is used to select the Structure View item matching the cursor position when the structure view is first opened or when the <em>Autoscroll from source</em> option is enabled.</p>
+
+<p><strong>Example:</strong>
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/plugins/properties/properties-psi-impl/src/com/intellij/lang/properties/editor/PropertyStructureViewElement.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">StructureViewTreeElement</code></span></a>
+for
+<a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/plugins/properties/" data-bypass="yes" target="_blank"><span>Properties language plugin</span></a></p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/custom_language_support/code_inspections_and_intentions.html">Code Inspections and Intentions</a>
+                        <a class="navigation-links__next" href="/reference_guide/custom_language_support/surround_with.html">Surround With</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

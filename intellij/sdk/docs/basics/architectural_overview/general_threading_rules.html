@@ -1,0 +1,188 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>General Threading Rules / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//basics/architectural_overview/general_threading_rules.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="General Threading Rules" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="General Threading Rules" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="basics/architectural_overview/general_threading_rules">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        
+                        <a class="navigation-links__next" href="/reference_guide/messaging_infrastructure.html">Messaging infrastructure</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/basics/architectural_overview/general_threading_rules.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>General Threading Rules</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<a name="readwrite-lock" class="elem-anchor"></a>
+<h2>Read/write lock<a href="#readwrite-lock" class="anchor-link"><span></span></a></h2>
+
+<p>In general, code-related data structures in the <em>IntelliJ Platform</em> are covered by a single reader/writer lock. This applies to PSI, VFS and project root model.</p>
+
+<p>Reading data is allowed from any thread.  Reading data from the UI thread does not require any special effort. However, read operations performed from any other thread need to be wrapped in a read action by using <code class="code highlight language-text">ApplicationManager.getApplication().runReadAction()</code> or, shorter, <code class="code highlight language-text">ReadAction.run/compute</code>.</p>
+
+<p>Writing data is only allowed from the UI thread, and write operations always need to be wrapped in a write action with <code class="code highlight language-text">ApplicationManager.getApplication().runWriteAction()</code> or, shorter, <code class="code highlight language-text">WriteAction.run()/compute()</code>.</p>
+
+<p>In addition, modifying the model is only allowed from write-safe contexts, which include user actions and <code class="code highlight language-text">invokeLater()</code> calls from them (see the next section). You may not modify PSI, VFS or project model from inside UI renderers or <code class="code highlight language-text">SwingUtilities.invokeLater()</code> calls.</p>
+
+<p>You must not access the model outside a read or write action. The corresponding objects are not guaranteed to survive between several consecutive read actions. So as a rule of thumb, whenever you start a read action, you should check if your PSI/VFS/project/module are still valid.</p>
+
+<a name="invokelater" class="elem-anchor"></a>
+<h2><code class="code highlight language-text">invokeLater</code><a href="#invokelater" class="anchor-link"><span></span></a></h2>
+
+<p>To pass control from a background thread to the event dispatch thread, instead of the standard <code class="code highlight language-text">SwingUtilities.invokeLater()</code>, plugins should use <code class="code highlight language-text">ApplicationManager.getApplication().invokeLater()</code>. The latter API allows specifying the <em>modality state</em> for the call, i.e. the stack of modal dialogs under which the call is allowed to execute.</p>
+
+<ul>
+  <li>Passing <code class="code highlight language-text">ModalityState.NON_MODAL</code> means that the operation will be executed after all modal dialogs are closed. Note that if any of the open (unrelated) project displays a per-project modal dialog, the action will be executed after the dialog is closed.</li>
+  <li>Passing <code class="code highlight language-text">ModalityState.stateForComponent()</code> means that the operation can be executed when the topmost shown dialog is the one that contains the specified component, or is one of its parent dialogs.</li>
+  <li>If no modality state is passed, <code class="code highlight language-text">ModalityState.defaultModalityState()</code> will be used. In most cases, this is the optimal choice, that uses current modality state when invoked from UI thread, and has a special handling for background processes started with <code class="code highlight language-text">ProgressManager</code>: <code class="code highlight language-text">invokeLater()</code> from such a process may run in the same dialog that the process started.</li>
+  <li><code class="code highlight language-text">ModalityState.any()</code> means that the runnable will be executed as soon as possible regardless of modal dialogs. Please note that modifying PSI, VFS or project model is prohibited from such runnables.</li>
+</ul>
+
+<p>If your UI thread activity needs to access <a href="../indexing_and_psi_stubs.html"><span>file-based index</span></a> (e.g. it’s doing any kind of project-wide PSI analysis, resolves references, etc), please use <code class="code highlight language-text">DumbService.smartInvokeLater()</code>. That way, your activity will be run after all possible indexing processes have been completed.</p>
+
+<a name="background-processes-and-processcanceledexception" class="elem-anchor"></a>
+<h2>Background processes and <code class="code highlight language-text">ProcessCanceledException</code><a href="#background-processes-and-processcanceledexception" class="anchor-link"><span></span></a></h2>
+
+<p>Background progresses are managed by <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/openapi/progress/ProgressManager.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ProgressManager</code></span></a> class, which has plenty of methods to execute the given code
+with a modal (dialog), non-modal (visible in the status bar) or invisible progress. In all cases, the code is
+executed on a background thread which is associated with a <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/openapi/progress/ProgressIndicator.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ProgressIndicator</code></span></a> object.
+The current thread’s indicator can be retrieved any time via <code class="code highlight language-text">ProgressIndicatorProvider.getGlobalProgressIndicator()</code>.</p>
+
+<p>For visible progresses, threads can use <code class="code highlight language-text">ProgressIndicator</code> to notify the user about current status:
+e.g. set text or visible fraction of the work done.</p>
+
+<p>Progress indicators also provide means to handle cancellation of background processes, either by user (pressing “Cancel” button),
+or from code (e.g. when the current operation becomes obsolete due to some changes in the project).
+The progress can be marked as canceled by calling <code class="code highlight language-text">ProgressIndicator.cancel()</code>.
+The process reacts to this by calling <code class="code highlight language-text">ProgressIndicator.checkCanceled()</code> (or <code class="code highlight language-text">ProgressManager.checkCanceled()</code> if you don’t have indicator instance at hand).
+This call throws a special unchecked <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/util/src/com/intellij/openapi/progress/ProcessCanceledException.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ProcessCanceledException</code></span></a> if the background process has been canceled.</p>
+
+<p>All code working with PSI, or in other kinds of background processes, should be prepared to a <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/util/src/com/intellij/openapi/progress/ProcessCanceledException.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ProcessCanceledException</code></span></a> being thrown from any point.
+This exception should never be logged, it should be rethrown, and it’ll be handled in the infrastructure that started the process.</p>
+
+<p>The <code class="code highlight language-text">checkCanceled()</code> should be called often enough to guarantee smooth cancellation of the process. PSI internals
+have a lot of <code class="code highlight language-text">checkCanceled()</code> calls inside. But if your process does lengthy non-PSI activity, you might need to
+insert explicit <code class="code highlight language-text">checkCanceled()</code> calls so that it happens frequently, e.g. on each <em>Nth</em> loop iteration.</p>
+
+<a name="read-action-cancellability" class="elem-anchor"></a>
+<h2>Read action cancellability<a href="#read-action-cancellability" class="anchor-link"><span></span></a></h2>
+
+<p>Background threads shouldn’t take plain read actions for a long time. The reason is that if the UI thread needs a write action (e.g. the user types something), it must be acquired as soon as possible, otherwise the UI will freeze until all background threads have released their read actions.</p>
+
+<p>The best known approach to that is to cancel background read actions whenever there’s a write action about to occur, and restart that background read action later from the scratch. Editor highlighting, code completion, Goto Class/File/etc actions all work like this.
+To achieve that, the lengthy background operation is started with a <code class="code highlight language-text">ProgressIndicator</code>, and a special listener
+cancels that indicator when write action is started.
+The next time the background thread calls <code class="code highlight language-text">checkCanceled()</code>, a <code class="code highlight language-text">ProcessCanceledException</code> will be thrown,
+and the thread should stop its operation (and finish the read action) as soon as possible.</p>
+
+<p>There are two recommended ways of doing this:</p>
+
+<ul>
+  <li>If you’re on UI thread, call <code class="code highlight language-text">ReadAction.nonBlocking()</code> which returns <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/openapi/application/NonBlockingReadAction.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">NonBlockingReadAction</code></span></a></li>
+  <li>If you’re already in a background thread, use <code class="code highlight language-text">ProgressManager.getInstance().runInReadActionWithWriteActionPriority()</code> in a loop, until it passes or the whole activity becomes obsolete.</li>
+</ul>
+
+<p>In both approaches, you should always check at the start of each read action, if the objects you’re working with are still valid, and if the whole operation still makes sense (i.e. not canceled by the user, the project isn’t closed, etc.). With <code class="code highlight language-text">ReadAction.nonBlocking()</code>,
+use <code class="code highlight language-text">expireWith()</code> or <code class="code highlight language-text">expireWhen()</code> for that.</p>
+
+<p>If the activity you’re doing has to access <a href="../indexing_and_psi_stubs.html"><span>file-based index</span></a> (e.g. it’s doing any kind of project-wide PSI analysis, resolves references, etc), use <code class="code highlight language-text">ReadAction.nonBlocking(...).inSmartMode()</code>.</p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        
+                        <a class="navigation-links__next" href="/reference_guide/messaging_infrastructure.html">Messaging infrastructure</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

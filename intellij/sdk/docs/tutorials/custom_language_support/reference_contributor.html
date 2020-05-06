@@ -1,0 +1,404 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>10. Reference Contributor / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//tutorials/custom_language_support/reference_contributor.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="10. Reference Contributor" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="10. Reference Contributor" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="tutorials/custom_language_support/reference_contributor">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/tutorials/custom_language_support/completion_contributor.html">9. Completion Contributor</a>
+                        <a class="navigation-links__next" href="/tutorials/custom_language_support/find_usages_provider.html">11. Find Usages Provider</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/tutorials/custom_language_support/reference_contributor.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>10. Reference Contributor</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>The <a href="/intellij/sdk/docs/reference_guide/custom_language_support/references_and_resolve.html"><span>References functionality</span></a> is one of the most important parts in the implementation of custom language support.
+Resolving references means the ability to go from the usage of an element to its declaration, completion, rename refactoring, find usages, etc.</p>
+
+<aside class="note">
+  <p> Every PSI element that can be renamed or referenced needs to implement <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiNamedElement.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiNamedElement</code></span></a> interface.</p>
+</aside>
+
+<ul id="markdown-toc">
+  <li><a href="#define-a-named-element-class" id="markdown-toc-define-a-named-element-class"><span>10.1. Define a Named Element Class</span></a></li>
+  <li><a href="#define-helper-methods-for-generated-psi-elements" id="markdown-toc-define-helper-methods-for-generated-psi-elements"><span>10.2. Define Helper Methods for Generated PSI Elements</span></a></li>
+  <li><a href="#define-an-element-factory" id="markdown-toc-define-an-element-factory"><span>10.3. Define an Element Factory</span></a></li>
+  <li><a href="#update-grammar-and-regenerate-the-parser" id="markdown-toc-update-grammar-and-regenerate-the-parser"><span>10.4. Update Grammar and Regenerate the Parser</span></a></li>
+  <li><a href="#define-a-reference" id="markdown-toc-define-a-reference"><span>10.5. Define a Reference</span></a></li>
+  <li><a href="#define-a-reference-contributor" id="markdown-toc-define-a-reference-contributor"><span>10.6. Define a Reference Contributor</span></a></li>
+  <li><a href="#register-the-reference-contributor" id="markdown-toc-register-the-reference-contributor"><span>10.7. Register the Reference Contributor</span></a></li>
+  <li><a href="#run-the-project" id="markdown-toc-run-the-project"><span>10.8. Run the Project</span></a></li>
+  <li><a href="#define-a-refactoring-support-provider" id="markdown-toc-define-a-refactoring-support-provider"><span>10.9. Define a Refactoring Support Provider</span></a></li>
+  <li><a href="#register-the-refactoring-support-provider" id="markdown-toc-register-the-refactoring-support-provider"><span>10.10. Register the Refactoring Support Provider</span></a></li>
+  <li><a href="#run-the-project-1" id="markdown-toc-run-the-project-1"><span>10.11. Run the Project</span></a></li>
+</ul>
+
+<a name="define-a-named-element-class" class="elem-anchor"></a>
+<h2>10.1. Define a Named Element Class<a href="#define-a-named-element-class" class="anchor-link"><span></span></a></h2>
+<p>The classes below show how the Simple Language fulfills the need to implement <code class="code highlight language-text">PsiNamedElement</code>.</p>
+
+<p>The <code class="code highlight language-text">SimpleNamedElement</code> interface is subclassed from <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiNameIdentifierOwner.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiNameIdentifierOwner</code></span></a>.</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="c1">// Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.</span>
+
+<span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">intellij</span><span class="o">.</span><span class="na">sdk</span><span class="o">.</span><span class="na">language</span><span class="o">.</span><span class="na">psi</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.intellij.psi.PsiNameIdentifierOwner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">SimpleNamedElement</span> <span class="kd">extends</span> <span class="n">PsiNameIdentifierOwner</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></div>
+
+<p>The <code class="code highlight language-text">SimpleNamedElementImpl</code> class implements the <code class="code highlight language-text">SimpleNamedElement</code> interface and extends <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-impl/src/com/intellij/extapi/psi/ASTWrapperPsiElement.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ASTWrapperPsiElement</code></span></a>.</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="c1">// Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.</span>
+
+<span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">intellij</span><span class="o">.</span><span class="na">sdk</span><span class="o">.</span><span class="na">language</span><span class="o">.</span><span class="na">psi</span><span class="o">.</span><span class="na">impl</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.intellij.extapi.psi.ASTWrapperPsiElement</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.lang.ASTNode</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.intellij.sdk.language.psi.SimpleNamedElement</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.jetbrains.annotations.NotNull</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">SimpleNamedElementImpl</span> <span class="kd">extends</span> <span class="n">ASTWrapperPsiElement</span> <span class="kd">implements</span> <span class="n">SimpleNamedElement</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="nf">SimpleNamedElementImpl</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">ASTNode</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">(</span><span class="n">node</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="define-helper-methods-for-generated-psi-elements" class="elem-anchor"></a>
+<h2>10.2. Define Helper Methods for Generated PSI Elements<a href="#define-helper-methods-for-generated-psi-elements" class="anchor-link"><span></span></a></h2>
+<p>Modify <code class="code highlight language-text">SimplePsiImplUtil</code> to support new methods that get added to the PSI class for Simple Language. 
+Note that <code class="code highlight language-text">SimpleElementFactory</code> isn’t defined until the <a href="#define-an-element-factory"><span>next step</span></a>, so for now it shows as an error.</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimplePsiImplUtil</span> <span class="o">{</span>
+
+  <span class="c1">// ...</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">(</span><span class="n">SimpleProperty</span> <span class="n">element</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="nf">getKey</span><span class="o">(</span><span class="n">element</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">PsiElement</span> <span class="nf">setName</span><span class="o">(</span><span class="n">SimpleProperty</span> <span class="n">element</span><span class="o">,</span> <span class="n">String</span> <span class="n">newName</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">ASTNode</span> <span class="n">keyNode</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="na">getNode</span><span class="o">().</span><span class="na">findChildByType</span><span class="o">(</span><span class="n">SimpleTypes</span><span class="o">.</span><span class="na">KEY</span><span class="o">);</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">keyNode</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+
+          <span class="n">SimpleProperty</span> <span class="n">property</span> <span class="o">=</span> <span class="n">SimpleElementFactory</span><span class="o">.</span><span class="na">createProperty</span><span class="o">(</span><span class="n">element</span><span class="o">.</span><span class="na">getProject</span><span class="o">(),</span> <span class="n">newName</span><span class="o">);</span>
+          <span class="n">ASTNode</span> <span class="n">newKeyNode</span> <span class="o">=</span> <span class="n">property</span><span class="o">.</span><span class="na">getFirstChild</span><span class="o">().</span><span class="na">getNode</span><span class="o">();</span>
+          <span class="n">element</span><span class="o">.</span><span class="na">getNode</span><span class="o">().</span><span class="na">replaceChild</span><span class="o">(</span><span class="n">keyNode</span><span class="o">,</span> <span class="n">newKeyNode</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="n">element</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">PsiElement</span> <span class="nf">getNameIdentifier</span><span class="o">(</span><span class="n">SimpleProperty</span> <span class="n">element</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">ASTNode</span> <span class="n">keyNode</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="na">getNode</span><span class="o">().</span><span class="na">findChildByType</span><span class="o">(</span><span class="n">SimpleTypes</span><span class="o">.</span><span class="na">KEY</span><span class="o">);</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">keyNode</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="n">keyNode</span><span class="o">.</span><span class="na">getPsi</span><span class="o">();</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="define-an-element-factory" class="elem-anchor"></a>
+<h2>10.3. Define an Element Factory<a href="#define-an-element-factory" class="anchor-link"><span></span></a></h2>
+<p>The <code class="code highlight language-text">SimpleElementFactory</code> provides methods for creating <code class="code highlight language-text">SimpleFile</code>.</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">intellij</span><span class="o">.</span><span class="na">sdk</span><span class="o">.</span><span class="na">language</span><span class="o">.</span><span class="na">psi</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.intellij.openapi.project.Project</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.psi.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.intellij.sdk.language.SimpleFileType</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleElementFactory</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">SimpleProperty</span> <span class="nf">createProperty</span><span class="o">(</span><span class="n">Project</span> <span class="n">project</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">SimpleFile</span> <span class="n">file</span> <span class="o">=</span> <span class="n">createFile</span><span class="o">(</span><span class="n">project</span><span class="o">,</span> <span class="n">name</span><span class="o">);</span>
+    <span class="k">return</span> <span class="o">(</span><span class="n">SimpleProperty</span><span class="o">)</span> <span class="n">file</span><span class="o">.</span><span class="na">getFirstChild</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">SimpleFile</span> <span class="nf">createFile</span><span class="o">(</span><span class="n">Project</span> <span class="n">project</span><span class="o">,</span> <span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"dummy.simple"</span><span class="o">;</span>
+    <span class="k">return</span> <span class="o">(</span><span class="n">SimpleFile</span><span class="o">)</span> <span class="n">PsiFileFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">project</span><span class="o">).</span>
+                <span class="n">createFileFromText</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">SimpleFileType</span><span class="o">.</span><span class="na">INSTANCE</span><span class="o">,</span> <span class="n">text</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="update-grammar-and-regenerate-the-parser" class="elem-anchor"></a>
+<h2>10.4. Update Grammar and Regenerate the Parser<a href="#update-grammar-and-regenerate-the-parser" class="anchor-link"><span></span></a></h2>
+<p>Now make corresponding changes to the <code class="code highlight language-text">Simple.bnf</code> grammar file by replacing the <code class="code highlight language-text">property</code> definition with the lines below.
+Don’t forget to regenerate the parser after updating the file! 
+Right-click on the <code class="code highlight language-text">Simple.bnf</code> file and select <strong>Generate Parser Code</strong>.</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="n">property</span> <span class="o">::=</span> <span class="o">(</span><span class="n">KEY</span><span class="o">?</span> <span class="n">SEPARATOR</span> <span class="n">VALUE</span><span class="o">?)</span> <span class="o">|</span> <span class="n">KEY</span> <span class="o">{</span>
+  <span class="n">mixin</span><span class="o">=</span><span class="s">"org.intellij.sdk.language.psi.impl.SimpleNamedElementImpl"</span>
+  <span class="kd">implements</span><span class="o">=</span><span class="s">"org.intellij.sdk.language.psi.SimpleNamedElement"</span> 
+  <span class="n">methods</span><span class="o">=[</span><span class="n">getKey</span> <span class="n">getValue</span> <span class="n">getName</span> <span class="n">setName</span> <span class="n">getNameIdentifier</span><span class="o">]</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="define-a-reference" class="elem-anchor"></a>
+<h2>10.5. Define a Reference<a href="#define-a-reference" class="anchor-link"><span></span></a></h2>
+<p>Now define a reference class to resolve a property from its usage.
+This requires extending <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiReferenceBase.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiReferenceBase</code></span></a> and implementing <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiPolyVariantReference.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiPolyVariantReference</code></span></a>. 
+The latter enables the reference to resolve to more than one element or to resolve result(s) for a superset of valid resolve cases.</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="c1">// Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.</span>
+
+<span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">intellij</span><span class="o">.</span><span class="na">sdk</span><span class="o">.</span><span class="na">language</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.intellij.codeInsight.lookup.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.openapi.project.Project</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.openapi.util.TextRange</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.psi.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.intellij.sdk.language.psi.SimpleProperty</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.jetbrains.annotations.*</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleReference</span> <span class="kd">extends</span> <span class="n">PsiReferenceBase</span><span class="o">&lt;</span><span class="n">PsiElement</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">PsiPolyVariantReference</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">key</span><span class="o">;</span>
+  
+  <span class="kd">public</span> <span class="nf">SimpleReference</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">PsiElement</span> <span class="n">element</span><span class="o">,</span> <span class="n">TextRange</span> <span class="n">textRange</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">(</span><span class="n">element</span><span class="o">,</span> <span class="n">textRange</span><span class="o">);</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">substring</span><span class="o">(</span><span class="n">textRange</span><span class="o">.</span><span class="na">getStartOffset</span><span class="o">(),</span> <span class="n">textRange</span><span class="o">.</span><span class="na">getEndOffset</span><span class="o">());</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@NotNull</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">ResolveResult</span><span class="o">[]</span> <span class="nf">multiResolve</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">incompleteCode</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Project</span> <span class="n">project</span> <span class="o">=</span> <span class="n">myElement</span><span class="o">.</span><span class="na">getProject</span><span class="o">();</span>
+    <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">SimpleProperty</span><span class="o">&gt;</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">SimpleUtil</span><span class="o">.</span><span class="na">findProperties</span><span class="o">(</span><span class="n">project</span><span class="o">,</span> <span class="n">key</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">ResolveResult</span><span class="o">&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">SimpleProperty</span> <span class="n">property</span> <span class="o">:</span> <span class="n">properties</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">results</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">PsiElementResolveResult</span><span class="o">(</span><span class="n">property</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">results</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="k">new</span> <span class="n">ResolveResult</span><span class="o">[</span><span class="n">results</span><span class="o">.</span><span class="na">size</span><span class="o">()]);</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@Nullable</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">PsiElement</span> <span class="nf">resolve</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">ResolveResult</span><span class="o">[]</span> <span class="n">resolveResults</span> <span class="o">=</span> <span class="n">multiResolve</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">resolveResults</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">?</span> <span class="n">resolveResults</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">getElement</span><span class="o">()</span> <span class="o">:</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@NotNull</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">Object</span><span class="o">[]</span> <span class="nf">getVariants</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">Project</span> <span class="n">project</span> <span class="o">=</span> <span class="n">myElement</span><span class="o">.</span><span class="na">getProject</span><span class="o">();</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">SimpleProperty</span><span class="o">&gt;</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">SimpleUtil</span><span class="o">.</span><span class="na">findProperties</span><span class="o">(</span><span class="n">project</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">LookupElement</span><span class="o">&gt;</span> <span class="n">variants</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kd">final</span> <span class="n">SimpleProperty</span> <span class="n">property</span> <span class="o">:</span> <span class="n">properties</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">property</span><span class="o">.</span><span class="na">getKey</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">property</span><span class="o">.</span><span class="na">getKey</span><span class="o">().</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">variants</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">LookupElementBuilder</span>
+                           <span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">property</span><span class="o">).</span><span class="na">withIcon</span><span class="o">(</span><span class="n">SimpleIcons</span><span class="o">.</span><span class="na">FILE</span><span class="o">)</span>
+                           <span class="o">.</span><span class="na">withTypeText</span><span class="o">(</span><span class="n">property</span><span class="o">.</span><span class="na">getContainingFile</span><span class="o">().</span><span class="na">getName</span><span class="o">())</span>
+        <span class="o">);</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">variants</span><span class="o">.</span><span class="na">toArray</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></div>
+
+<a name="define-a-reference-contributor" class="elem-anchor"></a>
+<h2>10.6. Define a Reference Contributor<a href="#define-a-reference-contributor" class="anchor-link"><span></span></a></h2>
+<p>A reference contributor allows the <code class="code highlight language-text">simple_language_plugin</code> to provide references to Simple Language from elements in other languages such as Java.
+Create <code class="code highlight language-text">SimpleReferenceContributor</code> by subclassing <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/PsiReferenceContributor.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiReferenceContributor</code></span></a>.
+Contribute a reference to each usage of a property:</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="c1">// Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.</span>
+
+<span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">intellij</span><span class="o">.</span><span class="na">sdk</span><span class="o">.</span><span class="na">language</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.intellij.openapi.util.TextRange</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.patterns.PlatformPatterns</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.psi.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.util.ProcessingContext</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.jetbrains.annotations.NotNull</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">intellij</span><span class="o">.</span><span class="na">sdk</span><span class="o">.</span><span class="na">language</span><span class="o">.</span><span class="na">SimpleAnnotator</span><span class="o">.*;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleReferenceContributor</span> <span class="kd">extends</span> <span class="n">PsiReferenceContributor</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">registerReferenceProviders</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">PsiReferenceRegistrar</span> <span class="n">registrar</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">registrar</span><span class="o">.</span><span class="na">registerReferenceProvider</span><span class="o">(</span><span class="n">PlatformPatterns</span><span class="o">.</span><span class="na">psiElement</span><span class="o">(</span><span class="n">PsiLiteralExpression</span><span class="o">.</span><span class="na">class</span><span class="o">),</span>
+            <span class="k">new</span> <span class="nf">PsiReferenceProvider</span><span class="o">()</span> <span class="o">{</span>
+              <span class="nd">@NotNull</span>
+              <span class="nd">@Override</span>
+              <span class="kd">public</span> <span class="n">PsiReference</span><span class="o">[]</span> <span class="nf">getReferencesByElement</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">PsiElement</span> <span class="n">element</span><span class="o">,</span>
+                                                           <span class="nd">@NotNull</span> <span class="n">ProcessingContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">PsiLiteralExpression</span> <span class="n">literalExpression</span> <span class="o">=</span> <span class="o">(</span><span class="n">PsiLiteralExpression</span><span class="o">)</span> <span class="n">element</span><span class="o">;</span>
+                <span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">literalExpression</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="k">instanceof</span> <span class="n">String</span> <span class="o">?</span>
+                        <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">literalExpression</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">:</span> <span class="kc">null</span><span class="o">;</span>
+                <span class="k">if</span> <span class="o">((</span><span class="n">value</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">value</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="n">SIMPLE_PREFIX_STR</span> <span class="o">+</span> <span class="n">SIMPLE_SEPARATOR_STR</span><span class="o">)))</span> <span class="o">{</span>
+                  <span class="n">TextRange</span> <span class="n">property</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TextRange</span><span class="o">(</span><span class="n">SIMPLE_PREFIX_STR</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="n">SIMPLE_SEPARATOR_STR</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span>
+                          <span class="n">value</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+                  <span class="k">return</span> <span class="k">new</span> <span class="n">PsiReference</span><span class="o">[]{</span><span class="k">new</span> <span class="n">SimpleReference</span><span class="o">(</span><span class="n">element</span><span class="o">,</span> <span class="n">property</span><span class="o">)};</span>
+                <span class="o">}</span>
+                <span class="k">return</span> <span class="n">PsiReference</span><span class="o">.</span><span class="na">EMPTY_ARRAY</span><span class="o">;</span>
+              <span class="o">}</span>
+            <span class="o">});</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></div>
+
+<a name="register-the-reference-contributor" class="elem-anchor"></a>
+<h2>10.7. Register the Reference Contributor<a href="#register-the-reference-contributor" class="anchor-link"><span></span></a></h2>
+<p>The <code class="code highlight language-text">SimpleReferenceContributor</code> implementation is registered with the IntelliJ Platform using the <code class="code highlight language-text">com.intellij.psi.referenceContributor</code> extension point.</p>
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper"><span class="nt">&lt;extensions</span> <span class="na">defaultExtensionNs=</span><span class="s">"com.intellij"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;psi.referenceContributor</span> <span class="na">implementation=</span><span class="s">"org.intellij.sdk.language.SimpleReferenceContributor"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/extensions&gt;</span>
+</code></div>
+
+<a name="run-the-project" class="elem-anchor"></a>
+<h2>10.8. Run the Project<a href="#run-the-project" class="anchor-link"><span></span></a></h2>
+<p>Rebuild the project, and run <code class="code highlight language-text">simple_language_plugin</code> in a Development Instance.
+The IDE now resolves the property and provides <a href="https://www.jetbrains.com/help/idea/auto-completing-code.html#basic_completion" data-bypass="yes" target="_blank"><span>completion</span></a> suggestions:</p>
+
+<p><img src="img/reference_contributor.png" alt="Reference Contributor" width="800px" /></p>
+
+<p>The <a href="https://www.jetbrains.com/help/idea/rename-refactorings.html#invoke-rename-refactoring" data-bypass="yes" target="_blank"><span>Rename refactoring</span></a> functionality is now available from definition and usages.</p>
+
+<p><img src="img/rename.png" alt="Rename" width="800px" /></p>
+
+<a name="define-a-refactoring-support-provider" class="elem-anchor"></a>
+<h2>10.9. Define a Refactoring Support Provider<a href="#define-a-refactoring-support-provider" class="anchor-link"><span></span></a></h2>
+<p>Support for in-place refactoring is specified explicitly in a refactoring support provider.
+Create <code class="code highlight language-text">SimpleRefactoringSupportProvider</code> by subclassing <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/lang-api/src/com/intellij/lang/refactoring/RefactoringSupportProvider.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">RefactoringSupportProvider</code></span></a>
+As long as an element is a <code class="code highlight language-text">SimpleProperty</code> it is allowed to be refactored:</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="c1">// Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.</span>
+
+<span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">intellij</span><span class="o">.</span><span class="na">sdk</span><span class="o">.</span><span class="na">language</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.intellij.lang.refactoring.RefactoringSupportProvider</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.psi.PsiElement</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.intellij.sdk.language.psi.SimpleProperty</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.jetbrains.annotations.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleRefactoringSupportProvider</span> <span class="kd">extends</span> <span class="n">RefactoringSupportProvider</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isMemberInplaceRenameAvailable</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">PsiElement</span> <span class="n">elementToRename</span><span class="o">,</span> <span class="nd">@Nullable</span> <span class="n">PsiElement</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="o">(</span><span class="n">elementToRename</span> <span class="k">instanceof</span> <span class="n">SimpleProperty</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></div>
+
+<a name="register-the-refactoring-support-provider" class="elem-anchor"></a>
+<h2>10.10. Register the Refactoring Support Provider<a href="#register-the-refactoring-support-provider" class="anchor-link"><span></span></a></h2>
+<p>The <code class="code highlight language-text">SimpleRefactoringSupportProvider</code> implementation is registered with the IntelliJ Platform in the plugin configuration file using the <code class="code highlight language-text">com.intellij.lang.refactoringSupport</code> extension point.</p>
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper"><span class="nt">&lt;extensions</span> <span class="na">defaultExtensionNs=</span><span class="s">"com.intellij"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;lang.refactoringSupport</span> <span class="na">language=</span><span class="s">"Simple"</span>  
+          <span class="na">implementationClass=</span><span class="s">"org.intellij.sdk.language.SimpleRefactoringSupportProvider"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/extensions&gt;</span>
+</code></div>
+
+<a name="run-the-project-1" class="elem-anchor"></a>
+<h2>10.11. Run the Project<a href="#run-the-project-1" class="anchor-link"><span></span></a></h2>
+<p>Rebuild the project, and run <code class="code highlight language-text">simple_language_plugin</code> in a Development Instance.
+The IDE now supports <a href="https://www.jetbrains.com/help/idea/rename-refactorings.html" data-bypass="yes" target="_blank"><span>refactoring</span></a> suggestions:</p>
+
+<p><img src="img/in_place_rename.png" alt="In Place Rename" width="800px" /></p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/tutorials/custom_language_support/completion_contributor.html">9. Completion Contributor</a>
+                        <a class="navigation-links__next" href="/tutorials/custom_language_support/find_usages_provider.html">11. Find Usages Provider</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

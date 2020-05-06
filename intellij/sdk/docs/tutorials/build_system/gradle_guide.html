@@ -1,0 +1,313 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Configuring Gradle for IntelliJ Platform Plugins / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//tutorials/build_system/gradle_guide.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Configuring Gradle for IntelliJ Platform Plugins" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Configuring Gradle for IntelliJ Platform Plugins" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="tutorials/build_system/gradle_guide">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/tutorials/build_system/prerequisites.html">Getting Started with Gradle</a>
+                        <a class="navigation-links__next" href="/tutorials/build_system/deployment.html">Publishing Plugins with Gradle</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/tutorials/build_system/gradle_guide.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Configuring Gradle for IntelliJ Platform Plugins</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>This page serves as a guide to Gradle-based plugin configuration for <em>IntelliJ Platform</em> projects.
+The IntelliJ IDEA Ultimate and Community editions bundle the Gradle and Plugin DevKit plugins to support Gradle-based development. 
+The <a href="prerequisites.html"><span>Getting Started with Gradle</span></a> page provides a tutorial for creating Gradle-based IntelliJ Platform plugins.
+It may be useful to review the IntelliJ Platform page, particularly the description of versioning in the <a href="/intellij/sdk/docs/intro/intellij_platform.html#open-source"><span>Open Source</span></a> section.</p>
+
+<aside class="warning">
+  <p> When adding additional repositories to your Gradle build script, make sure to always use HTTPS protocol.</p>
+</aside>
+
+<ul id="markdown-toc">
+  <li><a href="#overview-of-the-intellij-idea-gradle-plugin" id="markdown-toc-overview-of-the-intellij-idea-gradle-plugin"><span>Overview of the IntelliJ IDEA Gradle Plugin</span></a></li>
+  <li><a href="#guide-to-configuring-gradle-plugin-functionality" id="markdown-toc-guide-to-configuring-gradle-plugin-functionality"><span>Guide to Configuring Gradle Plugin Functionality</span></a>    <ul>
+      <li><a href="#configuring-the-gradle-plugin-for-building-intellij-platform-plugin-projects" id="markdown-toc-configuring-the-gradle-plugin-for-building-intellij-platform-plugin-projects"><span>Configuring the Gradle Plugin for Building IntelliJ Platform Plugin Projects</span></a>        <ul>
+          <li><a href="#intellij-platform-configuration" id="markdown-toc-intellij-platform-configuration"><span>IntelliJ Platform Configuration</span></a></li>
+          <li><a href="#plugin-dependencies" id="markdown-toc-plugin-dependencies"><span>Plugin Dependencies</span></a></li>
+        </ul>
+      </li>
+      <li><a href="#configuring-the-gradle-plugin-for-running-intellij-platform-plugin-projects" id="markdown-toc-configuring-the-gradle-plugin-for-running-intellij-platform-plugin-projects"><span>Configuring the Gradle Plugin for Running IntelliJ Platform Plugin Projects</span></a>        <ul>
+          <li><a href="#running-against-alternate-versions-and-types-of-intellij-platform-based-ides" id="markdown-toc-running-against-alternate-versions-and-types-of-intellij-platform-based-ides"><span>Running Against Alternate Versions and Types of IntelliJ Platform-Based IDEs</span></a></li>
+          <li><a href="#running-against-alternate-versions-of-the-jetbrains-runtime" id="markdown-toc-running-against-alternate-versions-of-the-jetbrains-runtime"><span>Running Against Alternate Versions of the JetBrains Runtime</span></a></li>
+        </ul>
+      </li>
+      <li><a href="#managing-directories-used-by-the-gradle-plugin" id="markdown-toc-managing-directories-used-by-the-gradle-plugin"><span>Managing Directories used by the Gradle Plugin</span></a></li>
+      <li><a href="#controlling-downloads-by-the-gradle-plugin" id="markdown-toc-controlling-downloads-by-the-gradle-plugin"><span>Controlling Downloads by the Gradle Plugin</span></a></li>
+      <li><a href="#patching-the-plugin-configuration-file" id="markdown-toc-patching-the-plugin-configuration-file"><span>Patching the Plugin Configuration File</span></a></li>
+      <li><a href="#publishing-with-the-gradle-plugin" id="markdown-toc-publishing-with-the-gradle-plugin"><span>Publishing with the Gradle Plugin</span></a></li>
+    </ul>
+  </li>
+  <li><a href="#common-gradle-plugin-configurations-for-development" id="markdown-toc-common-gradle-plugin-configurations-for-development"><span>Common Gradle Plugin Configurations for Development</span></a>    <ul>
+      <li><a href="#plugins-targeting-intellij-idea" id="markdown-toc-plugins-targeting-intellij-idea"><span>Plugins Targeting IntelliJ IDEA</span></a></li>
+      <li><a href="#plugins-targeting-alternate-intellij-platform-based-ides" id="markdown-toc-plugins-targeting-alternate-intellij-platform-based-ides"><span>Plugins Targeting Alternate IntelliJ Platform-Based IDEs</span></a></li>
+    </ul>
+  </li>
+</ul>
+
+<a name="overview-of-the-intellij-idea-gradle-plugin" class="elem-anchor"></a>
+<h2>Overview of the IntelliJ IDEA Gradle Plugin<a href="#overview-of-the-intellij-idea-gradle-plugin" class="anchor-link"><span></span></a></h2>
+<p>The IntelliJ IDEA Gradle plugin is built from the open-source project <code class="code highlight language-text">gradle-intellij-plugin</code>.
+The plugin adds Gradle tasks for the <code class="code highlight language-text">build.gradle</code> file that enable developing IntelliJ Platform plugins.
+The <a href="https://github.com/JetBrains/gradle-intellij-plugin/blob/master/README.md" data-bypass="yes" target="_blank"><span>README</span></a> file for the <code class="code highlight language-text">gradle-intellij-plugin</code> project is the reference for configuring these tasks.</p>
+
+<p>When getting started, there are several items to note on the README page:</p>
+<ul>
+  <li>At the top of the page, the <a href="https://github.com/JetBrains/gradle-intellij-plugin#the-latest-version" data-bypass="yes" target="_blank"><span>latest production version</span></a> of the IntelliJ IDEA Gradle plugin is listed.</li>
+  <li>Also at the top is the minimum version of Gradle required to support the IntelliJ IDEA Gradle plugin.</li>
+  <li>The table of extended Gradle <a href="https://github.com/JetBrains/gradle-intellij-plugin#tasks" data-bypass="yes" target="_blank"><span>Tasks</span></a> has a succinct description for each task added by the plugin.
+This documentation will focus on the configuration and use four of those tasks:
+    <ul>
+      <li><a href="https://github.com/JetBrains/gradle-intellij-plugin#setup-dsl" data-bypass="yes" target="_blank"><span>Setup DSL</span></a> - <code class="code highlight language-text">intellij { ... }</code>.</li>
+      <li><a href="https://github.com/JetBrains/gradle-intellij-plugin#running-dsl" data-bypass="yes" target="_blank"><span>Running DSL</span></a> - <code class="code highlight language-text">runIde { ... }</code></li>
+      <li><a href="https://github.com/JetBrains/gradle-intellij-plugin#patching-dsl" data-bypass="yes" target="_blank"><span>Patching DSL</span></a> - <code class="code highlight language-text">patchPluginXml { ... }</code></li>
+      <li><a href="https://github.com/JetBrains/gradle-intellij-plugin#publishing-dsl" data-bypass="yes" target="_blank"><span>Publishing DSL</span></a> - <code class="code highlight language-text">publishPlugin { ... }</code></li>
+    </ul>
+  </li>
+  <li>Examples are always a helpful resource, and at the bottom of the page are links to <a href="https://github.com/JetBrains/gradle-intellij-plugin#examples" data-bypass="yes" target="_blank"><span>example</span></a> open source IntelliJ Platform plugin projects based on Gradle.</li>
+  <li>Almost every Gradle plugin attribute has a default value that will work to get started on a Gradle-based IntelliJ Platform plugin project.</li>
+</ul>
+
+<a name="guide-to-configuring-gradle-plugin-functionality" class="elem-anchor"></a>
+<h2>Guide to Configuring Gradle Plugin Functionality<a href="#guide-to-configuring-gradle-plugin-functionality" class="anchor-link"><span></span></a></h2>
+<p>This section presents a guided tour of Gradle plugin attributes to achieve commonly desired functionality.</p>
+
+<a name="configuring-the-gradle-plugin-for-building-intellij-platform-plugin-projects" class="elem-anchor"></a>
+<h3>Configuring the Gradle Plugin for Building IntelliJ Platform Plugin Projects<a href="#configuring-the-gradle-plugin-for-building-intellij-platform-plugin-projects" class="anchor-link"><span></span></a></h3>
+<p>By default, the Gradle plugin will build a plugin project against the IntelliJ Platform defined by the latest EAP snapshot of the IntelliJ IDEA Community Edition.</p>
+
+<aside class="note">
+  <p> Using EAP versions of the IntelliJ Platform requires adding the <em>Snapshots repository</em> to the <code class="code highlight language-text">build.gradle</code> file (see <a href="/intellij/sdk/docs/reference_guide/intellij_artifacts.html"><span>IntelliJ Platform Artifacts Repositories</span></a>).</p>
+</aside>
+
+<p>If a matching version of the specified IntelliJ Platform is not available on the local machine, the Gradle plugin downloads the correct version and type.
+IntelliJ IDEA then indexes the build and any associated source code and JetBrains Java Runtime.</p>
+
+<a name="intellij-platform-configuration" class="elem-anchor"></a>
+<h4>IntelliJ Platform Configuration</h4>
+<p>Explicitly setting the <a href="https://github.com/JetBrains/gradle-intellij-plugin#setup-dsl" data-bypass="yes" target="_blank"><span>Setup DSL</span></a> attributes <code class="code highlight language-text">intellij.version</code> and <code class="code highlight language-text">intellij.type</code> tells the Gradle plugin to use that configuration of the IntelliJ Platform to build the plugin project.
+If a local installation of IntelliJ IDEA is the desired type and version of the IntelliJ Platform, use <code class="code highlight language-text">intellij.localPath</code> to point to that installation.
+If the <code class="code highlight language-text">intellij.localPath</code> attribute is set, do not set the <code class="code highlight language-text">intellij.version</code> and <code class="code highlight language-text">intellij.type</code> attributes as this could result in undefined behavior.</p>
+
+<a name="plugin-dependencies" class="elem-anchor"></a>
+<h4>Plugin Dependencies</h4>
+<p>IntelliJ Platform plugin projects may depend on either bundled or third-party plugins.
+In that case, a project should build against a version of those plugins that match the IntelliJ Platform version used to build the plugin project.
+The Gradle plugin will fetch any plugins in the list defined by <code class="code highlight language-text">intellij.plugins</code>.
+See the Gradle plugin <a href="https://github.com/JetBrains/gradle-intellij-plugin#setup-dsl" data-bypass="yes" target="_blank"><span>README</span></a> for information about specifying the plugin and version.</p>
+
+<p>Note that this attribute describes a dependency so the Gradle plugin can fetch the required artifacts.
+The IntelliJ Platform plugin project is still required to declare these dependencies in its <a href="/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html"><span>Plugin Configuration</span></a> (<code class="code highlight language-text">plugin.xml</code>) file.</p>
+
+<a name="configuring-the-gradle-plugin-for-running-intellij-platform-plugin-projects" class="elem-anchor"></a>
+<h3>Configuring the Gradle Plugin for Running IntelliJ Platform Plugin Projects<a href="#configuring-the-gradle-plugin-for-running-intellij-platform-plugin-projects" class="anchor-link"><span></span></a></h3>
+<p>By default, the Gradle plugin will use the same version of the IntelliJ Platform for the IDE Development Instance as was used for building the plugin.
+Using the corresponding JetBrains Runtime is also the default, so for this use case no further configuration is required.</p>
+
+<a name="running-against-alternate-versions-and-types-of-intellij-platform-based-ides" class="elem-anchor"></a>
+<h4>Running Against Alternate Versions and Types of IntelliJ Platform-Based IDEs</h4>
+<p>The IntelliJ Platform IDE used for the Development Instance can be different from that used to build the plugin project.
+Setting the <a href="https://github.com/JetBrains/gradle-intellij-plugin#running-dsl" data-bypass="yes" target="_blank"><span>Running DSL</span></a> attribute <code class="code highlight language-text">runIde.ideDirectory</code> will define an IDE to be used for the Development Instance.
+This attribute is commonly used when running or debugging a plugin in an <a href="/intellij/sdk/docs/intro/intellij_platform.html#ides-based-on-the-intellij-platform"><span>alternate IntelliJ Platform-based IDE</span></a>.</p>
+
+<a name="running-against-alternate-versions-of-the-jetbrains-runtime" class="elem-anchor"></a>
+<h4>Running Against Alternate Versions of the JetBrains Runtime</h4>
+<p>Every version of the IntelliJ Platform has a corresponding version of the <a href="/intellij/sdk/docs/basics/ide_development_instance.html#using-a-jetbrains-runtime-for-the-development-instance"><span>JetBrains Runtime</span></a>.
+A different version of the runtime can be used by specifying the <code class="code highlight language-text">runIde.jbrVersion</code> attribute, describing a version of the JetBrains Runtime that should be used by the IDE Development Instance.
+The Gradle plugin will fetch the specified JetBrains Runtime as needed.</p>
+
+<a name="managing-directories-used-by-the-gradle-plugin" class="elem-anchor"></a>
+<h3>Managing Directories used by the Gradle Plugin<a href="#managing-directories-used-by-the-gradle-plugin" class="anchor-link"><span></span></a></h3>
+<p>There are several attributes to control where the Gradle plugin places directories for downloads and for use by the IDE Development Instance.</p>
+
+<p>The location of the <a href="/intellij/sdk/docs/basics/ide_development_instance.html#sandbox-home-location-for-gradle-based-plugin-projects"><span>sandbox home</span></a> directory and its subdirectories can be controlled with Gradle plugin attributes.
+The <code class="code highlight language-text">intellij.sandboxDirectory</code> attribute is used to set the path for the sandbox directory to be used while running the plugin in an IDE Development Instance. 
+Locations of the sandbox <a href="/intellij/sdk/docs/basics/ide_development_instance.html#development-instance-settings-caches-logs-and-plugins"><span>subdirectories</span></a> can be controlled using the <code class="code highlight language-text">runIde.configDirectory</code>, <code class="code highlight language-text">runIde.pluginsDirectory</code>, and <code class="code highlight language-text">runIde.systemDirectory</code> attributes.
+If the <code class="code highlight language-text">intellij.sandboxDirectory</code> path is explicitly set, the subdirectory attributes default to the new sandbox directory.</p>
+
+<p>The storage location of downloaded IDE versions and components defaults to the Gradle cache directory.
+However, it can be controlled by setting the <code class="code highlight language-text">intellij.ideaDependencyCachePath</code> attribute.</p>
+
+<a name="controlling-downloads-by-the-gradle-plugin" class="elem-anchor"></a>
+<h3>Controlling Downloads by the Gradle Plugin<a href="#controlling-downloads-by-the-gradle-plugin" class="anchor-link"><span></span></a></h3>
+<p>As mentioned in the section about <a href="#configuring-the-gradle-plugin-for-building-intellij-platform-plugin-projects"><span>configuring the intellij platform</span></a> used for building plugin projects, the Gradle plugin will fetch the version of the IntelliJ Platform specified by the default or by the <code class="code highlight language-text">intellij</code> attributes.
+Standardizing the versions of the Gradle plugin and Gradle system across projects will minimize the time spent downloading versions.
+There are controls for managing the IntelliJ IDEA Gradle plugin version, and the version of Gradle itself.
+The Gradle plugin version is defined in the <code class="code highlight language-text">plugins {}</code> section of a project’s <code class="code highlight language-text">build.gradle</code> file.
+The Gradle version is in defined in a project’s <code class="code highlight language-text">gradle-wrapper.properties</code>.</p>
+
+<a name="patching-the-plugin-configuration-file" class="elem-anchor"></a>
+<h3>Patching the Plugin Configuration File<a href="#patching-the-plugin-configuration-file" class="anchor-link"><span></span></a></h3>
+<p>A plugin project’s <code class="code highlight language-text">plugin.xml</code> file has element values that are “patched” at build time from the attributes of the <code class="code highlight language-text">patchPluginXml</code> (<a href="https://github.com/JetBrains/gradle-intellij-plugin#patching-dsl" data-bypass="yes" target="_blank"><span>Patching DSL</span></a>) task. 
+As many as possible of the attributes in the Patching DSL will be substituted into the corresponding element values in a plugin project’s <code class="code highlight language-text">plugin.xml</code> file:</p>
+<ul>
+  <li>If a <code class="code highlight language-text">patchPluginXml</code> attribute default value is defined, the attribute value will be patched in plugin.xml <em>regardless of whether the <code class="code highlight language-text">patchPluginXml</code> task appears in the <code class="code highlight language-text">build.gradle</code> file</em>.
+    <ul>
+      <li>For example, the default values for the attributes <code class="code highlight language-text">patchPluginXml.sinceBuild</code> and <code class="code highlight language-text">patchPluginXml.untilBuild</code> are defined based on the declared (or default) value of <code class="code highlight language-text">intellij.version</code>.
+So by default <code class="code highlight language-text">patchPluginXml.sinceBuild</code> and <code class="code highlight language-text">patchPluginXml.untilBuild</code> are substituted into the <code class="code highlight language-text">&lt;idea-version&gt;</code> element’s <code class="code highlight language-text">since-build</code> and <code class="code highlight language-text">until-build</code> attributes in the <code class="code highlight language-text">plugin.xml</code> file.</li>
+    </ul>
+  </li>
+  <li>If a <code class="code highlight language-text">patchPluginXml</code> attribute value is explicitly defined, the attribute value will be substituted in <code class="code highlight language-text">plugin.xml</code>.
+    <ul>
+      <li>If both <code class="code highlight language-text">patchPluginXml.sinceBuild</code> and <code class="code highlight language-text">patchPluginXml.untilBuild</code> attributes are explicitly set, both are substituted in <code class="code highlight language-text">plugin.xml</code>.</li>
+      <li>If one attribute is explicitly set (e.g. <code class="code highlight language-text">patchPluginXml.sinceBuild</code>) and one is not (e.g. <code class="code highlight language-text">patchPluginXml.untilBuild</code> has default value,) both attributes are patched at their respective (explicit and default) values.</li>
+    </ul>
+  </li>
+  <li>For <strong>no substitution</strong> of the <code class="code highlight language-text">&lt;idea-version&gt;</code> element’s <code class="code highlight language-text">since-build</code> and <code class="code highlight language-text">until-build</code> attributes, one of the following must appear in the <code class="code highlight language-text">build.gradle</code> file:
+    <ul>
+      <li>Either set <code class="code highlight language-text">intellij.updateSinceUntilBuild = false</code>, which will disable substituting both <code class="code highlight language-text">since-build</code> and <code class="code highlight language-text">until-build</code> attributes,</li>
+      <li>Or, for independent control, set <code class="code highlight language-text">patchPluginXml.sinceBuild(null)</code> and <code class="code highlight language-text">patchPluginXml.untilBuild(null)</code> depending on whether the intention is to disable one or both substitutions.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>A best practice to avoid confusion is to replace the elements in <code class="code highlight language-text">plugin.xml</code> that will be patched by the Gradle plugin with a comment.
+That way the values for these parameters do not appear in two places in the source code.
+The Gradle plugin will add the necessary elements as part of the patching process.
+For those <code class="code highlight language-text">patchPluginXml</code> attributes that contain descriptions such as <code class="code highlight language-text">changeNotes</code> and <code class="code highlight language-text">pluginDescription</code>, a <code class="code highlight language-text">CDATA</code> block is not necessary when using HTML elements.</p>
+
+<p>As discussed in <a href="prerequisites.html#components-of-a-wizard-generated-gradle-intellij-platform-plugin"><span>Components of a Wizard-Generated Gradle IntelliJ Platform Plugin</span></a>, the Gradle properties <code class="code highlight language-text">project.version</code>, <code class="code highlight language-text">project.group</code>, and <code class="code highlight language-text">rootProject.name</code> are all generated based on the input to the Wizard.
+However, the IntelliJ IDEA Gradle plugin does not combine and substitute those Gradle properties for the default <code class="code highlight language-text">&lt;id&gt;</code> and <code class="code highlight language-text">&lt;name&gt;</code> elements in the <code class="code highlight language-text">plugin.xml</code> file.</p>
+
+<p>The best practice is to keep <code class="code highlight language-text">project.version</code> current. 
+By default, if you modify <code class="code highlight language-text">project.version</code> in <code class="code highlight language-text">build.gradle</code>, the Gradle plugin will automatically update the <code class="code highlight language-text">&lt;version&gt;</code> value in the <code class="code highlight language-text">plugin.xml</code> file. 
+This practice keeps all version declarations synchronized.</p>
+
+<a name="publishing-with-the-gradle-plugin" class="elem-anchor"></a>
+<h3>Publishing with the Gradle Plugin<a href="#publishing-with-the-gradle-plugin" class="anchor-link"><span></span></a></h3>
+<p>Please review the <a href="deployment.html"><span>Publishing Plugins with Gradle</span></a> page before using the <a href="https://github.com/JetBrains/gradle-intellij-plugin#publishing-dsl" data-bypass="yes" target="_blank"><span>Publishing DSL</span></a> attributes.
+That documentation explains three different ways to use Gradle for plugin uploads without exposing account credentials.</p>
+
+<a name="common-gradle-plugin-configurations-for-development" class="elem-anchor"></a>
+<h2>Common Gradle Plugin Configurations for Development<a href="#common-gradle-plugin-configurations-for-development" class="anchor-link"><span></span></a></h2>
+<p>Different combinations of Gradle plugin attributes are needed to create the desired build or IDE Development Instance environment.
+This section reviews some of the more common configurations.</p>
+
+<a name="plugins-targeting-intellij-idea" class="elem-anchor"></a>
+<h3>Plugins Targeting IntelliJ IDEA<a href="#plugins-targeting-intellij-idea" class="anchor-link"><span></span></a></h3>
+<p>IntelliJ Platform plugins targeting IntelliJ IDEA have the most straightforward Gradle plugin configuration.</p>
+<ul>
+  <li>Determine the version of <a href="#configuring-the-gradle-plugin-for-building-intellij-platform-plugin-projects"><span>IntelliJ IDEA to use for building the plugin project</span></a>; this is the desired version of the IntelliJ Platform.
+This can be EAP (default) or determined from the <a href="/intellij/sdk/docs/basics/getting_started/build_number_ranges.html"><span>build number ranges</span></a>.
+    <ul>
+      <li>If a production version of IntelliJ IDEA is the desired target, set the <code class="code highlight language-text">intellij</code> <a href="#intellij-platform-configuration"><span>version attributes</span></a> accordingly.</li>
+      <li>Set the necessary <a href="#plugin-dependencies"><span>plugin dependencies</span></a>, if any.</li>
+    </ul>
+  </li>
+  <li>If the plugin project should be run or debugged in an IDE Development Instance based on the same IntelliJ IDEA version, no further attributes need to be set for the IDE Development Instance. 
+This is the default behavior and is the most common use case.
+    <ul>
+      <li>If the plugin project should be run or debugged in an IDE Development Instance based on an alternate version of the IntelliJ Platform, set the <a href="#running-against-alternate-versions-and-types-of-intellij-platform-based-ides"><span>Running</span></a> DSL attribute accordingly.</li>
+      <li>If the plugin project should be run using a JetBrains Runtime other than the default for the IDE Development Instance, specify the <a href="#running-against-alternate-versions-of-the-jetbrains-runtime"><span>JetBrains Runtime version</span></a>.</li>
+    </ul>
+  </li>
+  <li>Set the appropriate attributes for <a href="#patching-the-plugin-configuration-file"><span>patching the <code class="code highlight language-text">plugin.xml</code> file</span></a>.</li>
+</ul>
+
+<a name="plugins-targeting-alternate-intellij-platform-based-ides" class="elem-anchor"></a>
+<h3>Plugins Targeting Alternate IntelliJ Platform-Based IDEs<a href="#plugins-targeting-alternate-intellij-platform-based-ides" class="anchor-link"><span></span></a></h3>
+<p>Gradle also supports developing plugins to run in IDEs that are based on the IntelliJ Platform, but are not IntelliJ IDEA.
+For more information, see the <a href="/intellij/sdk/docs/products/dev_alternate_products.html"><span>Developing for Multiple Products</span></a> page of this guide.</p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/tutorials/build_system/prerequisites.html">Getting Started with Gradle</a>
+                        <a class="navigation-links__next" href="/tutorials/build_system/deployment.html">Publishing Plugins with Gradle</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

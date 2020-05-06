@@ -1,0 +1,206 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Optimizing Performance / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//reference_guide/performance/performance.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Optimizing Performance" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Optimizing Performance" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="reference_guide/performance/performance">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/internal_actions/internal_actions_intro.html">Internal Actions Menu</a>
+                        <a class="navigation-links__next" href="/basics/faq.html">Plugin Development FAQ</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/reference_guide/performance/performance.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Optimizing Performance</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<a name="working-with-psi-efficiently" class="elem-anchor"></a>
+<h2>Working with PSI efficiently<a href="#working-with-psi-efficiently" class="anchor-link"><span></span></a></h2>
+
+<a name="avoid-psielement-methods-which-are-expensive-with-deep-trees" class="elem-anchor"></a>
+<h4>Avoid <code class="code highlight language-text">PsiElement</code> methods which are expensive with deep trees</h4>
+
+<p><code class="code highlight language-text">getText()</code> traverses the whole tree under the given element and concatenates strings, consider <code class="code highlight language-text">textMatches()</code> instead.</p>
+
+<p><code class="code highlight language-text">getTextRange()</code>, <code class="code highlight language-text">getContainingFile()</code>, <code class="code highlight language-text">getProject()</code> traverse the tree up to the file, which can be long in very nested trees. If you only need PSI element length, use <code class="code highlight language-text">getTextLength()</code>.</p>
+
+<p>File and project often can be computed once per some analysis and then stored in fields or passed via parameters.</p>
+
+<p>Additionally, <code class="code highlight language-text">getText()</code>, <code class="code highlight language-text">getNode()</code>, <code class="code highlight language-text">getTextRange()</code>, etc., all need AST, which can be quite an expensive operation. See below.</p>
+
+<a name="avoid-loading-too-many-parsed-trees-or-documents-into-memory-at-the-same-time" class="elem-anchor"></a>
+<h4>Avoid loading too many parsed trees or documents into memory at the same time</h4>
+
+<p>Ideally, only AST nodes from files open in the editor should be present in the memory.
+Everything else, even if it’s needed for resolve/highlighting purposes, can be accessed via PSI interfaces,
+but its implementations should <a href="/intellij/sdk/docs/basics/indexing_and_psi_stubs/stub_indexes.html"><span>use stubs</span></a> underneath, which are less CPU- and memory-expensive.</p>
+
+<p>If stubs don’t suit your case well (e.g., the information you need is large and/or very rarely needed, or you’re
+developing a plugin for a language whose PSI you don’t control), you can create a <a href="/intellij/sdk/docs/basics/indexing_and_psi_stubs.html"><span>custom index or gist</span></a>.</p>
+
+<p>You can use <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/util/AstLoadingFilter.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">AstLoadingFilter</code></span></a> in production and <code class="code highlight language-text">PsiManagerEx.setAssertOnFileLoadingFilter()</code> in tests
+to ensure you’re not loading AST accidentally.</p>
+
+<p>The same applies to documents: only the ones opened in editors should be loaded.
+Usually, you shouldn’t need document contents (as most information can be retrieved from PSI). If you nevertheless
+need documents, consider saving the information you need to provide in a <a href="/intellij/sdk/docs/basics/indexing_and_psi_stubs.html"><span>custom index or gist</span></a> to get it more cheaply later. 
+If you still need documents, then at least ensure you load them one by one and don’t hold them on
+strong references to let GC free the memory as quickly as possible.</p>
+
+<a name="cache-results-of-heavy-computations" class="elem-anchor"></a>
+<h4>Cache results of heavy computations</h4>
+
+<p>These include <code class="code highlight language-text">PsiElement.getReference(s)</code>, <code class="code highlight language-text">PsiReference.resolve()</code> (and <code class="code highlight language-text">multiResolve()</code> and other equivalents),
+expression types, type inference results, control flow graphs, etc.</p>
+
+<p>Usually, <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/psi/util/CachedValue.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">CachedValue</code></span></a> works well.</p>
+
+<p>If the information you cache depends only on a subtree of the current PSI element 
+(and nothing else: no resolve results or other files), you can cache it in a field in that <code class="code highlight language-text">PsiElement</code> and drop the cache
+in an override of <code class="code highlight language-text">ASTDelegatePsiElement.subtreeChanged()</code>.</p>
+
+<a name="improving-indexing-performance" class="elem-anchor"></a>
+<h2>Improving indexing performance<a href="#improving-indexing-performance" class="anchor-link"><span></span></a></h2>
+
+<a name="avoid-using-ast" class="elem-anchor"></a>
+<h4>Avoid using AST</h4>
+
+<p>Use lexer information instead of parsed trees if possible.</p>
+
+<p>If impossible, use light AST which doesn’t create memory-hungry AST nodes inside, so traversing it might be faster. 
+Make sure to traverse only the nodes you need to.</p>
+
+<p>For stub index, implement <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-impl/src/com/intellij/psi/stubs/LightStubBuilder.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">LightStubBuilder</code></span></a>. For other indices, you can get the light AST manually 
+via <code class="code highlight language-text">((PsiDependentFileContent) fileContent).getLighterAST()</code>.</p>
+
+<a name="consider-prebuilt-stubs" class="elem-anchor"></a>
+<h4>Consider prebuilt stubs</h4>
+
+<p>If your language has a massive standard library, which is mostly the same for all users, you can avoid stub-indexing it
+in each installation by providing prebuilt stubs with your distribution. See <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/lang-impl/src/com/intellij/psi/stubs/PrebuiltStubs.kt" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PrebuiltStubsProvider</code></span></a> extension.</p>
+
+<a name="avoiding-ui-freezes" class="elem-anchor"></a>
+<h2>Avoiding UI freezes<a href="#avoiding-ui-freezes" class="anchor-link"><span></span></a></h2>
+
+<a name="dont-perform-long-operations-in-ui-thread" class="elem-anchor"></a>
+<h4>Don’t perform long operations in UI thread</h4>
+
+<p>In particular, don’t traverse VFS, parse PSI, resolve references or query <code class="code highlight language-text">FileBasedIndex</code>.</p>
+
+<p>There are cases when the platform itself invokes such expensive code (e.g., resolve in <code class="code highlight language-text">AnAction.update()</code>).
+We’re trying to eliminate them. Meanwhile, you can try to speed up what you can in your language, it’ll be beneficial anyway, as it’ll also improve
+background highlighting performance.</p>
+
+<p><code class="code highlight language-text">WriteAction</code>s currently have to happen on UI thread, so to speed them up, you can try moving as much as possible
+out of write action into a preparation step which can be then invoked in background (e.g., using <code class="code highlight language-text">ReadAction.nonBlocking()</code>).</p>
+
+<p>Don’t do anything expensive in event listeners. Ideally, you should only clear some caches.
+You can also schedule background processing of events, but be prepared that some new events might be delivered
+before your background processing starts, and thus the world might have changed by that moment or 
+even in the middle of background processing. Consider using <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/platform-api/src/com/intellij/util/ui/update/MergingUpdateQueue.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">MergingUpdateQueue</code></span></a> and <code class="code highlight language-text">ReadAction.nonBlocking()</code> to mitigate these issues.</p>
+
+<p>Massive batches of VFS events can be pre-processed in background, see <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/openapi/vfs/AsyncFileListener.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">AsyncFileListener</code></span></a> (2019.2 or later).</p>
+
+<a name="dont-block-edt-by-long-non-cancellable-readactions-in-background-threads" class="elem-anchor"></a>
+<h4>Don’t block EDT by long non-cancellable <code class="code highlight language-text">ReadAction</code>s in background threads</h4>
+
+<p>See <a href="/intellij/sdk/docs/basics/architectural_overview/general_threading_rules.html"><span>General Threading Rules</span></a>, especially its section on <a href="/intellij/sdk/docs/basics/architectural_overview/general_threading_rules.html#read-action-cancellability"><span><em>Read Action Cancellability</em></span></a>.</p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/internal_actions/internal_actions_intro.html">Internal Actions Menu</a>
+                        <a class="navigation-links__next" href="/basics/faq.html">Plugin Development FAQ</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

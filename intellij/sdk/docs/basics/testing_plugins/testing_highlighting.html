@@ -1,0 +1,160 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Testing Highlighting / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//basics/testing_plugins/testing_highlighting.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Testing Highlighting" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Testing Highlighting" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="basics/testing_plugins/testing_highlighting">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/testing_plugins/writing_tests.html">Writing Tests</a>
+                        <a class="navigation-links__next" href="/reference_guide/custom_language_support.html">自定义语言支持</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/basics/testing_plugins/testing_highlighting.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Testing Highlighting</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>A common task when writing plugin tests is testing various kinds of highlighting (inspections, annotators, parser error highlighting, etc.). The <em>IntelliJ Platform</em> provides a dedicated utility and markup format for this task.</p>
+
+<p>To test the highlighting for the file currently loaded into the in-memory editor, you invoke the <code class="code highlight language-text">checkHighlighting()</code> method. The parameters to the method specify which severities should be taken into account when comparing the results with the expected results: errors are always taken into account, whereas warnings, weak warnings and infos are optional. Alternatively, you can use the <code class="code highlight language-text">testHighlighting()</code> method, which loads a <code class="code highlight language-text">testdata</code> file into the in-memory editor and highlights it as a single operation.</p>
+
+<p>If you need to test inspections (rather than generic highlighting provided by a highlighting lexer or annotator), you need to enable inspections that you’re testing. This is done by calling <code class="code highlight language-text">CodeInsightTestFixture.enableInspections()</code> in the setup method of your test or directly in a test method, before the call to <code class="code highlight language-text">checkHighlighting()</code>.</p>
+
+<p>The expected results of the highlighting are specified directly in the source file. The platform supports an extensive XML-like markup language for this. In its simplest form, the markup looks like this:</p>
+
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper"><span class="nt">&lt;warning</span> <span class="na">descr=</span><span class="s">"expected error message"</span><span class="nt">&gt;</span>code to be highlighted<span class="nt">&lt;/warning&gt;</span>
+</code></div>
+
+<p>Or, as a more specific example:</p>
+
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper">public int <span class="nt">&lt;warning</span> <span class="na">descr=</span><span class="s">"The compareTo() method does not reference 'foo' which is referenced from equals(); inconsistency may result"</span><span class="nt">&gt;</span>compareTo<span class="nt">&lt;/warning&gt;</span>(Simple other) {
+    return 0;
+}
+</code></div>
+
+<p>The tag name specifies the severity of the expected highlighting. The following severities are supported:</p>
+
+<ul>
+  <li><code class="code highlight language-text">&lt;error&gt;</code></li>
+  <li><code class="code highlight language-text">&lt;warning&gt;</code></li>
+  <li><code class="code highlight language-text">&lt;weak_warning&gt;</code></li>
+  <li><code class="code highlight language-text">&lt;info&gt;</code></li>
+  <li><code class="code highlight language-text">&lt;inject&gt;</code> (for an injected fragment)</li>
+  <li><code class="code highlight language-text">&lt;symbolName&gt;</code> (for a marker that highlights an identifier according to its type)</li>
+  <li>any custom severity can be referenced by its name</li>
+</ul>
+
+<p>The tag can also have the following optional attributes:</p>
+
+<ul>
+  <li><code class="code highlight language-text">descr</code> expected message associated with the highlighter (if not specified, any text will match; if the message contains a quotation mark, it can be escaped by putting two backslash characters before it)</li>
+  <li><code class="code highlight language-text">foregroundColor</code>, <code class="code highlight language-text">backgroundColor</code>, <code class="code highlight language-text">effectColor</code> expected colors for the highlighting</li>
+  <li><code class="code highlight language-text">effectType</code> expected effect type for the highlighting (see <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/openapi/editor/markup/EffectType.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">EffectType</code></span></a>)</li>
+  <li><code class="code highlight language-text">fontType</code> expected font style for the highlighting (0 - normal, 1 - bold, 2 - italic, 3 - bold italic)</li>
+</ul>
+
+<aside class="note">
+  <p> <em>Nested</em> tags are <strong>supported</strong>:
+  <code class="code highlight language-text">&lt;warning&gt;warning_highlight&lt;info&gt;warning_and_info_highlight&lt;/info&gt;warning_highlight&lt;/warning&gt;</code>
+<em>Overlapping</em> tags (annotations) are currently <strong>not supported</strong> in the test framework (but display correctly in the editor, albeit this is not an officially supported scenario):
+  <code class="code highlight language-text">&lt;warning&gt;warning_highlight&lt;info&gt;warning-and_info_highlight&lt;/warning&gt;info_highlight&lt;/info&gt;</code></p>
+</aside>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/testing_plugins/writing_tests.html">Writing Tests</a>
+                        <a class="navigation-links__next" href="/reference_guide/custom_language_support.html">自定义语言支持</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

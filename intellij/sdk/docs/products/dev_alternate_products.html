@@ -1,0 +1,272 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Plugins Targeting IntelliJ Platform-Based IDEs / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//products/dev_alternate_products.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Plugins Targeting IntelliJ Platform-Based IDEs" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-03-18T18:42:50+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Plugins Targeting IntelliJ Platform-Based IDEs" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="products/dev_alternate_products">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/getting_started/build_number_ranges.html">Build Number Ranges</a>
+                        <a class="navigation-links__next" href="/basics/getting_started/plugin_compatibility.html">Plugin Compatibility with IntelliJ Platform Products</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/products/dev_alternate_products.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Plugins Targeting IntelliJ Platform-Based IDEs</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<a name="introduction" class="elem-anchor"></a>
+<h2>Introduction<a href="#introduction" class="anchor-link"><span></span></a></h2>
+<p>Plugin projects can target IDEs other than IntelliJ IDEA, as long as the products are based on the <a href="/intellij/sdk/docs/intro/intellij_platform.html"><span>IntelliJ Platform</span></a>.
+Such plugins are developed much like plugin projects that target IntelliJ IDEA, and can be written in Kotlin or Java, or a mix of both.
+Once completed, the plugins can be packaged and distributed at <a href="https://plugins.jetbrains.com" data-bypass="yes" target="_blank"><span>plugins.jetbrains.com</span></a>.</p>
+
+<p>Project configuration attributes common to projects targeting products other than IntelliJ IDEA are described here. 
+Details particular to an IntelliJ Platform-based product are described on the individual product pages in Part VIII.
+All of the Gradle configuration attributes described here are discussed in-depth on the <a href="/intellij/sdk/docs/tutorials/build_system/gradle_guide.html"><span>Configuring Gradle for IntelliJ Platform Plugins</span></a> and the <code class="code highlight language-text">gradle-intellij-plugin</code> <a href="https://github.com/JetBrains/gradle-intellij-plugin/blob/master/README.md" data-bypass="yes" target="_blank"><span>README</span></a> pages.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction"><span>Introduction</span></a></li>
+  <li><a href="#getting-started" id="markdown-toc-getting-started"><span>Getting Started</span></a></li>
+  <li><a href="#configuring-buildgradle-to-target-products-other-than-intellij-idea" id="markdown-toc-configuring-buildgradle-to-target-products-other-than-intellij-idea"><span>Configuring Build.Gradle to Target Products other than IntelliJ IDEA</span></a>    <ul>
+      <li><a href="#configuring-plugin-projects-using-a-product-specific-attribute" id="markdown-toc-configuring-plugin-projects-using-a-product-specific-attribute"><span>Configuring Plugin Projects using a Product-Specific Attribute</span></a></li>
+      <li><a href="#configuring-plugin-projects-using-the-intellij-idea-product-attribute" id="markdown-toc-configuring-plugin-projects-using-the-intellij-idea-product-attribute"><span>Configuring Plugin Projects using the IntelliJ IDEA Product Attribute</span></a>        <ul>
+          <li><a href="#matching-versions-of-the-intellij-platform-with-the-target-ide-version" id="markdown-toc-matching-versions-of-the-intellij-platform-with-the-target-ide-version"><span>Matching Versions of the IntelliJ Platform with the Target IDE Version</span></a></li>
+          <li><a href="#configuring-buildgradle-using-the-intellij-idea-product-attribute" id="markdown-toc-configuring-buildgradle-using-the-intellij-idea-product-attribute"><span>Configuring build.gradle using the IntelliJ IDEA Product Attribute</span></a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#configuring-pluginxml" id="markdown-toc-configuring-pluginxml"><span>Configuring plugin.xml</span></a></li>
+</ul>
+
+<a name="getting-started" class="elem-anchor"></a>
+<h2>Getting Started<a href="#getting-started" class="anchor-link"><span></span></a></h2>
+<p>To create a new Gradle plugin project, follow the tutorial on the <a href="/intellij/sdk/docs/tutorials/build_system/prerequisites.html"><span>Getting Started with Gradle</span></a> page.
+The tutorial produces a skeleton Gradle project suitable to use as a starting point.</p>
+
+<p>Modifications are needed to the skeleton project’s <code class="code highlight language-text">build.gradle</code> and <code class="code highlight language-text">plugin.xml</code> files, as described below, and on the individual product pages in Part VIII.
+The <code class="code highlight language-text">build.gradle</code> file is modified to specify the target product, which determines the APIs available during development.
+The <code class="code highlight language-text">plugin.xml</code> file is modified to declare the plugin’s dependency on modules or libraries.</p>
+
+<a name="configuring-buildgradle-to-target-products-other-than-intellij-idea" class="elem-anchor"></a>
+<h2>Configuring Build.Gradle to Target Products other than IntelliJ IDEA<a href="#configuring-buildgradle-to-target-products-other-than-intellij-idea" class="anchor-link"><span></span></a></h2>
+<p>The best practice is to use the <code class="code highlight language-text">gradle-intellij-plugin</code> <code class="code highlight language-text">intellij.type</code> <a href="https://github.com/JetBrains/gradle-intellij-plugin/blob/master/README.md#intellij-platform-properties" data-bypass="yes" target="_blank"><span>attribute</span></a> to specify the target product.
+For example, <code class="code highlight language-text">PY</code> for PyCharm professional.
+Configuration using an <code class="code highlight language-text">intellij.type</code> attribute is explained in the <a href="#configuring-plugin-projects-using-a-product-specific-attribute"><span>Product-Specific Attribute</span></a> section below.</p>
+
+<p>However, not all products have an <code class="code highlight language-text">intellij.type</code> attribute defined by the <code class="code highlight language-text">gradle-intellij-plugin</code>.
+For example, PhpStorm.
+If the target product does not have an <code class="code highlight language-text">intellij.type</code> attribute defined, then the best approach is to configure the project by using the <a href="#configuring-buildgradle-using-the-intellij-idea-product-attribute"><span>IntelliJ IDEA Attribute</span></a>.</p>
+
+<a name="configuring-plugin-projects-using-a-product-specific-attribute" class="elem-anchor"></a>
+<h3>Configuring Plugin Projects using a Product-Specific Attribute<a href="#configuring-plugin-projects-using-a-product-specific-attribute" class="anchor-link"><span></span></a></h3>
+<p>If the <code class="code highlight language-text">gradle-intellij-plugin</code> supports a target product directly, there will be an <code class="code highlight language-text">intellij.type</code> <a href="https://github.com/JetBrains/gradle-intellij-plugin/blob/master/README.md#intellij-platform-properties" data-bypass="yes" target="_blank"><span>attribute</span></a> defined.
+Specifying the target as a product-specific <code class="code highlight language-text">intellij.type</code> attribute has two advantages:</p>
+<ul>
+  <li>The APIs available to the plugin will be limited to only what is defined in the target product.
+(Unless additional plugin dependencies are specified.)</li>
+  <li>The default <a href="/intellij/sdk/docs/basics/ide_development_instance.html"><span>Development Instance</span></a> for running the plugin will be the target product.</li>
+</ul>
+
+<p>A <code class="code highlight language-text">build.gradle</code> snippet setting a plugin project to target PyCharm is shown below.
+The <code class="code highlight language-text">gradle-intellij-plugin</code> will fetch the matching build of PyCharm Professional to define the APIs available, and use that build of PyCharm (and associated JetBrains runtime) as the Development Instance.
+No additional product-specific configuration needs to be set in <code class="code highlight language-text">build.gradle</code>:</p>
+<div class="code-block" data-lang="groovy"><code class="code-block__wrapper"><span class="n">intellij</span> <span class="o">{</span>
+  <span class="n">version</span> <span class="s1">'2019.2.3'</span>
+  <span class="n">type</span> <span class="s1">'PY'</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="configuring-plugin-projects-using-the-intellij-idea-product-attribute" class="elem-anchor"></a>
+<h3>Configuring Plugin Projects using the IntelliJ IDEA Product Attribute<a href="#configuring-plugin-projects-using-the-intellij-idea-product-attribute" class="anchor-link"><span></span></a></h3>
+<p>If the <code class="code highlight language-text">gradle-intellij-plugin</code> does not directly support an IntelliJ Platform-based product, the <code class="code highlight language-text">build.gradle</code> file can still be configured to target the desired product.
+In this case, the <code class="code highlight language-text">build.gradle</code> file is configured to use IntelliJ IDEA (Community or Ultimate Edition) as the basis for the available APIs.
+This does have the drawback that APIs not specific to the target product might accidentally be included in the plugin project.
+However testing the plugin project in the target product helps to find such mistakes.</p>
+
+<p>Additional configuration must be done to match the version of IntelliJ IDEA to the version of the target product.
+Understanding the relationship between build numbers is critical when using this approach to project configuration:</p>
+<ul>
+  <li><em>targetIDE</em> is the (version-specific) IntelliJ Platform-based IDE in which the plugin is intended to run, such as PhpStorm.</li>
+  <li><em>baseIntelliJPlatformVersion</em> is the (version-specific) IntelliJ Platform used in the build of the <em>targetIDE</em>.
+The IntelliJ Platform is defined by a specific build of the IntelliJ IDEA Community Edition.
+The Gradle plugin attribute <a href="/intellij/sdk/docs/tutorials/build_system/gradle_guide.html#intellij-platform-configuration"><span><code class="code highlight language-text">intellij.version</code></span></a> is set to be <em>baseIntelliJPlatformVersion</em>.</li>
+</ul>
+
+<p>For API compatibility, the IntelliJ Platform version used in the <em>targetIDE</em> dictates the <em>baseIntelliJPlatformVersion</em> used for developing a plugin.</p>
+
+<a name="matching-versions-of-the-intellij-platform-with-the-target-ide-version" class="elem-anchor"></a>
+<h4>Matching Versions of the IntelliJ Platform with the Target IDE Version</h4>
+<p>The <em>baseIntelliJPlatformVersion</em> used in the <em>targetIDE</em> may not be readily apparent, depending on the product.
+See the individual product pages in Part VIII for exceptions.</p>
+
+<p>To find the version of the IntelliJ Platform used to build the <em>targetIDE</em>, use the <em>About</em> dialog screen for the <em>targetIDE</em>.
+Next to <strong>Build #</strong> is the BRANCH.BUILD.FIX version of the <em>targetIDE</em>.
+In the example shown below, the (BRANCH.BUILD.FIX) version is <code class="code highlight language-text">192.7142.41</code>, and the product version is 2019.2.4.
+The version of the IntelliJ Platform used to build this product version is BRANCH.BUILD, or <code class="code highlight language-text">192.7142</code></p>
+
+<p><img src="img/phpstorm_build.png" alt="Example PhpStorm Splash Screen" width="500px" /></p>
+
+<p>If the product version isn’t clear on the <em>About</em> screen, consult the individual product pages in Part VIII.</p>
+
+<p>The <a href="https://www.jetbrains.com/idea/download/other.html" data-bypass="yes" target="_blank"><span>Other IntelliJ IDEA Versions</span></a> page is a way to find build numbers for every product version.
+Additional ways include hovering over the version number for a product in ToolBox, or examining the <em>About</em> screen for IntelliJ IDEA Community.
+In this example, IntelliJ IDEA Community Edition (which defines the IntelliJ Platform) for 2019.2.4 is build number <code class="code highlight language-text">192.7142.36</code>.
+Although the FIX versions are different, this is not uncommon between products, and the builds are still compatible. 
+The BRANCH and BUILD numbers match, therefore in this PhpStorm example:</p>
+<ul>
+  <li>The <em>targetIDE</em> is PhpStorm, build <code class="code highlight language-text">192.7142.41</code>,</li>
+  <li>The <em>baseIntelliJPlatformVersion</em> (IntelliJ IDEA Community Edition) is build <code class="code highlight language-text">192.7142.36</code></li>
+</ul>
+
+<p>This information is used to configure the plugin project’s <code class="code highlight language-text">build.gradle</code> and <code class="code highlight language-text">plugin.xml</code> files.</p>
+
+<a name="configuring-buildgradle-using-the-intellij-idea-product-attribute" class="elem-anchor"></a>
+<h4>Configuring build.gradle using the IntelliJ IDEA Product Attribute</h4>
+<p>Configuring a Gradle plugin project for using <em>baseIntelliJPlatformVersion</em> requires changing some of the default settings in the <code class="code highlight language-text">build.gradle</code> file.
+Changes need to be made in two tasks: <code class="code highlight language-text">intellij {}</code> and <code class="code highlight language-text">runIde {}</code>.</p>
+
+<p>The Gradle plugin attributes describing the configuration of the <a href="/intellij/sdk/docs/tutorials/build_system/gradle_guide.html#configuring-the-gradle-plugin-for-building-intellij-platform-plugin-projects"><span>IntelliJ Platform used to build the plugin project</span></a> must be explicitly set in the <code class="code highlight language-text">intellij {}</code> task. 
+The <code class="code highlight language-text">intellij.type</code> is “IU” because although the IntelliJ IDEA Community Edition defines the IntelliJ Platform, the PHP plugin is only compatible with IntelliJ IDEA Ultimate.
+The <code class="code highlight language-text">intellij.version</code> is <em>baseIntelliJPlatformVersion</em>.</p>
+
+<p>Any <a href="/intellij/sdk/docs/tutorials/build_system/gradle_guide.html#plugin-dependencies"><span>dependencies</span></a> on <em>targetIDE</em>-specific plugins or modules must be declared in the <code class="code highlight language-text">intellij {}</code> task.
+Use the Gradle plugin attribute <code class="code highlight language-text">intellij.plugins</code> to declare a dependency.
+See the specific product pages in Part VIII for the <em>targetIDE</em> plugin or module name.</p>
+
+<p>The best practice is to modify the <code class="code highlight language-text">runIde {}</code> task to use a local installation of <em>targetIDE</em> as the <a href="/intellij/sdk/docs/basics/ide_development_instance.html"><span>IDE Development Instance</span></a>.
+Set the <code class="code highlight language-text">runIde.ideDirectory</code> attribute to the (user-specific) absolute path of the <em>targetIDE</em> application.
+The exact path format varies by operating system.</p>
+
+<p>This snippet is an example for configuring the Setup and Running DSLs in a <code class="code highlight language-text">build.gradle</code> specific to developing a plugin for <em>targetIDE</em>.</p>
+<div class="code-block" data-lang="groovy"><code class="code-block__wrapper"><span class="n">intellij</span> <span class="o">{</span>
+  <span class="c1">// Define IntelliJ Platform against which to build the plugin project.</span>
+  <span class="c1">// Use the IntelliJ Platform BRANCH.BUILD version matching "targetIDE" (PhpStorm)</span>
+  <span class="n">version</span> <span class="s1">'192.7142.36'</span>   <span class="c1">// baseIntelliJPlatformVersion     </span>
+  <span class="n">type</span> <span class="s1">'IU'</span>                 
+  <span class="c1">// Require the targetIDE plugin or library</span>
+  <span class="c1">// Use the stable version compatible with intellij.version and intellij.type specified above </span>
+  <span class="n">plugins</span> <span class="s1">'com.jetbrains.php:192.6603.42'</span>
+<span class="o">}</span>
+
+<span class="n">runIde</span> <span class="o">{</span>
+    <span class="c1">// Absolute path to the installed targetIDE to use as IDE Development Instance</span>
+    <span class="c1">// Note the Contents directory must be added at the end of the path for macOS.</span>
+    <span class="n">ideDirectory</span> <span class="s1">'/Users/&lt;user name&gt;/Library/Application Support/JetBrains/Toolbox/apps/PhpStorm/ch-0/192.7142.41/PhpStorm.app/Contents'</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="configuring-pluginxml" class="elem-anchor"></a>
+<h2>Configuring plugin.xml<a href="#configuring-pluginxml" class="anchor-link"><span></span></a></h2>
+<p>As discussed on the <a href="/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html#declaring-plugin-dependencies"><span>Plugin Dependencies</span></a> page of this guide, a plugin’s dependency on <a href="/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html#modules-specific-to-functionality"><span>Modules Specific to Functionality</span></a> must be declared in <code class="code highlight language-text">plugin.xml</code>. 
+When using features (APIs) specific to the target product, a dependency on the target product module must be declared, as shown in the code snippet below.
+Otherwise, if only general IntelliJ Platform features (APIs) are used, then a dependency on <code class="code highlight language-text">com.intellij.modules.platform</code> must be declared as discussed in <a href="/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html"><span>Plugin Compatibility with IntelliJ Platform Products</span></a>.</p>
+
+<aside class="note">
+  <p> In the special case of a plugin project declaring dependencies only on other plugins, it must also declare a dependency on <code class="code highlight language-text">com.intellij.modules.platform</code>. Otherwise, the plugin project is considered to be legacy and will only load in IntelliJ IDEA.</p>
+</aside>
+
+<p>Continuing with the example of developing a plugin for PhpStorm:</p>
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper"><span class="c">&lt;!-- Targeting PhpStorm, so is dependent on the PHP plugin --&gt;</span>
+<span class="nt">&lt;depends&gt;</span>com.jetbrains.php<span class="nt">&lt;/depends&gt;</span>
+<span class="nt">&lt;depends&gt;</span>com.intellij.modules.platform<span class="nt">&lt;/depends&gt;</span>
+</code></div>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/getting_started/build_number_ranges.html">Build Number Ranges</a>
+                        <a class="navigation-links__next" href="/basics/getting_started/plugin_compatibility.html">Plugin Compatibility with IntelliJ Platform Products</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 18 March 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

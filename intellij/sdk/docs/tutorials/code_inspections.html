@@ -1,0 +1,332 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Code Inspections / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//tutorials/code_inspections.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Code Inspections" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Code Inspections" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="tutorials/code_inspections">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        
+                        
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/tutorials/code_inspections.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Code Inspections</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>The IntelliJ Platform provides tools designed for static code analysis called <em>code inspections</em>, which help the user maintain and clean up code without actually executing it.
+Custom code inspections can be implemented as IntelliJ Platform plugins.
+Examples of the plugin approach are the IntelliJ Platform SDK code samples <a href="https://github.com/JetBrains/intellij-sdk-docs/tree/master/code_samples/inspection_basics" data-bypass="yes" target="_blank"><span>inspection_basics</span></a> and <a href="https://github.com/JetBrains/intellij-sdk-docs/tree/master/code_samples/comparing_references_inspection" data-bypass="yes" target="_blank"><span>comparing_references_inspection</span></a>.
+In addition, the comparing_references_inspection code sample demonstrates implementing a unit test.</p>
+
+<p>You can also create custom inspections through the IntelliJ IDEA user interface.
+See <a href="https://www.jetbrains.com/idea/webhelp/code-inspection.html" data-bypass="yes" target="_blank"><span>Code Inspection</span></a> and <a href="https://www.jetbrains.com/idea/help/creating-custom-inspections.html" data-bypass="yes" target="_blank"><span>Creating Custom Inspections</span></a> for more information.</p>
+
+<a name="creating-an-inspection-plugin" class="elem-anchor"></a>
+<h2>Creating an Inspection Plugin<a href="#creating-an-inspection-plugin" class="anchor-link"><span></span></a></h2>
+
+<p>The <a href="https://github.com/JetBrains/intellij-sdk-docs/tree/master/code_samples/comparing_references_inspection" data-bypass="yes" target="_blank"><span>comparing_references_inspection</span></a> code sample adds a new inspection to the <strong>Java | Probable Bugs</strong> group in the <a href="https://www.jetbrains.com/help/idea/inspections-settings.html" data-bypass="yes" target="_blank"><span>Inspections list</span></a>.
+The inspection reports when the <code class="code highlight language-text">==</code> or <code class="code highlight language-text">!=</code> operator is used between Java expressions of reference types.<br />
+It illustrates the components for a custom inspection plugin:</p>
+<ul>
+  <li>Describing an <a href="#plugin-configuration-file"><span>inspection</span></a> in the plugin configuration file.</li>
+  <li>Implementing a <a href="#inspection-implementation-java-class"><span>local inspection class</span></a> to inspect Java code in the IntelliJ Platform-based IDE editor.</li>
+  <li>Creating a <a href="#visitor-implementation-class"><span>visitor</span></a> to traverse the <code class="code highlight language-text">PsiTree</code> of the Java file being edited, inspecting for problematic syntax.</li>
+  <li>Implementing a <a href="#quick-fix-implementation"><span>quick fix</span></a> class to correct syntax problems by altering the <code class="code highlight language-text">PsiTree</code> as needed.
+Quick fixes are displayed to the user like <a href="code_intentions.html"><span>intentions</span></a>.</li>
+  <li>Implementing an <a href="#inspection-preferences-panel"><span>inspection preferences panel</span></a> to display information about the inspection.</li>
+  <li>Writing an HTML <a href="#inspection-description"><span>description</span></a> of the inspection for display in the inspection preferences panel.</li>
+  <li>Optionally, create a <a href="#inspection-unit-test"><span>unit test</span></a> for the plugin.</li>
+</ul>
+
+<p>Although the IntelliJ Platform SDK code samples illustrate implementations of these components, it is often useful to see examples of inspections implemented in the <em>intellij_community</em> code base.
+This process can help find inspection descriptions and implementations based on what is visible in the IDE UI.
+The overall approach works for inspections aimed at other languages as well.</p>
+<ul>
+  <li>Find an existing inspection that is similar to the one you want to implement in the <strong>Preferences | Editor | Inspections</strong> panel.
+Note the display name of the inspection.
+For example, the Java/Probable Bugs inspection “Object comparison using ‘==’, instead of ‘equals()’” is very similar to <code class="code highlight language-text">comparing_references_inspection</code>.</li>
+  <li>Use the display name text as the <a href="https://www.jetbrains.com/help/idea/finding-and-replacing-text-in-project.html" data-bypass="yes" target="_blank"><span>target for a search</span></a> within the <em>intellij_community</em> project.
+This will identify a bundle file if the display name is localized.
+If it is not localized, the search finds either the plugin configuration (<code class="code highlight language-text">plugin.xml</code>) file where it is an attribute in the inspection description, or the Java implementation file where it provided by an overridden method.</li>
+  <li>In the case of localization, copy the key from the bundle file identified by the search.
+    <ul>
+      <li>Use the key text as the target for a search within the <em>intellij_community</em> project.
+This search locates the plugin configuration file that describes the inspection.</li>
+      <li>From the inspection description entry find the <code class="code highlight language-text">implementationClass</code> attribute value.</li>
+    </ul>
+  </li>
+  <li>Use the <code class="code highlight language-text">implementationClass</code> text as the <a href="https://www.jetbrains.com/help/idea/searching-everywhere.html#Searching_Everywhere.xml" data-bypass="yes" target="_blank"><span>target of a class search</span></a> in the <em>intellij_community</em> codebase to find the Java implementation file.</li>
+</ul>
+
+<a name="creating-an-inspection" class="elem-anchor"></a>
+<h2>Creating an Inspection<a href="#creating-an-inspection" class="anchor-link"><span></span></a></h2>
+<p>The <a href="https://github.com/JetBrains/intellij-sdk-docs/tree/master/code_samples/comparing_references_inspection" data-bypass="yes" target="_blank"><span>comparing_references_inspection</span></a> code sample reports when the <code class="code highlight language-text">==</code> or <code class="code highlight language-text">!=</code> operators are used between Java expressions of reference types.
+The user can apply a quick fix to change <code class="code highlight language-text">a==b</code> to <code class="code highlight language-text">a.equals(b)</code>, or <code class="code highlight language-text">a!=b</code> to <code class="code highlight language-text">!a.equals(b)</code>.</p>
+
+<p>The details of the <code class="code highlight language-text">comparing_references_inspection</code> implementation illustrate the components of an inspection plugin.</p>
+
+<a name="plugin-configuration-file" class="elem-anchor"></a>
+<h3>Plugin Configuration File<a href="#plugin-configuration-file" class="anchor-link"><span></span></a></h3>
+<p>The <code class="code highlight language-text">comparing_references_inspection</code> is described as a <code class="code highlight language-text">&lt;localInspection&gt;</code> type within the <code class="code highlight language-text">&lt;extensions&gt;</code> elements in the <code class="code highlight language-text">comparing_references_inspection</code> plugin configuration (<a href="https://github.com/JetBrains/intellij-sdk-docs/tree/master/code_samples/comparing_references_inspection/src/main/resources/META-INF/plugin.xml" data-bypass="yes" target="_blank"><span>plugin.xml</span></a>) file.
+Under the hood, inspection types are described as an <code class="code highlight language-text">&lt;extensionPoint&gt;</code> in <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/platform-resources/src/META-INF/LangExtensionPoints.xml" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">LangExtensionPoints.xml</code></span></a>:</p>
+<ul>
+  <li>The <code class="code highlight language-text">localInspection</code> type is used for inspections that operate on one file at a time, and also operate as the user edits the file.</li>
+  <li>The <code class="code highlight language-text">globalInspection</code> type is used for inspections that operate across multiple files, and the associated fix might, for example, refactor code between files.</li>
+  <li>The <code class="code highlight language-text">inspectionToolProvider</code> type is not deprecated but <code class="code highlight language-text">localInspection</code> is preferred.</li>
+</ul>
+
+<p>The minimum inspection description must contain the <code class="code highlight language-text">implementationClass</code> attribute.
+As shown in the <code class="code highlight language-text">comparing_references_inspection</code> plugin configuration file, other attributes can be defined in the <code class="code highlight language-text">localInspection</code> element, either with or without localization. 
+In most cases, it is simplest to define the attributes in the plugin configuration file because the underlying parent classes handle most of the class responsibilities based on the configuration file description.
+Note that some attributes are not displayed to the user, so they are never localized.</p>
+
+<p>As an alternative, inspections can define all of the attribute information (except <code class="code highlight language-text">implementationClass</code>) by overriding methods in the inspection implementation class.</p>
+
+<a name="inspection-implementation-java-class" class="elem-anchor"></a>
+<h3>Inspection Implementation Java Class<a href="#inspection-implementation-java-class" class="anchor-link"><span></span></a></h3>
+<p>Inspection implementations for Java files, like <a href="https://github.com/JetBrains/intellij-sdk-docs/tree/master/code_samples/comparing_references_inspection/src/main/java/org/intellij/sdk/codeInspection/ComparingReferencesInspection.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ComparingReferencesInspection</code></span></a>, are often based on the Java class <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/java/java-analysis-api/src/com/intellij/codeInspection/AbstractBaseJavaLocalInspectionTool.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">AbstractBaseJavaLocalInspectionTool</code></span></a>.
+The <code class="code highlight language-text">AbstractBaseJavaLocalInspectionTool</code> implementation class offers methods to inspect Java classes, fields, and methods.</p>
+
+<p>More generally, <code class="code highlight language-text">localInspection</code> types are based on the class <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/analysis-api/src/com/intellij/codeInspection/LocalInspectionTool.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">LocalInspectionTool</code></span></a>.
+Examining the class hierarchy for <code class="code highlight language-text">LocalInspectionTool</code> shows that the IntelliJ Platform provides many child inspection classes for a variety of languages and frameworks.
+One of these classes is a good basis for a new inspection implementation, but a bespoke implementation can also be based directly on <code class="code highlight language-text">LocalInspectionTool</code>.</p>
+
+<p>The primary responsibilities of the inspection implementation class are to provide:</p>
+<ul>
+  <li>A <code class="code highlight language-text">PsiElementVisitor</code> object to traverse the <code class="code highlight language-text">PsiTree</code> of the file being inspected.</li>
+  <li>A <code class="code highlight language-text">LocalQuickFix</code> class to change the syntax of an identified problem.</li>
+  <li>A <code class="code highlight language-text">JPanel</code> to be displayed in the <em>Inspections</em> dialog.</li>
+</ul>
+
+<p>Note that if an inspection’s description in the plugin configuration file defines only the implementation class, then the other attribute information has to be supplied by overriding methods in the Java implementation.</p>
+
+<p>The <code class="code highlight language-text">ComparingReferencesInspection</code> class defines two <code class="code highlight language-text">String</code> fields:</p>
+<ul>
+  <li><code class="code highlight language-text">QUICK_FIX_NAME</code> defines the string users see when prompted to apply the quick fix.</li>
+  <li><code class="code highlight language-text">CHECKED_CLASSES</code> holds a list of class names of interest to the inspection.</li>
+</ul>
+
+<p>The overridden <code class="code highlight language-text">ComparingReferencesInspection</code> methods are discussed in the sections below.</p>
+
+<a name="visitor-implementation-class" class="elem-anchor"></a>
+<h3>Visitor Implementation Class<a href="#visitor-implementation-class" class="anchor-link"><span></span></a></h3>
+<p>The visitor class evaluates whether elements of the file’s <code class="code highlight language-text">PsiTree</code> are of interest to an inspection.</p>
+
+<p>The <code class="code highlight language-text">ComparingReferencesInspection.createOptionsPanel()</code> method creates an anonymous visitor class based on <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/java/java-psi-api/src/com/intellij/psi/JavaElementVisitor.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">JavaElementVisitor</code></span></a> to traverse the <code class="code highlight language-text">PsiTree</code> of the Java file being edited, inspecting for suspect syntax.
+The anonymous class overrides three methods in particular.</p>
+<ul>
+  <li><code class="code highlight language-text">visitReferenceExpression()</code> to prevent any duplicate visitation of reference-type expressions.</li>
+  <li><code class="code highlight language-text">visitBinaryExpression()</code>, which does all the heavy lifting.
+It is called to evaluate a <code class="code highlight language-text">PsiBinaryExpression</code>, and it checks to see if the operands are <code class="code highlight language-text">==</code> or <code class="code highlight language-text">!=</code>, and if the operands are classes relevant to this inspection.</li>
+  <li><code class="code highlight language-text">isCheckedType()</code> evaluates the <code class="code highlight language-text">PsiType</code> of the operands to determine if they are of interest to this inspection.</li>
+</ul>
+
+<a name="quick-fix-implementation" class="elem-anchor"></a>
+<h3>Quick Fix Implementation<a href="#quick-fix-implementation" class="anchor-link"><span></span></a></h3>
+<p>The quick fix class acts much like an intention, allowing the user to change the portion of <code class="code highlight language-text">PsiTree</code> highlighted by the inspection.
+A quick fix is invoked when the inspection highlights a <code class="code highlight language-text">PsiElement</code> of interest and the user elects to make a change.</p>
+
+<p>The <code class="code highlight language-text">ComparingReferencesInspection</code> implementation uses the nested class <code class="code highlight language-text">CriQuickFix</code> to implement a quick fix based on <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/analysis-api/src/com/intellij/codeInspection/LocalQuickFix.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">LocalQuickFix</code></span></a>.
+The <code class="code highlight language-text">CriQuickFix</code> class gives a user the option to change the use of <code class="code highlight language-text">a == b</code> and <code class="code highlight language-text">a != b</code> expression to <code class="code highlight language-text">a.equals(b)</code> and <code class="code highlight language-text">!a.equals(b)</code> respectively.</p>
+
+<p>The heavy lifting is done in <code class="code highlight language-text">CriQuickFix.applyFix()</code>, which manipulates the <code class="code highlight language-text">PsiTree</code> to convert the expressions.
+The change to the <code class="code highlight language-text">PsiTree</code> is accomplished by the usual approach to modification:</p>
+<ul>
+  <li>Getting a <code class="code highlight language-text">PsiElementFactory</code>.</li>
+  <li>Creating a new <code class="code highlight language-text">PsiMethodCallExpression</code>.</li>
+  <li>Substituting the original left and right operands into the new <code class="code highlight language-text">PsiMethodCallExpression</code>.</li>
+  <li>Replacing the original binary expression with the <code class="code highlight language-text">PsiMethodCallExpression</code>.</li>
+</ul>
+
+<a name="inspection-preferences-panel" class="elem-anchor"></a>
+<h3>Inspection Preferences Panel<a href="#inspection-preferences-panel" class="anchor-link"><span></span></a></h3>
+<p>The inspection preferences panel is used to display information about the inspection.</p>
+
+<p>The panel created by <code class="code highlight language-text">ComparingReferencesInspection.createOptionsPanel()</code> just defines a single <code class="code highlight language-text">JTextField</code> to display in a <code class="code highlight language-text">JPanel</code>.
+This <code class="code highlight language-text">JPanel</code> gets added to the default IntelliJ Platform <em>Inspections Preferences</em> dialog when the <code class="code highlight language-text">comparing_references_inspection</code> short name is selected.
+The <code class="code highlight language-text">JTextField</code> allows editing of the <code class="code highlight language-text">CHECKED_CLASSES</code> field while displayed in the panel.</p>
+
+<p>Note that the IntelliJ Platform provides most of the UI displayed in the <em>Inspections Preferences</em> panel.
+As long as the inspection attributes and inspection description are defined correctly, the IntelliJ Platform displays the information in the <em>Inspections Preferences</em> UI.</p>
+
+<a name="inspection-description" class="elem-anchor"></a>
+<h3>Inspection Description<a href="#inspection-description" class="anchor-link"><span></span></a></h3>
+<p>The inspection description is an HTML file. 
+The description is displayed in the upper right panel of the <em>Inspections Preferences</em> dialog when an inspection is selected from the list.</p>
+
+<p>Implicit in using <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/analysis-api/src/com/intellij/codeInspection/LocalInspectionTool.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">LocalInspectionTool</code></span></a> in the class hierarchy of the inspection implementation means following some conventions.</p>
+<ul>
+  <li>The inspection description file is expected to be located under <code class="code highlight language-text">&lt;plugin root dir&gt;/resources/inspectionDescriptions/</code>.
+If the inspection description file is to be located elsewhere, override <code class="code highlight language-text">getDescriptionUrl()</code> in the inspection implementation class.</li>
+  <li>The name of the description file is expected to be the inspection <code class="code highlight language-text">&lt;short name&gt;.html</code> as provided by the inspection description or the inspection implementation class.
+If a short name is not provided by the plugin, the IntelliJ Platform computes one.</li>
+</ul>
+
+<a name="inspection-unit-test" class="elem-anchor"></a>
+<h3>Inspection Unit Test<a href="#inspection-unit-test" class="anchor-link"><span></span></a></h3>
+<p>The <code class="code highlight language-text">comparing_references_inspection</code> code sample provides a unit test for the inspection.
+See the <a href="/intellij/sdk/docs/basics/testing_plugins/testing_plugins.html"><span>Testing Plugins</span></a> section for general information about plugin testing.</p>
+
+<p>The <code class="code highlight language-text">comparing_references_inspection</code> test is based on the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/testFramework/src/com/intellij/testFramework/UsefulTestCase.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">UsefulTestCase</code></span></a> class, part of the JUnit framework APIs.
+This class handles much of the underlying boilerplate for tests.</p>
+
+<p>By convention, the folder <code class="code highlight language-text">&lt;project root&gt;/testSource/testPlugin/</code> contains the test source code and must be marked as a “Tests” folder.
+If it is not, a DevKit project cannot find the source code.</p>
+
+<p>By convention, the folder <code class="code highlight language-text">&lt;project root&gt;/testData/</code> contains the test files and must be marked as a “Test Resources” folder.
+The folder contains pairs of files for each test using the name convention <code class="code highlight language-text">*.java</code> and <code class="code highlight language-text">*.after.java</code>.</p>
+
+<p>In the case of <code class="code highlight language-text">comparing_references_inspection</code> the test files are <code class="code highlight language-text">before.java</code> and <code class="code highlight language-text">before.after.java</code>, and <code class="code highlight language-text">before1.java</code> and <code class="code highlight language-text">before1.after.java</code>.
+The choice of <code class="code highlight language-text">before</code> and <code class="code highlight language-text">before1</code> is arbitrary.</p>
+
+<p>The <code class="code highlight language-text">comparing_references_inspection</code> tests run the inspection on the <code class="code highlight language-text">*.java files</code>, implement the quick fix, and compare the results with the respective <code class="code highlight language-text">*.after.java</code> files.</p>
+
+<a name="running-the-comparing-references-inspection-code-sample" class="elem-anchor"></a>
+<h2>Running the Comparing References Inspection Code Sample<a href="#running-the-comparing-references-inspection-code-sample" class="anchor-link"><span></span></a></h2>
+<p>The <a href="https://github.com/JetBrains/intellij-sdk-docs/tree/master/code_samples/comparing_references_inspection" data-bypass="yes" target="_blank"><span>comparing_references_inspection</span></a> code sample adds a new inspection to the <strong>Java | Probable Bugs</strong> group in the <a href="https://www.jetbrains.com/help/idea/inspections-settings.html" data-bypass="yes" target="_blank"><span>Inspections list</span></a>.
+The inspection reports when the <code class="code highlight language-text">==</code> or <code class="code highlight language-text">!=</code> operator is used between Java expressions of reference types.</p>
+
+<p>To run the sample plugin:</p>
+<ul>
+  <li>Start <strong>IntelliJ IDEA</strong>, open the <code class="code highlight language-text">intellij-sdk-docs</code> project, and highlight the <a href="https://github.com/JetBrains/intellij-sdk-docs/tree/master/code_samples/comparing_references_inspection" data-bypass="yes" target="_blank"><span>comparing_references_inspection</span></a> module.</li>
+  <li>Open the <a href="https://www.jetbrains.com/help/idea/project-structure-dialog.html" data-bypass="yes" target="_blank"><span>Project Structure</span></a> dialog and ensure that the project settings are valid for your environment.</li>
+  <li>If necessary, modify the <a href="https://www.jetbrains.com/idea/webhelp/run-debug-configuration-plugin.html" data-bypass="yes" target="_blank"><span>Run/Debug Configurations</span></a> for the <code class="code highlight language-text">comparing_references_inspection</code> module.</li>
+  <li>Run the plugin by choosing <strong>Run</strong> on the main menu.</li>
+</ul>
+
+<a name="configuring-the-plugin" class="elem-anchor"></a>
+<h3>Configuring the Plugin<a href="#configuring-the-plugin" class="anchor-link"><span></span></a></h3>
+
+<p>Once the plugin is launched, you can set the plugin options. 
+You can specify the Java classes to participate in the code inspection and the severity level of the found probable bugs.</p>
+
+<p>On the IDEA main menu, open the <strong>Preferences | Editor | Inspections</strong> dialog. 
+In the list of the IntelliJ IDEA <em>Java</em> inspections, expand the <em>Probable bugs</em> node, and then click <em>SDK: ‘==’ or ‘!=’ instead of ‘equals()’</em>.</p>
+
+<p><img src="img/comparingReferences_options.png" alt="" /></p>
+
+<p>Under <strong>Options</strong>, you can specify the following plugin settings:</p>
+<ul>
+  <li>From the <strong>Severity</strong> list, select the severity level of probable bugs the plugin finds such as Warning, Info, etc.</li>
+  <li>In the text box under <strong>Severity</strong>, specify the semicolon separated list of Java classes to participate in this code inspection.</li>
+  <li>When finished, click <strong>OK</strong>.</li>
+</ul>
+
+<a name="how-does-it-work" class="elem-anchor"></a>
+<h3>How does it work?<a href="#how-does-it-work" class="anchor-link"><span></span></a></h3>
+
+<p>The plugin inspects your code opened in the IntelliJ IDEA editor or the code you are typing. 
+The plugin highlights the code fragments where two variables of the reference type are separated by <code class="code highlight language-text">==</code> or <code class="code highlight language-text">!=</code> and proposes to replace this code fragment with <code class="code highlight language-text">.equals()</code>:</p>
+
+<p><img src="img/comparingReferences.png" alt="" /></p>
+
+<p>In this example, the <code class="code highlight language-text">str1</code> and <code class="code highlight language-text">str2</code> are variables of the String type. 
+Clicking <em>SDK: Use equals()</em> replaces:</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="k">return</span> <span class="o">(</span><span class="n">str1</span><span class="o">==</span><span class="n">str2</span><span class="o">);</span>
+</code></div>
+
+<p>with the code:</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="k">return</span> <span class="o">(</span><span class="n">str1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">str2</span><span class="o">));</span>
+</code></div>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        
+                        
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,154 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Plugins / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//basics/plugin_structure/dynamic_plugins.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Dynamic Plugins" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-03-18T11:03:42+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Dynamic Plugins" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="basics/plugin_structure/dynamic_plugins">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/plugin_structure.html">Plugin Structure</a>
+                        <a class="navigation-links__next" href="/reference_guide/intellij_artifacts.html">IntelliJ Platform Artifacts Repositories</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/basics/plugin_structure/dynamic_plugins.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Dynamic Plugins</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<aside class="warning">
+  <p> Please note that the information on this page is preliminary and might change.</p>
+</aside>
+
+<p>Starting with 2020.1 release, the ability to install, update and uninstall plugins without restarting the IDE is available in the IntelliJ Platform. During plugin development, this also allows avoiding restarts of the <a href="/intellij/sdk/docs/basics/ide_development_instance.html#enabling-auto-reload"><span>IDE Development Instance</span></a> after every code change.</p>
+
+<p>For a plugin to support this, all restrictions listed below must be met. To verify a plugin locally, run <em>Plugin DevKit | Plugin descriptor | Plugin.xml dynamic plugin verification</em> 
+inspection on all plugin descriptor files (required <code class="code highlight language-text">plugin.xml</code> as well as any additional files).</p>
+
+<p>For plugins hosted on the <a href="/intellij/sdk/docs/plugin_repository/index.html"><span>JetBrains plugin repository</span></a> the built-in <a href="https://blog.jetbrains.com/platform/2018/07/plugins-repository-now-integrates-with-the-plugin-verification-tool/" data-bypass="yes" target="_blank"><span>Plugin Verifier</span></a>
+will run these checks automatically.</p>
+
+<a name="no-use-of-components" class="elem-anchor"></a>
+<h3>No use of Components<a href="#no-use-of-components" class="anchor-link"><span></span></a></h3>
+<p>No Components must be used; existing ones <a href="plugin_components.html"><span>must be migrated</span></a> to services, extensions or listeners.</p>
+
+<a name="action-group-requires-id" class="elem-anchor"></a>
+<h3>Action Group requires ID<a href="#action-group-requires-id" class="anchor-link"><span></span></a></h3>
+<p>All <code class="code highlight language-text">&lt;group&gt;</code>s must declare a unique <code class="code highlight language-text">id</code>.</p>
+
+<a name="use-only-dynamic-extensions" class="elem-anchor"></a>
+<h3>Use only dynamic Extensions<a href="#use-only-dynamic-extensions" class="anchor-link"><span></span></a></h3>
+<p>All extensions, whether defined in the platform itself or coming from other plugins, must be marked as dynamic (see next paragraph).</p>
+
+<a name="mark-extension-points-as-dynamic" class="elem-anchor"></a>
+<h3>Mark Extension Points as dynamic<a href="#mark-extension-points-as-dynamic" class="anchor-link"><span></span></a></h3>
+<p>All extension points provided by the plugin must adhere to specific usage rules and then <a href="plugin_extension_points.html#dynamic-extension-points"><span>be declared</span></a> ready for dynamic use explicitly.</p>
+
+<a name="configurables-depending-on-extension-points" class="elem-anchor"></a>
+<h3>Configurables depending on Extension Points<a href="#configurables-depending-on-extension-points" class="anchor-link"><span></span></a></h3>
+<p>Any <code class="code highlight language-text">Configurable</code> which depends on dynamic extension points must implement <code class="code highlight language-text">Configurable.WithEpDependencies</code>.</p>
+
+<a name="no-use-of-service-overrides" class="elem-anchor"></a>
+<h3>No use of service overrides<a href="#no-use-of-service-overrides" class="anchor-link"><span></span></a></h3>
+<p>Application, project and module services declared with <code class="code highlight language-text">overrides="true"</code> are not allowed.</p>
+
+<a name="plugin-loadunload-events" class="elem-anchor"></a>
+<h2>Plugin Load/Unload Events<a href="#plugin-loadunload-events" class="anchor-link"><span></span></a></h2>
+<p>Register <code class="code highlight language-text">com.intellij.ide.plugins.DynamicPluginListener</code> <a href="plugin_listeners.html"><span>listener</span></a> to receive updates on plugin load/unload events.</p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/plugin_structure.html">Plugin Structure</a>
+                        <a class="navigation-links__next" href="/reference_guide/intellij_artifacts.html">IntelliJ Platform Artifacts Repositories</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 18 March 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

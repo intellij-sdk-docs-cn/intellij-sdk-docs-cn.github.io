@@ -1,0 +1,347 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>4. Lexer and Parser Definition / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//tutorials/custom_language_support/lexer_and_parser_definition.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="4. Lexer and Parser Definition" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="4. Lexer and Parser Definition" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="tutorials/custom_language_support/lexer_and_parser_definition">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/tutorials/custom_language_support/grammar_and_parser.html">3. Grammar and Parser</a>
+                        <a class="navigation-links__next" href="/tutorials/custom_language_support/syntax_highlighter_and_color_settings_page.html">5. Syntax Highlighter and Color Settings Page</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/tutorials/custom_language_support/lexer_and_parser_definition.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>4. Lexer and Parser Definition</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>The lexical analyzer defines how the <a href="/intellij/sdk/docs/reference_guide/custom_language_support/implementing_lexer.html"><span>contents of a file are broken into tokens</span></a>, which is the basis for supporting custom language features.
+The easiest way to create a lexer is to use <a href="https://jflex.de/" data-bypass="yes" target="_blank"><span>JFlex</span></a></p>
+
+<ul id="markdown-toc">
+  <li><a href="#define-a-lexer" id="markdown-toc-define-a-lexer"><span>4.1. Define a Lexer</span></a></li>
+  <li><a href="#generate-a-lexer-class" id="markdown-toc-generate-a-lexer-class"><span>4.2. Generate a Lexer Class</span></a></li>
+  <li><a href="#define-a-lexer-adapter" id="markdown-toc-define-a-lexer-adapter"><span>4.3. Define a Lexer Adapter</span></a></li>
+  <li><a href="#define-a-root-file" id="markdown-toc-define-a-root-file"><span>4.4. Define a Root File</span></a></li>
+  <li><a href="#define-a-parser" id="markdown-toc-define-a-parser"><span>4.5. Define a Parser</span></a></li>
+  <li><a href="#register-the-parser-definition" id="markdown-toc-register-the-parser-definition"><span>4.6. Register the Parser Definition</span></a></li>
+  <li><a href="#run-the-project" id="markdown-toc-run-the-project"><span>4.7. Run the Project</span></a></li>
+</ul>
+
+<a name="define-a-lexer" class="elem-anchor"></a>
+<h2>4.1. Define a Lexer<a href="#define-a-lexer" class="anchor-link"><span></span></a></h2>
+<p>Define a <code class="code highlight language-text">Simple.flex</code> file with rules for the Simple Language lexer, as demonstrated in <code class="code highlight language-text">org.intellij.sdk.language.Simple.flex</code>.</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">intellij</span><span class="o">.</span><span class="na">sdk</span><span class="o">.</span><span class="na">language</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.intellij.lexer.FlexLexer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.psi.tree.IElementType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.intellij.sdk.language.psi.SimpleTypes</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.psi.TokenType</span><span class="o">;</span>
+
+<span class="o">%%</span>
+
+<span class="o">%</span><span class="kd">class</span> <span class="nc">SimpleLexer</span>
+<span class="o">%</span><span class="kd">implements</span> <span class="n">FlexLexer</span>
+<span class="o">%</span><span class="n">unicode</span>
+<span class="o">%</span><span class="n">function</span> <span class="n">advance</span>
+<span class="o">%</span><span class="n">type</span> <span class="n">IElementType</span>
+<span class="o">%</span><span class="n">eof</span><span class="o">{</span>  <span class="k">return</span><span class="o">;</span>
+<span class="o">%</span><span class="n">eof</span><span class="o">}</span>
+
+<span class="n">CRLF</span><span class="o">=</span><span class="err">\</span><span class="n">R</span>
+<span class="n">WHITE_SPACE</span><span class="o">=[</span><span class="err">\</span> <span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">t</span><span class="err">\</span><span class="n">f</span><span class="o">]</span>
+<span class="n">FIRST_VALUE_CHARACTER</span><span class="o">=[^</span> <span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">f</span><span class="err">\\</span><span class="o">]</span> <span class="o">|</span> <span class="s">"\\"</span><span class="o">{</span><span class="n">CRLF</span><span class="o">}</span> <span class="o">|</span> <span class="s">"\\"</span><span class="o">.</span>
+<span class="n">VALUE_CHARACTER</span><span class="o">=[^</span><span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">f</span><span class="err">\\</span><span class="o">]</span> <span class="o">|</span> <span class="s">"\\"</span><span class="o">{</span><span class="n">CRLF</span><span class="o">}</span> <span class="o">|</span> <span class="s">"\\"</span><span class="o">.</span>
+<span class="n">END_OF_LINE_COMMENT</span><span class="o">=(</span><span class="s">"#"</span><span class="o">|</span><span class="s">"!"</span><span class="o">)[^</span><span class="err">\</span><span class="n">r</span><span class="err">\</span><span class="n">n</span><span class="o">]*</span>
+<span class="n">SEPARATOR</span><span class="o">=[:=]</span>
+<span class="n">KEY_CHARACTER</span><span class="o">=[^:=</span><span class="err">\</span> <span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">t</span><span class="err">\</span><span class="n">f</span><span class="err">\\</span><span class="o">]</span> <span class="o">|</span> <span class="s">"\\ "</span>
+
+<span class="o">%</span><span class="n">state</span> <span class="n">WAITING_VALUE</span>
+
+<span class="o">%%</span>
+
+<span class="o">&lt;</span><span class="n">YYINITIAL</span><span class="o">&gt;</span> <span class="o">{</span><span class="n">END_OF_LINE_COMMENT</span><span class="o">}</span>                           <span class="o">{</span> <span class="n">yybegin</span><span class="o">(</span><span class="n">YYINITIAL</span><span class="o">);</span> <span class="k">return</span> <span class="n">SimpleTypes</span><span class="o">.</span><span class="na">COMMENT</span><span class="o">;</span> <span class="o">}</span>
+
+<span class="o">&lt;</span><span class="n">YYINITIAL</span><span class="o">&gt;</span> <span class="o">{</span><span class="n">KEY_CHARACTER</span><span class="o">}+</span>                                <span class="o">{</span> <span class="n">yybegin</span><span class="o">(</span><span class="n">YYINITIAL</span><span class="o">);</span> <span class="k">return</span> <span class="n">SimpleTypes</span><span class="o">.</span><span class="na">KEY</span><span class="o">;</span> <span class="o">}</span>
+
+<span class="o">&lt;</span><span class="n">YYINITIAL</span><span class="o">&gt;</span> <span class="o">{</span><span class="n">SEPARATOR</span><span class="o">}</span>                                     <span class="o">{</span> <span class="n">yybegin</span><span class="o">(</span><span class="n">WAITING_VALUE</span><span class="o">);</span> <span class="k">return</span> <span class="n">SimpleTypes</span><span class="o">.</span><span class="na">SEPARATOR</span><span class="o">;</span> <span class="o">}</span>
+
+<span class="o">&lt;</span><span class="n">WAITING_VALUE</span><span class="o">&gt;</span> <span class="o">{</span><span class="n">CRLF</span><span class="o">}({</span><span class="n">CRLF</span><span class="o">}|{</span><span class="n">WHITE_SPACE</span><span class="o">})+</span>               <span class="o">{</span> <span class="n">yybegin</span><span class="o">(</span><span class="n">YYINITIAL</span><span class="o">);</span> <span class="k">return</span> <span class="n">TokenType</span><span class="o">.</span><span class="na">WHITE_SPACE</span><span class="o">;</span> <span class="o">}</span>
+
+<span class="o">&lt;</span><span class="n">WAITING_VALUE</span><span class="o">&gt;</span> <span class="o">{</span><span class="n">WHITE_SPACE</span><span class="o">}+</span>                              <span class="o">{</span> <span class="n">yybegin</span><span class="o">(</span><span class="n">WAITING_VALUE</span><span class="o">);</span> <span class="k">return</span> <span class="n">TokenType</span><span class="o">.</span><span class="na">WHITE_SPACE</span><span class="o">;</span> <span class="o">}</span>
+
+<span class="o">&lt;</span><span class="n">WAITING_VALUE</span><span class="o">&gt;</span> <span class="o">{</span><span class="n">FIRST_VALUE_CHARACTER</span><span class="o">}{</span><span class="n">VALUE_CHARACTER</span><span class="o">}*</span>   <span class="o">{</span> <span class="n">yybegin</span><span class="o">(</span><span class="n">YYINITIAL</span><span class="o">);</span> <span class="k">return</span> <span class="n">SimpleTypes</span><span class="o">.</span><span class="na">VALUE</span><span class="o">;</span> <span class="o">}</span>
+
+<span class="o">({</span><span class="n">CRLF</span><span class="o">}|{</span><span class="n">WHITE_SPACE</span><span class="o">})+</span>                                     <span class="o">{</span> <span class="n">yybegin</span><span class="o">(</span><span class="n">YYINITIAL</span><span class="o">);</span> <span class="k">return</span> <span class="n">TokenType</span><span class="o">.</span><span class="na">WHITE_SPACE</span><span class="o">;</span> <span class="o">}</span>
+
+<span class="o">[^]</span>                                                         <span class="o">{</span> <span class="k">return</span> <span class="n">TokenType</span><span class="o">.</span><span class="na">BAD_CHARACTER</span><span class="o">;</span> <span class="o">}</span>
+
+</code></div>
+
+<a name="generate-a-lexer-class" class="elem-anchor"></a>
+<h2>4.2. Generate a Lexer Class<a href="#generate-a-lexer-class" class="anchor-link"><span></span></a></h2>
+<p>Now generate a lexer class via <strong>JFlex Generator</strong> from the context menu on <code class="code highlight language-text">Simple.flex</code> file.</p>
+
+<p>The Grammar-Kit plugin uses the JFlex lexer generation.
+When running for the first time, JFlex prompts for a destination folder to download the JFlex library and skeleton.
+Choose the project root directory, for example <code class="code highlight language-text">code_samples/simple_language_plugin</code>.</p>
+
+<p>After that, the IDE generates the lexer under the <code class="code highlight language-text">gen</code> directory, for example in <code class="code highlight language-text">simple_language_plugin/src/main/gen/org/intellij/sdk/language/SimpleLexer</code>.</p>
+
+<p>See <a href="/intellij/sdk/docs/reference_guide/custom_language_support/implementing_lexer.html"><span>Implementing Lexer</span></a> for more information about using <em>JFlex</em> with the IntelliJ Platform.</p>
+
+<a name="define-a-lexer-adapter" class="elem-anchor"></a>
+<h2>4.3. Define a Lexer Adapter<a href="#define-a-lexer-adapter" class="anchor-link"><span></span></a></h2>
+<p>The JFlex lexer needs to be adapted to the IntelliJ Platform Lexer API.
+This is done by subclassing <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/lexer/FlexAdapter.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">FlexAdapter</code></span></a>.</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="c1">// Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.</span>
+
+<span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">intellij</span><span class="o">.</span><span class="na">sdk</span><span class="o">.</span><span class="na">language</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.intellij.lexer.FlexAdapter</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.Reader</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleLexerAdapter</span> <span class="kd">extends</span> <span class="n">FlexAdapter</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="nf">SimpleLexerAdapter</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">(</span><span class="k">new</span> <span class="n">SimpleLexer</span><span class="o">((</span><span class="n">Reader</span><span class="o">)</span> <span class="kc">null</span><span class="o">));</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></div>
+
+<a name="define-a-root-file" class="elem-anchor"></a>
+<h2>4.4. Define a Root File<a href="#define-a-root-file" class="anchor-link"><span></span></a></h2>
+<p>The <code class="code highlight language-text">SimpleFile</code> implementation is the top-level node of the <a href="/intellij/sdk/docs/reference_guide/custom_language_support/implementing_parser_and_psi.html"><span>tree of <code class="code highlight language-text">PsiElements</code></span></a> for a Simple Language file.</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="c1">// Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.</span>
+
+<span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">intellij</span><span class="o">.</span><span class="na">sdk</span><span class="o">.</span><span class="na">language</span><span class="o">.</span><span class="na">psi</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.intellij.extapi.psi.PsiFileBase</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.openapi.fileTypes.FileType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.psi.FileViewProvider</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.intellij.sdk.language.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.jetbrains.annotations.NotNull</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleFile</span> <span class="kd">extends</span> <span class="n">PsiFileBase</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="nf">SimpleFile</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">FileViewProvider</span> <span class="n">viewProvider</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">(</span><span class="n">viewProvider</span><span class="o">,</span> <span class="n">SimpleLanguage</span><span class="o">.</span><span class="na">INSTANCE</span><span class="o">);</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@NotNull</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">FileType</span> <span class="nf">getFileType</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">SimpleFileType</span><span class="o">.</span><span class="na">INSTANCE</span><span class="o">;</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="s">"Simple File"</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="define-a-parser" class="elem-anchor"></a>
+<h2>4.5. Define a Parser<a href="#define-a-parser" class="anchor-link"><span></span></a></h2>
+<p>The Simple Language parser is defined by subclassing <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-api/src/com/intellij/lang/ParserDefinition.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ParserDefinition</code></span></a>.</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="c1">// Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.</span>
+
+<span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">intellij</span><span class="o">.</span><span class="na">sdk</span><span class="o">.</span><span class="na">language</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.intellij.lang.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.lexer.Lexer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.openapi.project.Project</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.psi.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.psi.tree.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.intellij.sdk.language.parser.SimpleParser</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.intellij.sdk.language.psi.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.jetbrains.annotations.NotNull</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleParserDefinition</span> <span class="kd">implements</span> <span class="n">ParserDefinition</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">TokenSet</span> <span class="n">WHITE_SPACES</span> <span class="o">=</span> <span class="n">TokenSet</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">TokenType</span><span class="o">.</span><span class="na">WHITE_SPACE</span><span class="o">);</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">TokenSet</span> <span class="n">COMMENTS</span> <span class="o">=</span> <span class="n">TokenSet</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">SimpleTypes</span><span class="o">.</span><span class="na">COMMENT</span><span class="o">);</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">IFileElementType</span> <span class="n">FILE</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IFileElementType</span><span class="o">(</span><span class="n">SimpleLanguage</span><span class="o">.</span><span class="na">INSTANCE</span><span class="o">);</span>
+  
+  <span class="nd">@NotNull</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">Lexer</span> <span class="nf">createLexer</span><span class="o">(</span><span class="n">Project</span> <span class="n">project</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">SimpleLexerAdapter</span><span class="o">();</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@NotNull</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">TokenSet</span> <span class="nf">getWhitespaceTokens</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">WHITE_SPACES</span><span class="o">;</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@NotNull</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">TokenSet</span> <span class="nf">getCommentTokens</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">COMMENTS</span><span class="o">;</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@NotNull</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">TokenSet</span> <span class="nf">getStringLiteralElements</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">TokenSet</span><span class="o">.</span><span class="na">EMPTY</span><span class="o">;</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@NotNull</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">PsiParser</span> <span class="nf">createParser</span><span class="o">(</span><span class="kd">final</span> <span class="n">Project</span> <span class="n">project</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">SimpleParser</span><span class="o">();</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">IFileElementType</span> <span class="nf">getFileNodeType</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">FILE</span><span class="o">;</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">PsiFile</span> <span class="nf">createFile</span><span class="o">(</span><span class="n">FileViewProvider</span> <span class="n">viewProvider</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">SimpleFile</span><span class="o">(</span><span class="n">viewProvider</span><span class="o">);</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">SpaceRequirements</span> <span class="nf">spaceExistenceTypeBetweenTokens</span><span class="o">(</span><span class="n">ASTNode</span> <span class="n">left</span><span class="o">,</span> <span class="n">ASTNode</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">SpaceRequirements</span><span class="o">.</span><span class="na">MAY</span><span class="o">;</span>
+  <span class="o">}</span>
+  
+  <span class="nd">@NotNull</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">PsiElement</span> <span class="nf">createElement</span><span class="o">(</span><span class="n">ASTNode</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">SimpleTypes</span><span class="o">.</span><span class="na">Factory</span><span class="o">.</span><span class="na">createElement</span><span class="o">(</span><span class="n">node</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="register-the-parser-definition" class="elem-anchor"></a>
+<h2>4.6. Register the Parser Definition<a href="#register-the-parser-definition" class="anchor-link"><span></span></a></h2>
+<p>Registering the parser definition in the <code class="code highlight language-text">plugin.xml</code> file makes it available to the IntelliJ Platform.
+Use the <code class="code highlight language-text">com.intellij.lang.parserDefinition</code> extension point for registration.
+For example, see <code class="code highlight language-text">simple_language_plugin/src/main/resources/META-INF/plugin.xml</code>.</p>
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper"><span class="nt">&lt;extensions</span> <span class="na">defaultExtensionNs=</span><span class="s">"com.intellij"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;lang.parserDefinition</span> <span class="na">language=</span><span class="s">"Simple"</span> 
+          <span class="na">implementationClass=</span><span class="s">"org.intellij.sdk.language.SimpleParserDefinition"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/extensions&gt;</span>
+</code></div>
+
+<a name="run-the-project" class="elem-anchor"></a>
+<h2>4.7. Run the Project<a href="#run-the-project" class="anchor-link"><span></span></a></h2>
+<p>With the <code class="code highlight language-text">simple_language_plugin</code> loaded in a Development Instance, create a <code class="code highlight language-text">test.simple</code> properties file with the following content:</p>
+<div class="code-block" data-lang="text"><code class="code-block__wrapper"># You are reading the ".properties" entry.
+! The exclamation mark can also mark text as comments.
+website = http://en.wikipedia.org/
+language = English
+# The backslash below tells the application to continue reading
+# the value onto the next line.
+message = Welcome to \
+          Wikipedia!
+# Add spaces to the key
+key\ with\ spaces = This is the value that could be looked up with the key "key with spaces".
+# Unicode
+tab : \u0009
+</code></div>
+
+<p>Now open the <em>PsiViewer</em> tool window and check how the lexer breaks the content of the file into tokens, and the parser parsed the tokens into PSI elements.</p>
+
+<p><img src="img/psi_elements.png" alt="PSI Elements" width="900px" /></p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/tutorials/custom_language_support/grammar_and_parser.html">3. Grammar and Parser</a>
+                        <a class="navigation-links__next" href="/tutorials/custom_language_support/syntax_highlighter_and_color_settings_page.html">5. Syntax Highlighter and Color Settings Page</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

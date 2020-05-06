@@ -1,0 +1,245 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Plugin Extension Points / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//basics/plugin_structure/plugin_extension_points.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Plugin Extension Points" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-28T09:04:04+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Plugin Extension Points" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="basics/plugin_structure/plugin_extension_points">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/plugin_structure/plugin_listeners.html">Plugin Listeners</a>
+                        <a class="navigation-links__next" href="/basics/plugin_structure/plugin_components.html">Plugin Components</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/basics/plugin_structure/plugin_extension_points.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Plugin Extension Points</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<aside class="note">
+  <p> See <a href="plugin_extensions.html"><span>Plugin Extensions</span></a> for <em>using</em> extension points in your plugin.</p>
+</aside>
+
+<p>By defining <em>extension points</em> in your plugin, you can allow other plugins to extend the functionality of your plugin.
+There are two types of extension points:</p>
+
+<ul>
+  <li><em>Interface</em> extension points allow other plugins to extend your plugins with <em>code</em>. When you define an interface
+extension point, you specify an interface, and other plugins will provide classes implementing that interface.
+You’ll then be able to invoke methods on those interfaces.</li>
+  <li><em>Bean</em> extension points allow other plugins to extend your plugins with <em>data</em>. You specify the fully qualified
+name of an extension class, and other plugins will provide data which will be turned into instances of that class.</li>
+</ul>
+
+<a name="how-to-declare-extension-points" class="elem-anchor"></a>
+<h2>How to declare extension points<a href="#how-to-declare-extension-points" class="anchor-link"><span></span></a></h2>
+
+<p>You can declare extensions and extension points in the plugin configuration file <code class="code highlight language-text">plugin.xml</code>, within the <code class="code highlight language-text">&lt;extensions&gt;</code> and <code class="code highlight language-text">&lt;extensionPoints&gt;</code> sections, respectively.</p>
+
+<p>To declare extension points in your plugin, add an <code class="code highlight language-text">&lt;extensionPoints&gt;</code> section to your <code class="code highlight language-text">plugin.xml</code>. Then insert a child element <code class="code highlight language-text">&lt;extensionPoint&gt;</code> that defines the extension point name and the name of a bean class or an interface that is allowed to extend the plugin functionality in the <code class="code highlight language-text">name</code>, <code class="code highlight language-text">beanClass</code> and <code class="code highlight language-text">interface</code> attributes, respectively.</p>
+
+<p><em>myPlugin/META-INF/plugin.xml</em></p>
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper"><span class="nt">&lt;idea-plugin&gt;</span>
+  <span class="nt">&lt;id&gt;</span>my.plugin<span class="nt">&lt;/id&gt;</span>
+  
+  <span class="nt">&lt;extensionPoints&gt;</span>
+    <span class="nt">&lt;extensionPoint</span> <span class="na">name=</span><span class="s">"myExtensionPoint1"</span> <span class="na">beanClass=</span><span class="s">"com.myplugin.MyBeanClass"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;extensionPoint</span> <span class="na">name=</span><span class="s">"myExtensionPoint2"</span> <span class="na">interface=</span><span class="s">"com.myplugin.MyInterface"</span> <span class="na">area=</span><span class="s">"IDEA_PROJECT"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/extensionPoints&gt;</span>
+
+<span class="nt">&lt;/idea-plugin&gt;</span>
+</code></div>
+
+<ul>
+  <li>The <code class="code highlight language-text">name</code> attribute assigns a unique name for this extension point, it will be prefixed with the plugin’s <code class="code highlight language-text">&lt;id&gt;</code> automatically.</li>
+  <li>The <code class="code highlight language-text">beanClass</code> attribute sets a bean class that specifies one or several properties annotated with the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/util/src/com/intellij/util/xmlb/annotations/Attribute.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">@Attribute</code></span></a> annotation.</li>
+  <li>The <code class="code highlight language-text">interface</code> attribute sets an interface the plugin that contributes to the extension point must implement.</li>
+  <li>The <code class="code highlight language-text">area</code> attribute determines the scope in which the extension will be instantiated. As extensions should be stateless, it is not recommended to use non-default.
+    <ul>
+      <li><code class="code highlight language-text">IDEA_APPLICATION</code> for Application (default)</li>
+      <li><code class="code highlight language-text">IDEA_PROJECT</code> for Project</li>
+      <li><code class="code highlight language-text">IDEA_MODULE</code> for Module</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The plugin that contributes to the extension point will read those properties from the <code class="code highlight language-text">plugin.xml</code> file.</p>
+
+<p>To clarify this, consider the following sample <code class="code highlight language-text">MyBeanClass</code> bean class used in the above <code class="code highlight language-text">plugin.xml</code> file:</p>
+
+<p><em>myPlugin/src/com/myplugin/MyBeanClass.java</em></p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyBeanClass</span> <span class="kd">extends</span> <span class="n">AbstractExtensionPointBean</span> <span class="o">{</span>
+  <span class="nd">@Attribute</span><span class="o">(</span><span class="s">"key"</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="n">key</span><span class="o">;</span>
+
+  <span class="nd">@Attribute</span><span class="o">(</span><span class="s">"implementationClass"</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="n">implementationClass</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getKey</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">key</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getClass</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">implementationClass</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></div>
+
+<aside class="tip">
+  <p> See <a href="plugin_extensions.html#extension-properties-code-insight"><span>Extension properties code insight</span></a> on how to provide smart completion/validation.</p>
+</aside>
+
+<p>For above extension points usage in <em>anotherPlugin</em> would look like this (see also <a href="plugin_extensions.html#declaring-extensions"><span>Declaring Extensions</span></a>):</p>
+
+<p><em>anotherPlugin/META-INF/plugin.xml</em></p>
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper"><span class="nt">&lt;idea-plugin&gt;</span>
+  <span class="nt">&lt;id&gt;</span>another.plugin<span class="nt">&lt;/id&gt;</span>
+                         
+  <span class="c">&lt;!-- declare dependency on plugin defining extension point --&gt;</span>               
+  <span class="nt">&lt;depends&gt;</span>my.plugin<span class="nt">&lt;/depends&gt;</span>
+        
+  <span class="c">&lt;!-- use "my.plugin" namespace --&gt;</span>
+  <span class="nt">&lt;extensions</span> <span class="na">defaultExtensionNs=</span><span class="s">"my.plugin"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;myExtensionPoint1</span> <span class="na">key=</span><span class="s">"someKey"</span> <span class="na">implementationClass=</span><span class="s">"another.some.implementation.class"</span><span class="nt">/&gt;</span>  
+
+    <span class="nt">&lt;myExtensionPoint2</span> <span class="na">implementation=</span><span class="s">"another.MyInterfaceImpl"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/extension&gt;</span>
+
+<span class="nt">&lt;/idea-plugin&gt;</span>
+</code></div>
+
+<a name="using-extension-points" class="elem-anchor"></a>
+<h2>Using extension points<a href="#using-extension-points" class="anchor-link"><span></span></a></h2>
+<p>To refer to all registered extension instances at runtime, declare an <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/extensions/src/com/intellij/openapi/extensions/ExtensionPointName.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">ExtensionPointName</code></span></a> passing in the fully-qualified name matching its <a href="#how-to-declare-extension-points"><span>declaration in <code class="code highlight language-text">plugin.xml</code></span></a>.</p>
+
+<p><em>myPlugin/src/com/myplugin/MyExtensionUsingService.java</em></p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyExtensionUsingService</span> <span class="o">{</span>
+ 
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">ExtensionPointName</span><span class="o">&lt;</span><span class="n">MyBeanClass</span><span class="o">&gt;</span> <span class="n">EP_NAME</span> <span class="o">=</span> <span class="n">ExtensionPointName</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">"my.plugin.myExtensionPoint1"</span><span class="o">);</span>
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">useExtensions</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">for</span> <span class="o">(</span><span class="n">MyBeanClass</span> <span class="n">extension</span> <span class="o">:</span> <span class="n">EP_NAME</span><span class="o">.</span><span class="na">getExtensionList</span><span class="o">())</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">key</span> <span class="o">=</span> <span class="n">extension</span><span class="o">.</span><span class="na">getKey</span><span class="o">();</span>  
+        <span class="n">String</span> <span class="n">clazz</span> <span class="o">=</span> <span class="n">extension</span><span class="o">.</span><span class="na">getClass</span><span class="o">();</span>
+        <span class="c1">// ...</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></div>
+<p>A gutter icon for the <code class="code highlight language-text">ExtensionPointName</code> declaration allows navigating to the corresponding <code class="code highlight language-text">&lt;extensionPoint&gt;</code> declaration in <code class="code highlight language-text">plugin.xml</code>.</p>
+
+<a name="dynamic-extension-points" class="elem-anchor"></a>
+<h2>Dynamic extension points<a href="#dynamic-extension-points" class="anchor-link"><span></span></a></h2>
+<p>To support <a href="dynamic_plugins.html"><span>Dynamic Plugins</span></a> (2020.1 and later), an extension point must adhere to specific usage rules:</p>
+
+<ul>
+  <li>extensions are enumerated on every use and extensions instances are not stored anywhere</li>
+  <li>alternatively, an <code class="code highlight language-text">ExtensionPointChangeListener</code> can perform necessary updates of data structures (register via <code class="code highlight language-text">ExtensionPointName.addExtensionPointListener()</code>)</li>
+</ul>
+
+<p>Extension points matching these conditions can then be marked as <em>dynamic</em> by adding <code class="code highlight language-text">dynamic="true"</code> in their declaration:</p>
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper"><span class="nt">&lt;extensionPoints&gt;</span>
+  <span class="nt">&lt;extensionPoint</span> <span class="na">name=</span><span class="s">"myDynamicExtensionPoint"</span> <span class="na">beanClass=</span><span class="s">"com.myplugin.MyBeanClass"</span> <span class="na">dynamic=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/extensionPoints&gt;</span>
+</code></div>
+
+<aside class="note">
+  <p> All non-dynamic extension points are highlighted via <em>Plugin DevKit | Plugin descriptor | Plugin.xml dynamic plugin verification</em> inspection available in IntelliJ IDEA 2020.1 or later. Previous versions also highlight <code class="code highlight language-text">dynamic</code> attribute as “experimental”.</p>
+</aside>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/plugin_structure/plugin_listeners.html">Plugin Listeners</a>
+                        <a class="navigation-links__next" href="/basics/plugin_structure/plugin_components.html">Plugin Components</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 28 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

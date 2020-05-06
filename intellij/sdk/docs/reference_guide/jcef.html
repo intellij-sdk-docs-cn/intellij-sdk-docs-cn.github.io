@@ -1,0 +1,232 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>JCEF - Java Chromium Embedded Framework / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//reference_guide/jcef.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="JCEF - Java Chromium Embedded Framework" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-03-25T12:04:43+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="JCEF - Java Chromium Embedded Framework" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="reference_guide/jcef">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/user_interface_components/user_interface_components.html">User Interface Components</a>
+                        <a class="navigation-links__next" href="/reference_guide/ui_themes/themes_intro.html">Custom UI Themes</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/reference_guide/jcef.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>JCEF - Java Chromium Embedded Framework</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<aside class="warning">
+  <p> JCEF is available since 2020.1 as an <strong>experimental feature</strong>. We plan to deprecate using JavaFX in 3rd party plugins and switch to JCEF.</p>
+</aside>
+
+<p>JCEF is a Java port of <a href="https://bitbucket.org/chromiumembedded/cef/wiki/Home" data-bypass="yes" target="_blank"><span>CEF</span></a> framework for embedding <a href="https://www.chromium.org/Home" data-bypass="yes" target="_blank"><span>Chromium-based browsers</span></a> in applications using Swing.</p>
+
+<p>Embedding of the browser component inside the IDE allows amongst others:</p>
+
+<ul>
+  <li>rendering HTML content</li>
+  <li>previewing generated HTML (e.g., from Markdown)</li>
+</ul>
+
+<a name="enabling-jcef" class="elem-anchor"></a>
+<h2>Enabling JCEF<a href="#enabling-jcef" class="anchor-link"><span></span></a></h2>
+<p>Using JCEF requires using a dedicated JetBrains Runtime, please follow these <a href="https://youtrack.jetbrains.com/issue/IDEA-231833#focus=streamItem-27-3993099.0-0" data-bypass="yes" target="_blank"><span>installation instructions</span></a> on how to obtain and activate it in your IDE.
+Enable <code class="code highlight language-text">ide.browser.jcef.enabled</code> in Registry dialog (invoke <strong>Help | Find Action</strong> and type “Registry”) and restart the IDE for changes to take effect.</p>
+
+<a name="debugging" class="elem-anchor"></a>
+<h2>Debugging<a href="#debugging" class="anchor-link"><span></span></a></h2>
+<p>The <a href="https://developers.google.com/web/tools/chrome-devtools/" data-bypass="yes" target="_blank"><span>Chrome DevTools</span></a>, embedded into JCEF, can be used as a debugging and profiling tool. It’s active by default, so that a Chrome DevTools client can attach to it via the default port number - <code class="code highlight language-text">9222</code>.
+The port number can be configured with the following registry key:</p>
+
+<div class="code-block" data-lang="text"><code class="code-block__wrapper">ide.browser.jcef.debug.port=9222
+</code></div>
+
+<p>JavaScript debugger in IntelliJ IDEA Ultimate can thus be used to debug JavaScript code running in the IDE via the Chrome DevTools. Use the <em>Attach to Node.js/Chrome</em> configurations with a proper port number.</p>
+
+<p>Also, JCEF provides a default Chrome DevTools front-end (similar to the one in the Chrome browser) that can be opened from the JCEF’s browser component context menu via <strong>Open DevTools</strong> (the menu item is available in <a href="/intellij/sdk/docs/reference_guide/internal_actions/enabling_internal.html"><span>internal mode</span></a> only).</p>
+
+<p>To access the Chrome DevTools in plugin code, use the following API:</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="n">JBCefBrowser</span> <span class="n">myBrowser</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JBCefBrowser</span><span class="o">(</span><span class="n">myUrl</span><span class="o">);</span>
+<span class="n">CefBrowser</span> <span class="n">myDevTools</span> <span class="o">=</span> <span class="n">myBrowser</span><span class="o">.</span><span class="na">getCefBrowser</span><span class="o">().</span><span class="na">getDevTools</span><span class="o">();</span>
+<span class="n">JBCefBrowser</span> <span class="n">myDevToolsBrowser</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JBCefBrowser</span><span class="o">(</span><span class="n">myDevTools</span><span class="o">,</span> <span class="n">myBrowser</span><span class="o">.</span><span class="na">getJBCefClient</span><span class="o">());</span>
+</code></div>
+
+<p>Or in order to just open it in a separate window:</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="n">JBCefBrowser</span> <span class="n">myBrowser</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JBCefBrowser</span><span class="o">(</span><span class="n">myUrl</span><span class="o">);</span>
+<span class="n">myBrowser</span><span class="o">.</span><span class="na">openDevTools</span><span class="o">();</span>
+</code></div>
+
+<a name="api" class="elem-anchor"></a>
+<h2>API<a href="#api" class="anchor-link"><span></span></a></h2>
+
+<a name="comintellijuijcefjbcefapp" class="elem-anchor"></a>
+<h3><code class="code highlight language-text">com.intellij.ui.jcef.JBCefApp</code><a href="#comintellijuijcefjbcefapp" class="anchor-link"><span></span></a></h3>
+<p>Performs JCEF auto-initialization, manages its lifecycle, and provides <code class="code highlight language-text">JBCefClient</code> instances.</p>
+
+<a name="comintellijuijcefjbcefclient" class="elem-anchor"></a>
+<h3><code class="code highlight language-text">com.intellij.ui.jcef.JBCefClient</code><a href="#comintellijuijcefjbcefclient" class="anchor-link"><span></span></a></h3>
+<p>Is tied to every browser component explicitly or implicitly. Used for adding handlers to the associated browser.
+The same instance can be shared among multiple browsers. It is up to the developer to use a shared or per-browser instance, depending on the handlers’ logic.
+If a client was created explicitly, it should be disposed by the developer; otherwise, it is disposed automatically following the associated browser instance disposal.</p>
+
+<a name="comintellijuijcefjbcefbrowser" class="elem-anchor"></a>
+<h3><code class="code highlight language-text">com.intellij.ui.jcef.JBCefBrowser</code><a href="#comintellijuijcefjbcefbrowser" class="anchor-link"><span></span></a></h3>
+<p>Provides the browser UI component:</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="n">JComponent</span> <span class="nf">getComponent</span><span class="o">();</span>
+</code></div>
+
+<p>Provides the load methods (callable from non-EDT thread as well):</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="kt">void</span> <span class="nf">loadURL</span><span class="o">(</span><span class="n">String</span><span class="o">);</span>
+<span class="kt">void</span> <span class="nf">loadHTML</span><span class="o">(</span><span class="n">String</span><span class="o">);</span>
+</code></div>
+
+<p>For executing JS code and callbacks (see below), use the wrapped <code class="code highlight language-text">CefBrowser</code> instance directly:</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="n">getCefBrowser</span><span class="o">().</span><span class="na">executeJavaScript</span><span class="o">(</span><span class="n">String</span> <span class="n">code</span><span class="o">,</span> <span class="n">String</span> <span class="n">url</span><span class="o">,</span> <span class="kt">int</span> <span class="n">line</span><span class="o">);</span>
+</code></div>
+
+<p>By default, <code class="code highlight language-text">JBCefBrowser</code> is created with implicit <code class="code highlight language-text">JBCefClient</code> (disposed automatically). It is possible to pass your own <code class="code highlight language-text">JBCefClient</code> (disposed by the developer).</p>
+
+<p>For accessing:</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="n">JBCefClient</span> <span class="nf">getJBCefClient</span><span class="o">();</span>
+</code></div>
+
+<p>The simplest way to add a browser component to your UI:</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="n">JPanel</span> <span class="n">myPanel</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">myPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">JBCefBrowser</span><span class="o">(</span><span class="err">“</span><span class="nl">https:</span><span class="c1">//www.jetbrains.com”).getComponent());</span>
+</code></div>
+
+<a name="comintellijuijcefjbcefjsquery" class="elem-anchor"></a>
+<h3><code class="code highlight language-text">com.intellij.ui.jcef.JBCefJSQuery</code><a href="#comintellijuijcefjbcefjsquery" class="anchor-link"><span></span></a></h3>
+
+<p>Provides JS query callback mechanism.</p>
+
+<p>There’s no direct access to JS DOM from Java (like in JavaFX WebView, see also <a href="https://youtrack.jetbrains.com/issue/JBR-2046" data-bypass="yes" target="_blank"><span>this issue</span></a>). Still, JCEF provides an asynchronous way to communicate to JS.</p>
+
+<p>It’s simpler to illustrate it by an example. Say, we want to open a link in an external browser (see it in <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/plugins/markdown/src/org/intellij/plugins/markdown/ui/preview/jcef/MarkdownJCEFHtmlPanel.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">MarkdownJCEFHtmlPanel</code></span></a>):</p>
+
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="c1">// Create a JS query instance</span>
+<span class="kd">final</span> <span class="n">JBCefJSQuery</span> <span class="n">myJSQueryOpenInBrowser</span> <span class="o">=</span>
+<span class="n">JBCefJSQuery</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">myJBCefBrowser</span><span class="o">);</span>
+
+<span class="c1">// Add a query handler</span>
+<span class="n">myJSQueryOpenInBrowser</span><span class="o">.</span><span class="na">addHandler</span><span class="o">((</span><span class="n">link</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+          <span class="n">MarkdownAccessor</span><span class="o">.</span><span class="na">getSafeOpenerAccessor</span><span class="o">().</span><span class="na">openLink</span><span class="o">(</span><span class="n">link</span><span class="o">);</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// can respond back to JS with JBCefJSQuery.Response</span>
+      <span class="o">});</span>
+
+<span class="c1">// Inject the query callback into JS</span>
+<span class="n">myCefBrowser</span><span class="o">.</span><span class="na">executeJavaScript</span><span class="o">(</span>
+<span class="s">"window.JavaPanelBridge = {"</span> <span class="o">+</span>
+          <span class="s">"openInExternalBrowser : function(link) {"</span> <span class="o">+</span>
+                <span class="n">myJSQueryOpenInBrowser</span><span class="o">.</span><span class="na">inject</span><span class="o">(</span><span class="s">"link"</span><span class="o">)</span> <span class="o">+</span>
+            <span class="s">"}"</span> <span class="o">+</span>
+      <span class="s">"};"</span><span class="o">,</span>
+      <span class="n">getCefBrowser</span><span class="o">().</span><span class="na">getURL</span><span class="o">(),</span> <span class="mi">0</span><span class="o">);</span>
+
+<span class="c1">// Dispose the query when necessary</span>
+<span class="n">Disposer</span><span class="o">.</span><span class="na">dispose</span><span class="o">(</span><span class="n">myJSQueryOpenInBrowser</span><span class="o">);</span>
+</code></div>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/user_interface_components/user_interface_components.html">User Interface Components</a>
+                        <a class="navigation-links__next" href="/reference_guide/ui_themes/themes_intro.html">Custom UI Themes</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 25 March 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

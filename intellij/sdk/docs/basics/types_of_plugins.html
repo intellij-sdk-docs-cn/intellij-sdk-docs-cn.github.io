@@ -1,0 +1,174 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>插件的主要类型 / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//basics/types_of_plugins.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="插件的主要类型" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-03-28T16:52:19+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="插件的主要类型" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="basics/types_of_plugins">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        
+                        
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/basics/types_of_plugins.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>插件的主要类型</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>可以通过添加插件来修改和调整基于 <em>IntelliJ Platform</em> 的产品，以用于自定义目的。所有可下载的插件都可以在 <a href="https://plugins.jetbrains.com/" data-bypass="yes" target="_blank"><span>JetBrains 插件仓库</span></a> 上找到。</p>
+
+<p>最常见的插件包括：</p>
+
+<ul>
+  <li>自定义语言支持</li>
+  <li>框架整合</li>
+  <li>工具整合</li>
+  <li>用户界面附加组件</li>
+</ul>
+
+<a name="section" class="elem-anchor"></a>
+<h2>自定义语言支持<a href="#section" class="anchor-link"><span></span></a></h2>
+
+<p>自定义语言支持提供使用特定编程语言的基础功能。这包括：</p>
+
+<ul>
+  <li>文件类型识别</li>
+  <li>词法分析</li>
+  <li>语法高亮</li>
+  <li>格式化</li>
+  <li>代码 insight 与代码补全</li>
+  <li>检查和快速修复</li>
+  <li>Intention actions</li>
+</ul>
+
+<p>参考 <a href="/intellij/sdk/docs/tutorials/custom_language_support_tutorial.html"><span>自定义语言支持讲解</span></a> 来学习更多关于该主题的信息。</p>
+
+<a name="section-1" class="elem-anchor"></a>
+<h2>框架整合<a href="#section-1" class="anchor-link"><span></span></a></h2>
+
+<p>框架整合包含改进的大爱吗 insight 特性，该特性对于给定的框架是典型的，以及直接从 IDE 使用特性于框架的功能的选项。有时也为自定义语法或 DSL 包含语言支持的元素。</p>
+
+<ul>
+  <li>特定代码 insight</li>
+  <li>直接访问特定框架的功能</li>
+</ul>
+
+<p>参考 <a href="https://plugins.jetbrains.com/plugin/1698" data-bypass="yes" target="_blank"><span>Struts 2 plugin</span></a> 作为框架整合的示例。</p>
+
+<a name="section-2" class="elem-anchor"></a>
+<h2>工具整合<a href="#section-2" class="anchor-link"><span></span></a></h2>
+
+<p>工具整合使直接在 IDE 中操纵第三方工具与组件成为可能，而无需切换上下文。</p>
+
+<p>这意味着：</p>
+
+<ul>
+  <li>实施其他 Action</li>
+  <li>相关 UI 组件</li>
+  <li>访问外部资源</li>
+</ul>
+
+<p>以 <a href="https://plugins.jetbrains.com/plugin/7272?pr=idea" data-bypass="yes" target="_blank"><span>Gerrit 整合</span></a>插件为例。</p>
+
+<a name="section-3" class="elem-anchor"></a>
+<h2>用户界面附加组件<a href="#section-3" class="anchor-link"><span></span></a></h2>
+
+<p>这个类别的插件将各种更改应用于 IDE 的标准用户界面。一些新添加的组件是交互式的，并提供了新功能，而其他则受限于视觉的修改。<a href="https://plugins.jetbrains.com/plugin/72" data-bypass="yes" target="_blank"><span>Background Image</span></a> 插件可以作为示例。</p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        
+                        
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 28 March 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

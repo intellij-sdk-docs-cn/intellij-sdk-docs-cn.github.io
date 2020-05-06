@@ -1,0 +1,210 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Notable Changes in IntelliJ Platform and Plugins API 2019.* / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//reference_guide/api_notable/api_notable_list_2019.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Notable Changes in IntelliJ Platform and Plugins API 2019.*" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Notable Changes in IntelliJ Platform and Plugins API 2019.*" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="reference_guide/api_notable/api_notable_list_2019">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/api_notable/api_notable_list_2020.html">Notable Changes in IntelliJ Platform and Plugins API 2020.*</a>
+                        <a class="navigation-links__next" href="/reference_guide/api_notable/api_notable_list_2018.html">Notable Changes in IntelliJ Platform and Plugins API 2018.*</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/reference_guide/api_notable/api_notable_list_2019.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Notable Changes in IntelliJ Platform and Plugins API 2019.*</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<a name="section" class="elem-anchor"></a>
+<h1>2019.3<a href="#section" class="anchor-link"><span></span></a></h1>
+
+<a name="notable-changes-in-intellij-platform-20193" class="elem-anchor"></a>
+<h2>Notable Changes in IntelliJ Platform 2019.3<a href="#notable-changes-in-intellij-platform-20193" class="anchor-link"><span></span></a></h2>
+
+<dl>
+  <dt><code class="code highlight language-text">PlatformTestCase</code> renamed to <code class="code highlight language-text">HeavyPlatformTestCase</code></dt>
+  <dd>Now reflects its “heavy test” characteristics (see <a href="/intellij/sdk/docs/basics/testing_plugins/light_and_heavy_tests.html"><span>Light and Heavy Tests</span></a>).</dd>
+  <dt>Support for transitive optional plugin dependencies</dt>
+  <dd>Optional <code class="code highlight language-text">plugin.xml</code> configuration files can now specify <code class="code highlight language-text">&lt;depends&gt;</code>. <a href="https://youtrack.jetbrains.com/issue/IDEA-209769" data-bypass="yes" target="_blank"><span>Issue</span></a></dd>
+  <dt>Theme/Keymap plugins do not require restart</dt>
+  <dd>(Un)Installing or enabling/disabling <a href="/intellij/sdk/docs/reference_guide/ui_themes/themes_intro.html"><span>Theme</span></a> or <a href="https://plugins.jetbrains.com/search?tags=Keymap" data-bypass="yes" target="_blank"><span>Keymap</span></a> plugins doesn’t require an IDE restart anymore.</dd>
+  <dt>Run task once (per project)</dt>
+  <dd>Use <code class="code highlight language-text">com.intellij.ide.util.RunOnceUtil</code> to run a task exactly once for application or per project.</dd>
+  <dt>Symbol completion in plain text editor (VCS Commit Message)</dt>
+  <dd>Contribute symbol names (classes, methods, ..) via <code class="code highlight language-text">com.intellij.completion.plainTextSymbol</code> extension point (<code class="code highlight language-text">com.intellij.codeInsight.completion.PlainTextSymbolCompletionContributor</code>).</dd>
+  <dt>User-customizable date/time formatting</dt>
+  <dd>Use <code class="code highlight language-text">com.intellij.util.text.JBDateFormat#getFormatter()</code> to use configured format from <code class="code highlight language-text">Settings | Appearance &amp; Behavior | System Settings | Date Formats</code>.</dd>
+</dl>
+
+<a name="notable-changes-in-intellij-idea" class="elem-anchor"></a>
+<h2>Notable Changes in IntelliJ IDEA<a href="#notable-changes-in-intellij-idea" class="anchor-link"><span></span></a></h2>
+
+<dl>
+  <dt>Unbundled plugins</dt>
+  <dd>Several plugins (Heroku integration, RubyMotion support, Java Applets Support) for no longer actively maintained technology have been moved to a <a href="https://github.com/JetBrains/intellij-obsolete-plugins/" data-bypass="yes" target="_blank"><span>separate repository</span></a>. 
+If your plugin depends on them, users will need to install them from the <a href="https://plugins.jetbrains.com" data-bypass="yes" target="_blank"><span>JetBrains plugin repository</span></a>.</dd>
+</dl>
+
+<a name="section-1" class="elem-anchor"></a>
+<h1>2019.2<a href="#section-1" class="anchor-link"><span></span></a></h1>
+
+<a name="notable-changes-in-intellij-platform-20192" class="elem-anchor"></a>
+<h2>Notable Changes in IntelliJ Platform 2019.2<a href="#notable-changes-in-intellij-platform-20192" class="anchor-link"><span></span></a></h2>
+
+<dl>
+  <dt>Quickfixes for file-level notifications</dt>
+  <dd>Consistent with other quickfixes, the menu now shows names of fixes, not names of problems themselves. <a href="https://youtrack.jetbrains.com/issue/IDEA-216731" data-bypass="yes" target="_blank"><span>Issue</span></a></dd>
+  <dt>Create HTML representation of code</dt>
+  <dd>Use <code class="code highlight language-text">com.intellij.openapi.editor.richcopy.HtmlSyntaxInfoUtil</code> to create Lexer-based highlighted code samples, e.g. for usage in documentation.</dd>
+  <dt>View | Appearance | Description in Tree Views</dt>
+  <dd>Toggles showing additional details in UI (e.g. modification timestamp in Project View) see <code class="code highlight language-text">UISettings.getShowInplaceComments()</code>.</dd>
+  <dt>New API for Editor Inlay Hints</dt>
+  <dd>Allows a variety of presentations (incl. custom painting), mouse event handling and exposing settings in <em>Editor | Inlay Hints</em>. See <code class="code highlight language-text">com.intellij.codeInsight.hints.InlayHintsProvider</code>.</dd>
+  <dt><code class="code highlight language-text">com.intellij.openapi.vfs.AsyncFileListener</code></dt>
+  <dd>A non-blocking variant for <code class="code highlight language-text">com.intellij.openapi.vfs.newvfs.BulkFileListener</code>.</dd>
+  <dt><code class="code highlight language-text">com.intellij.openapi.util.ColoredItem</code></dt>
+  <dd>Provides background color in all Trees, Lists and ComboBoxes.</dd>
+  <dt><code class="code highlight language-text">com.intellij.openapi.startup.StartupActivity</code> background variant</dt>
+  <dd>Use new dedicated extension point <code class="code highlight language-text">com.intellij.backgroundPostStartupActivity</code> (see Javadoc for <code class="code highlight language-text">StartupActivity#BACKGROUND_POST_STARTUP_ACTIVITY</code>).</dd>
+  <dt><code class="code highlight language-text">com.intellij.codeHighlighting.TextEditorHighlightingPassFactory</code> registration</dt>
+  <dd>Use new dedicated extension point <code class="code highlight language-text">com.intellij.highlightingPassFactory</code>.</dd>
+  <dt><code class="code highlight language-text">com.intellij.openapi.fileTypes.FileTypeFactory</code> deprecated</dt>
+  <dd>When registering file type via file extension, pattern or exact file name matching, use extension point <code class="code highlight language-text">com.intellij.fileType</code> instead (see <a href="/intellij/sdk/docs/tutorials/custom_language_support/language_and_filetype.html#b-register-file-type-20192-or-later"><span>Sample</span></a>).</dd>
+  <dt><code class="code highlight language-text">@org.jetbrains.annotations.ApiStatus.NonExtendable</code></dt>
+  <dd>Indicates that the annotated API class, interface or method must not be extended, implemented or overridden by external plugins but can be only obtained or instantiated (for classes and interfaces), or called (for methods).</dd>
+  <dt><code class="code highlight language-text">@org.jetbrains.annotations.ApiStatus.OverrideOnly</code></dt>
+  <dd>Indicates that the annotated method is part of SPI (Service Provider Interface), which is intended to be only implemented or overridden but never called by external plugins.</dd>
+  <dt><code class="code highlight language-text">com.intellij.util.Query.forEach</code></dt>
+  <dd>Defaults to thread-safe to prevent problems with clients using unsynchronized collections.</dd>
+  <dt><code class="code highlight language-text">com.intellij.openapi.projectRoots.SdkType#getInvalidHomeMessage</code></dt>
+  <dd>Returns dedicated message when invalid SDK path was chosen (e.g., JRE instead of JDK).</dd>
+</dl>
+
+<a name="notable-changes-in-intellij-idea-1" class="elem-anchor"></a>
+<h2>Notable Changes in IntelliJ IDEA<a href="#notable-changes-in-intellij-idea-1" class="anchor-link"><span></span></a></h2>
+
+<dl>
+  <dt>Java functionality extracted as plugin</dt>
+  <dd>If your plugin depends on Java, it must be specified now, please see <a href="https://blog.jetbrains.com/platform/2019/06/java-functionality-extracted-as-a-plugin/" data-bypass="yes" target="_blank"><span>blog post</span></a> for details.</dd>
+  <dt>Unbundled plugins</dt>
+  <dd>Several plugins (J2ME, JsTestDriver, Struts 1.x) for no longer actively maintained technology have been moved to a <a href="https://github.com/JetBrains/intellij-obsolete-plugins/" data-bypass="yes" target="_blank"><span>separate repository</span></a>. If your plugin depends on them, users will need to install them from the <a href="https://plugins.jetbrains.com" data-bypass="yes" target="_blank"><span>JetBrains plugin repository</span></a>.</dd>
+</dl>
+
+<a name="section-2" class="elem-anchor"></a>
+<h1>2019.1<a href="#section-2" class="anchor-link"><span></span></a></h1>
+
+<a name="notable-changes-in-intellij-platform-20191" class="elem-anchor"></a>
+<h2>Notable Changes in IntelliJ Platform 2019.1<a href="#notable-changes-in-intellij-platform-20191" class="anchor-link"><span></span></a></h2>
+
+<dl>
+  <dt><code class="code highlight language-text">com.intellij.testFramework.InspectionTestCase</code> changed to light test</dt>
+  <dd>Use dedicated <code class="code highlight language-text">ProjectDescriptor</code> or rollback project setup changes in <code class="code highlight language-text">tearDown()</code> (see <a href="/intellij/sdk/docs/basics/testing_plugins/light_and_heavy_tests.html"><span>Light and Heavy Tests</span></a>).</dd>
+  <dt><code class="code highlight language-text">@org.jetbrains.annotations.ApiStatus.AvailableSince</code></dt>
+  <dd>External annotations for IntelliJ Platform are generated and attached to plugin projects automatically (replacing <code class="code highlight language-text">@since</code> Javadoc).</dd>
+  <dt><code class="code highlight language-text">@org.jetbrains.annotations.ApiStatus.ScheduledForRemoval</code></dt>
+  <dd>External annotations for IntelliJ Platform are generated and attached to plugin projects automatically. This allows highlighting of API which has been removed in newer platform versions.</dd>
+  <dt><code class="code highlight language-text">@org.jetbrains.annotations.ApiStatus.Internal</code></dt>
+  <dd>Indicates that the annotated element must not be considered as a public API. Do not use outside of IntelliJ Platform. <a href="https://youtrack.jetbrains.com/issue/IDEA-211175" data-bypass="yes" target="_blank"><span>Issue</span></a></dd>
+  <dt><code class="code highlight language-text">PsiReferenceProvider</code> assert underlying element</dt>
+  <dd>Assert references are created for the given underlying <code class="code highlight language-text">PsiElement</code>. <a href="https://youtrack.jetbrains.com/issue/IDEA-203954" data-bypass="yes" target="_blank"><span>Issue</span></a></dd>
+  <dt><code class="code highlight language-text">CachedValue</code> more strict assertions</dt>
+  <dd>Enabled in tests and EAP/internal mode, see <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/core-impl/src/com/intellij/util/CachedValueStabilityChecker.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">CachedValueStabilityChecker</code></span></a> Javadoc.</dd>
+</dl>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/reference_guide/api_notable/api_notable_list_2020.html">Notable Changes in IntelliJ Platform and Plugins API 2020.*</a>
+                        <a class="navigation-links__next" href="/reference_guide/api_notable/api_notable_list_2018.html">Notable Changes in IntelliJ Platform and Plugins API 2018.*</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,239 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>8. Line Marker Provider / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//tutorials/custom_language_support/line_marker_provider.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="8. Line Marker Provider" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="8. Line Marker Provider" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="tutorials/custom_language_support/line_marker_provider">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/tutorials/custom_language_support/annotator.html">7. Annotator</a>
+                        <a class="navigation-links__next" href="/tutorials/custom_language_support/completion_contributor.html">9. Completion Contributor</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/tutorials/custom_language_support/line_marker_provider.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>8. Line Marker Provider</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>Line markers help annotate code with icons on the gutter.
+These markers can provide navigation targets to related code.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#define-a-line-marker-provider" id="markdown-toc-define-a-line-marker-provider"><span>8.1. Define a Line Marker Provider</span></a></li>
+  <li><a href="#best-practices-for-implementing-line-marker-providers" id="markdown-toc-best-practices-for-implementing-line-marker-providers"><span>8.2. Best Practices for Implementing Line Marker Providers</span></a></li>
+  <li><a href="#register-the-line-marker-provider" id="markdown-toc-register-the-line-marker-provider"><span>8.3. Register the Line Marker Provider</span></a></li>
+  <li><a href="#run-the-project" id="markdown-toc-run-the-project"><span>8.4. Run the Project</span></a></li>
+</ul>
+
+<a name="define-a-line-marker-provider" class="elem-anchor"></a>
+<h2>8.1. Define a Line Marker Provider<a href="#define-a-line-marker-provider" class="anchor-link"><span></span></a></h2>
+<p>A line marker provider annotates usages of Simple Language properties within Java code and provides navigation to the definition of these properties.
+The visual marker is a Simple Language icon in the gutter of the Editor window.</p>
+
+<p>The Simple Language marker provider subclasses <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/lang-api/src/com/intellij/codeInsight/daemon/RelatedItemLineMarkerProvider.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">RelatedItemLineMarkerProvider</code></span></a>.
+For this example, override the <code class="code highlight language-text">collectNavigationMarkers()</code> method to collect usage of a Simple Language <a href="/intellij/sdk/docs/tutorials/custom_language_support/language_and_filetype.html#define-the-language"><span>key and separators</span></a>:</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="c1">// Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.</span>
+
+<span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">intellij</span><span class="o">.</span><span class="na">sdk</span><span class="o">.</span><span class="na">language</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.intellij.codeInsight.daemon.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.codeInsight.navigation.NavigationGutterIconBuilder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.openapi.project.Project</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.psi.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.intellij.psi.impl.source.tree.java.PsiJavaTokenImpl</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.intellij.sdk.language.psi.SimpleProperty</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.jetbrains.annotations.NotNull</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleLineMarkerProvider</span> <span class="kd">extends</span> <span class="n">RelatedItemLineMarkerProvider</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">collectNavigationMarkers</span><span class="o">(</span> <span class="nd">@NotNull</span> <span class="n">PsiElement</span> <span class="n">element</span><span class="o">,</span>
+                                           <span class="nd">@NotNull</span> <span class="n">Collection</span><span class="o">&lt;</span> <span class="o">?</span> <span class="kd">super</span> <span class="n">RelatedItemLineMarkerInfo</span> <span class="o">&gt;</span> <span class="n">result</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// This must be an element with a literal expression as a parent</span>
+    <span class="k">if</span> <span class="o">(</span> <span class="o">!(</span><span class="n">element</span> <span class="k">instanceof</span> <span class="n">PsiJavaTokenImpl</span><span class="o">)</span> <span class="o">||</span> <span class="o">!(</span><span class="n">element</span><span class="o">.</span><span class="na">getParent</span><span class="o">()</span> <span class="k">instanceof</span> <span class="n">PsiLiteralExpression</span><span class="o">)</span> <span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+    
+    <span class="c1">// The literal expression must start with the Simple language literal expression</span>
+    <span class="n">PsiLiteralExpression</span> <span class="n">literalExpression</span> <span class="o">=</span> <span class="o">(</span><span class="n">PsiLiteralExpression</span><span class="o">)</span> <span class="n">element</span><span class="o">.</span><span class="na">getParent</span><span class="o">();</span>
+    <span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">literalExpression</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="k">instanceof</span> <span class="n">String</span> <span class="o">?</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">literalExpression</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">:</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span> <span class="o">(</span> <span class="n">value</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">||</span> <span class="o">!</span><span class="n">value</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span> <span class="n">SimpleAnnotator</span><span class="o">.</span><span class="na">SIMPLE_PREFIX_STR</span> <span class="o">+</span> <span class="n">SimpleAnnotator</span><span class="o">.</span><span class="na">SIMPLE_SEPARATOR_STR</span> <span class="o">)</span> <span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+
+    <span class="c1">// Get the Simple language property usage</span>
+    <span class="n">Project</span> <span class="n">project</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="na">getProject</span><span class="o">();</span>
+    <span class="n">String</span> <span class="n">possibleProperties</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span> <span class="n">SimpleAnnotator</span><span class="o">.</span><span class="na">SIMPLE_PREFIX_STR</span><span class="o">.</span><span class="na">length</span><span class="o">()+</span> <span class="n">SimpleAnnotator</span><span class="o">.</span><span class="na">SIMPLE_SEPARATOR_STR</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">);</span>
+    <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">SimpleProperty</span><span class="o">&gt;</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">SimpleUtil</span><span class="o">.</span><span class="na">findProperties</span><span class="o">(</span> <span class="n">project</span><span class="o">,</span> <span class="n">possibleProperties</span> <span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span> <span class="n">properties</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">)</span> <span class="o">{</span>
+      <span class="c1">// Add the property to a collection of line marker info</span>
+      <span class="n">NavigationGutterIconBuilder</span><span class="o">&lt;</span> <span class="n">PsiElement</span> <span class="o">&gt;</span> <span class="n">builder</span> <span class="o">=</span>
+            <span class="n">NavigationGutterIconBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">(</span> <span class="n">SimpleIcons</span><span class="o">.</span><span class="na">FILE</span> <span class="o">)</span>
+                                       <span class="o">.</span><span class="na">setTargets</span><span class="o">(</span> <span class="n">properties</span> <span class="o">)</span>
+                                       <span class="o">.</span><span class="na">setTooltipText</span><span class="o">(</span> <span class="s">"Navigate to Simple language property"</span> <span class="o">);</span>
+      <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span> <span class="n">builder</span><span class="o">.</span><span class="na">createLineMarkerInfo</span><span class="o">(</span> <span class="n">element</span> <span class="o">)</span> <span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</code></div>
+
+<a name="best-practices-for-implementing-line-marker-providers" class="elem-anchor"></a>
+<h2>8.2. Best Practices for Implementing Line Marker Providers<a href="#best-practices-for-implementing-line-marker-providers" class="anchor-link"><span></span></a></h2>
+<p>This section addresses important details about implementing a marker provider.
+The <code class="code highlight language-text">collectNavigationMarkers()</code> method should:</p>
+<ul>
+  <li>Only return line marker information consistent with the element passed into the method. 
+For example, do not return a <em>class</em> marker if <code class="code highlight language-text">getLineMarkerInfo()</code> was called with an element that corresponds to a <em>method</em>.</li>
+  <li>Return line marker information for the appropriate element at the correct scope of the PSI tree. 
+For example, do not return method marker for <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/java/java-psi-api/src/com/intellij/psi/PsiMethod.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiMethod</code></span></a>. 
+Instead, return it for the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/java/java-psi-api/src/com/intellij/psi/PsiIdentifier.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">PsiIdentifier</code></span></a> which contains the name of the method.</li>
+</ul>
+
+<p><img src="img/line_marker_location.png" alt="Line Marker Location" width="900px" /></p>
+
+<p>What happens when a <code class="code highlight language-text">LineMarkerProvider</code> returns marker information for a <code class="code highlight language-text">PsiElement</code> that is a higher node in the PSI tree?
+For example, if <code class="code highlight language-text">MyWrongLineMarkerProvider()</code> erroneously returns a <code class="code highlight language-text">PsiMethod</code> instead of a <code class="code highlight language-text">PsiIdentifier</code> element:</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyWrongLineMarkerProvider</span> <span class="kd">implements</span> <span class="n">LineMarkerProvider</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">LineMarkerInfo</span> <span class="nf">getLineMarkerInfo</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">PsiElement</span> <span class="n">element</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">element</span> <span class="k">instanceof</span> <span class="n">PsiMethod</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="n">LineMarkerInfo</span><span class="o">(</span><span class="n">element</span><span class="o">,</span> <span class="o">...);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></div>
+
+<p>The consequences of the <code class="code highlight language-text">MyWrongLineMarkerProvider()</code> implementation have to do with how the IntelliJ Platform performs inspections.
+For performance reasons, inspection, and specifically the <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/lang-impl/src/com/intellij/codeInsight/daemon/impl/LineMarkersPass.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">LineMarkersPass</code></span></a> queries all <a href="https://upsource.jetbrains.com/idea-ce/file/idea-ce-e2d423f42b53eafd5c625b93149a0ebc7e49756c/platform/lang-api/src/com/intellij/codeInsight/daemon/LineMarkerProviders.java" data-bypass="yes" target="_blank"><span><code class="code highlight language-text">LineMarkerProviders</code></span></a> in two phases:</p>
+<ul>
+  <li>The first pass is for all elements visible in the Editor window,</li>
+  <li>The second pass is for the rest of the elements in the file.</li>
+</ul>
+
+<p>If providers return nothing for either area, the line markers get cleared.
+However, if a method like <code class="code highlight language-text">actionPerformed()</code> is not completely visible in the Editor window (as shown in the image above,) and <code class="code highlight language-text">MyWrongLineMarkerProvider()</code> returns marker info for the <code class="code highlight language-text">PsiMethod</code> instead of <code class="code highlight language-text">PsiIdentifier</code>, then:</p>
+<ul>
+  <li>The first pass removes line marker info because whole <code class="code highlight language-text">PsiMethod</code> isn’t visible.</li>
+  <li>The second pass tries to add a line marker because <code class="code highlight language-text">MyWrongLineMarkerProvider()</code> is called for the <code class="code highlight language-text">PsiMethod</code>.</li>
+</ul>
+
+<p>As a result, <em>the line marker icon would blink annoyingly</em>.
+To fix this problem, rewrite <code class="code highlight language-text">MyWrongLineMarkerProvider</code> to return info for <code class="code highlight language-text">PsiIdentifier</code> instead of <code class="code highlight language-text">PsiMethod</code> as shown below:</p>
+<div class="code-block" data-lang="java"><code class="code-block__wrapper"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyCorrectLineMarkerProvider</span> <span class="kd">implements</span> <span class="n">LineMarkerProvider</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">LineMarkerInfo</span> <span class="nf">getLineMarkerInfo</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">PsiElement</span> <span class="n">element</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">element</span> <span class="k">instanceof</span> <span class="n">PsiIdentifier</span> <span class="o">&amp;&amp;</span> <span class="n">element</span><span class="o">.</span><span class="na">getParent</span><span class="o">()</span> <span class="k">instanceof</span> <span class="n">PsiMethod</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="n">LineMarkerInfo</span><span class="o">(</span><span class="n">element</span><span class="o">,</span> <span class="o">...);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="register-the-line-marker-provider" class="elem-anchor"></a>
+<h2>8.3. Register the Line Marker Provider<a href="#register-the-line-marker-provider" class="anchor-link"><span></span></a></h2>
+<p>The <code class="code highlight language-text">SimpleLineMarkerProvider</code> implementation is registered with the IntelliJ Platform in the plugin configuration file using the <code class="code highlight language-text">com.intellij.codeInsight.lineMarkerProvider</code> extension point.</p>
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper"><span class="nt">&lt;extensions</span> <span class="na">defaultExtensionNs=</span><span class="s">"com.intellij"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;codeInsight.lineMarkerProvider</span> <span class="na">language=</span><span class="s">"JAVA"</span> 
+          <span class="na">implementationClass=</span><span class="s">"org.intellij.sdk.language.SimpleLineMarkerProvider"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/extensions&gt;</span>
+</code></div>
+
+<a name="run-the-project" class="elem-anchor"></a>
+<h2>8.4. Run the Project<a href="#run-the-project" class="anchor-link"><span></span></a></h2>
+<p>Run the <code class="code highlight language-text">simple_language_plugin</code> in a Development Instance and open the <a href="/intellij/sdk/docs/tutorials/custom_language_support/annotator.html#run-the-project"><span>Test file</span></a>.
+Now the icon appears next to line 3 on the gutter.
+A user can click on the icon to navigate to the property definition.</p>
+
+<p><img src="img/line_marker.png" alt="Line Marker" /></p>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/tutorials/custom_language_support/annotator.html">7. Annotator</a>
+                        <a class="navigation-links__next" href="/tutorials/custom_language_support/completion_contributor.html">9. Completion Contributor</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

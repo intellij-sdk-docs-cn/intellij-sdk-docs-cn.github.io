@@ -1,0 +1,267 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Plugin Logo / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//basics/plugin_structure/plugin_icon_file.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Plugin Logo" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:25:03+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Plugin Logo" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="basics/plugin_structure/plugin_icon_file">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/plugin_structure/plugin_configuration_file.html">Plugin Configuration File - plugin.xml</a>
+                        <a class="navigation-links__next" href="/basics/plugin_structure/plugin_dependencies.html">Plugin Dependencies</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/basics/plugin_structure/plugin_icon_file.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Plugin Logo</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>Beginning in version 2019.1, the IntelliJ Platform supports representing a plugin with a logo.
+A <em>Plugin Logo</em> is intended to be a unique representation of a plugin’s functionality, technology, or company.
+Previously this page referred to Plugin Logos as <em>Plugin Icons</em>.</p>
+
+<p><strong>Note:</strong> icons and images used within a plugin have different requirements. 
+See <a href="/intellij/sdk/docs/reference_guide/work_with_icons_and_images.html"><span>Working with Icons and Images</span></a> for more information.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction"><span>Introduction</span></a></li>
+  <li><a href="#plugin-logo-requirements" id="markdown-toc-plugin-logo-requirements"><span>Plugin Logo Requirements</span></a>    <ul>
+      <li><a href="#plugin-logo-size" id="markdown-toc-plugin-logo-size"><span>Plugin Logo Size</span></a></li>
+      <li><a href="#plugin-logo-shape" id="markdown-toc-plugin-logo-shape"><span>Plugin Logo Shape</span></a></li>
+      <li><a href="#plugin-logo-colors" id="markdown-toc-plugin-logo-colors"><span>Plugin Logo Colors</span></a></li>
+      <li><a href="#plugin-logo-file-format" id="markdown-toc-plugin-logo-file-format"><span>Plugin Logo File Format</span></a></li>
+      <li><a href="#plugin-logo-file-naming-convention" id="markdown-toc-plugin-logo-file-naming-convention"><span>Plugin Logo File Naming Convention</span></a></li>
+    </ul>
+  </li>
+  <li><a href="#adding-plugin-logo-files-to-a-plugin-project" id="markdown-toc-adding-plugin-logo-files-to-a-plugin-project"><span>Adding Plugin Logo Files to a Plugin Project</span></a></li>
+</ul>
+
+<a name="introduction" class="elem-anchor"></a>
+<h2>Introduction<a href="#introduction" class="anchor-link"><span></span></a></h2>
+<p>Plugin Logos are shown in the <a href="https://plugins.jetbrains.com/" data-bypass="yes" target="_blank"><span>Plugins Repository</span></a>, and in <a href="https://plugins.jetbrains.com/marketplace" data-bypass="yes" target="_blank"><span>MarketPlace</span></a>. 
+They also appear in the Settings/Preferences <a href="https://www.jetbrains.com/help/idea/managing-plugins.html" data-bypass="yes" target="_blank"><span>Plugin Manager</span></a> UI in IntelliJ Platform-based IDEs. 
+Whether online or in the product UI, a Plugin Logo helps users to identify a plugin more quickly in a list, as shown below:</p>
+
+<p><img src="img/plugin_prefs.png" alt="Example Product Plugin Preferences Dialog" width="800px" /></p>
+
+<a name="plugin-logo-requirements" class="elem-anchor"></a>
+<h2>Plugin Logo Requirements<a href="#plugin-logo-requirements" class="anchor-link"><span></span></a></h2>
+<p>For a Plugin Logo to be displayed correctly within an IntelliJ Platform-based IDE, it must:</p>
+<ul>
+  <li>Follow the best practices design guidelines,</li>
+  <li>Be in the correct file format,</li>
+  <li>Conform to file name conventions,</li>
+  <li>Be in the <code class="code highlight language-text">META-INF</code> folder of the plugin distribution file.</li>
+</ul>
+
+<a name="plugin-logo-size" class="elem-anchor"></a>
+<h3>Plugin Logo Size<a href="#plugin-logo-size" class="anchor-link"><span></span></a></h3>
+<p>The Plugin Logo should be provided in one size: 40px by 40px. 
+A Plugin Logo is displayed in two sizes, and scales automatically in each context:</p>
+<ul>
+  <li>40px by 40px in the plugins list in the Plugin Manager UI.</li>
+  <li>80px by 80px in the plugin details screen in the Plugin Manager UI, on the plugin’s page in the Plugins Repository, and on MarketPlace.</li>
+</ul>
+
+<p>Verify that Plugin Logo designs are effective in both sizes and all display contexts.</p>
+
+<a name="plugin-logo-shape" class="elem-anchor"></a>
+<h3>Plugin Logo Shape<a href="#plugin-logo-shape" class="anchor-link"><span></span></a></h3>
+<p>Plugin Logo designs should leave at least 2px transparent padding around the perimeter, as shown below:</p>
+
+<p><img src="img/icon_size.png" alt="36px by 36px is the area where the visible part of the Logo should fit" width="225px" /></p>
+
+<p>Make sure Plugin Logos have the same visual weight as the logos in the examples below. 
+The more filled a Plugin Logo design is, the less actual space it needs. 
+See more examples of <a href="https://jetbrains.design/intellij/principles/icons/#08" data-bypass="yes" target="_blank"><span>visual weight compensation</span></a> in the IntelliJ Platform UI Guidelines for Icons.</p>
+
+<p>For basic shapes, use the following sizes. 
+Note the different areas of transparent padding used for each shape:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="img/square_logo.png" alt="Square 32px by 32px" width="225px" /></th>
+      <th style="text-align: center"><img src="img/circle_logo.png" alt="Circle 36px in diameter" width="225px" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><em>Square logo 32px by 32px</em></td>
+      <td style="text-align: center"><em>Circular logo 36px in diameter</em></td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><img src="img/rectangle_horizontal.png" alt="Horizontal rectangle 36px by 26px" width="225px" /></td>
+      <td style="text-align: center"><img src="img/rectangle_vertical.png" alt="Vertical rectangle 26px by 36px" width="225px" /></td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><em>Horizontal rectangular logo 36px by 26px</em></td>
+      <td style="text-align: center"><em>Vertical rectangular logo 26px by 36px</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<a name="plugin-logo-colors" class="elem-anchor"></a>
+<h3>Plugin Logo Colors<a href="#plugin-logo-colors" class="anchor-link"><span></span></a></h3>
+<p>If the plugin’s technology already has a logo, use its colors. 
+Check the license terms before using the logo. 
+If there is no existing logo, or its use is prohibited, create a custom logo based on the <a href="https://jetbrains.design/intellij/principles/icons/#action-icons" data-bypass="yes" target="_blank"><span>Action Colors Palette</span></a> in the IntelliJ Platform UI Guidelines for Icons.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="img/yt_logo.png" alt="The YouTrack Plugin Logo uses the YouTrack product logo " height="200px" width="200px" /></th>
+      <th style="text-align: center"><img src="img/keymap_logo.png" alt="The Keymap Plugin Logo uses a color from the Action Colors Palette" height="200px" width="200px" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><em>The YouTrack Plugin Logo uses<br />the YouTrack product logo</em></td>
+      <td style="text-align: center"><em>The Keymap Plugin Logo uses a color<br />from the Action Colors Palette</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ensure a Plugin Logo is visible on both light and dark backgrounds. 
+If one Plugin Logo design does not work on both light and dark backgrounds, then create separate light and dark versions of the Plugin Logo. 
+The examples below illustrate how a Plugin Logo design may work well for a light background but not so well for a dark background. 
+Consequently, a separate Plugin Logo for dark backgrounds is needed.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="img/light_version.png" alt="Plugin Logo on Light UI Theme" width="225px" /></th>
+      <th style="text-align: center"><img src="img/dark_bad.png" alt="Light Plugin Logo on Dark UI Theme" width="225px" /></th>
+      <th style="text-align: center"><img src="img/dark_good.png" alt="Plugin Logo for Dark UI Theme" width="225px" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><em>The light Plugin Logo design<br />works well on light UI Theme</em></td>
+      <td style="text-align: center"><em>The light Plugin Logo design does<br />not work well on a dark UI Theme</em></td>
+      <td style="text-align: center"><em>A separate, dark Plugin Logo design<br />works well on dark UI Theme</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<a name="plugin-logo-file-format" class="elem-anchor"></a>
+<h3>Plugin Logo File Format<a href="#plugin-logo-file-format" class="anchor-link"><span></span></a></h3>
+<p>All Plugin Logo images must be SVG format. 
+This vector image format is required because the Plugin Logo file must be small, and the image must scale without any loss of quality.</p>
+
+<a name="plugin-logo-file-naming-convention" class="elem-anchor"></a>
+<h3>Plugin Logo File Naming Convention<a href="#plugin-logo-file-naming-convention" class="anchor-link"><span></span></a></h3>
+<p>Name the Plugin Logo files according to the following conventions:</p>
+<ul>
+  <li><code class="code highlight language-text">pluginIcon.svg</code> is the default Plugin Logo. If a separate Logo file for dark UI Themes exists in the plugin, then this file is used solely for light UI Themes,</li>
+  <li><code class="code highlight language-text">pluginIcon_dark.svg</code> is an optional, alternative Plugin Logo for use solely with dark IDE UI Themes.</li>
+</ul>
+
+<a name="adding-plugin-logo-files-to-a-plugin-project" class="elem-anchor"></a>
+<h2>Adding Plugin Logo Files to a Plugin Project<a href="#adding-plugin-logo-files-to-a-plugin-project" class="anchor-link"><span></span></a></h2>
+<p>The Plugin Logo files must be in the <code class="code highlight language-text">META-INF</code> folder of the plugin distribution file, i.e. the <code class="code highlight language-text">*.jar</code> or <code class="code highlight language-text">*.zip</code> file you upload to the plugin repository and install into a JetBrains IDE.</p>
+
+<p>To include Plugin Logo files in your distribution file, place the Plugin Logo files into a plugin project’s <code class="code highlight language-text">resources/META-INF</code> folder. 
+Note that this requirement is the same regardless of using DevKit or Gradle for developing a plugin. For example:</p>
+
+<p><img src="img/resource_directory_structure.png" alt="Plugin Logo Files in META-INF folder" width="450px" /></p>
+
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/plugin_structure/plugin_configuration_file.html">Plugin Configuration File - plugin.xml</a>
+                        <a class="navigation-links__next" href="/basics/plugin_structure/plugin_dependencies.html">Plugin Dependencies</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

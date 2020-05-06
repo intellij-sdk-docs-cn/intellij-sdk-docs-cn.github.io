@@ -1,0 +1,205 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Android Studio Plugin Development / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//products/android_studio.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Android Studio Plugin Development" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-03-18T18:42:50+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Android Studio Plugin Development" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="products/android_studio">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/getting_started/plugin_compatibility.html">Plugin Compatibility with IntelliJ Platform Products</a>
+                        <a class="navigation-links__next" href="/products/app_code.html">AppCode Plugin Development</a>
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/products/android_studio.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Android Studio Plugin Development</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<a name="introduction" class="elem-anchor"></a>
+<h2>Introduction<a href="#introduction" class="anchor-link"><span></span></a></h2>
+<p>Android Studio plugins extend or add functionality to the <a href="https://developer.android.com/studio" data-bypass="yes" target="_blank"><span>Android Studio IDE</span></a>.
+Plugins can be written in Kotlin or Java, or a mix of both, and are created using IntelliJ IDEA and the <a href="/intellij/sdk/docs/intro/intellij_platform.html"><span>IntelliJ Platform</span></a>.
+It’s also helpful to be familiar with <a href="https://docs.oracle.com/javase/8/javase-clienttechnologies.htm" data-bypass="yes" target="_blank"><span>Java Swing</span></a>.
+Once completed, plugins can be packaged and distributed at <a href="https://plugins.jetbrains.com" data-bypass="yes" target="_blank"><span>plugins.jetbrains.com</span></a>.</p>
+
+<p>Android Studio plugins are not Android modules or apps to run in the Android operating system, such as on a smartphone or tablet.</p>
+
+<a name="configuring-intellij-platform-projects-for-android-studio-plugin-development" class="elem-anchor"></a>
+<h2>Configuring IntelliJ Platform Projects for Android Studio Plugin Development<a href="#configuring-intellij-platform-projects-for-android-studio-plugin-development" class="anchor-link"><span></span></a></h2>
+<p>To create a new Android Studio plugin project, follow the tutorial on the <a href="/intellij/sdk/docs/tutorials/build_system/prerequisites.html"><span>Getting Started with Gradle</span></a> page.
+The tutorial produces a skeleton project suitable to use as a starting point for an Android Studio plugin.
+On the <a href="/intellij/sdk/docs/tutorials/build_system/prerequisites.html#new-project-configuration-screen"><span>New Project Configuration Screen</span></a> of the New Project Wizard tutorial, choose Gradle from the product category pane as described in the tutorial, <strong>not</strong> <em>Android</em>.</p>
+
+<p>Some minor modifications to the skeleton project are needed, as discussed below.</p>
+
+<a name="matching-versions-of-the-intellij-platform-with-the-android-studio-version" class="elem-anchor"></a>
+<h3>Matching Versions of the IntelliJ Platform with the Android Studio Version<a href="#matching-versions-of-the-intellij-platform-with-the-android-studio-version" class="anchor-link"><span></span></a></h3>
+<p>For API compatibility, it is essential to match the version of the IntelliJ Platform APIs used for plugin development with the target version of Android Studio.
+The version number of Android Studio contains the version of the underlying IntelliJ Platform APIs that were used to build it.</p>
+
+<p>To find the version of the IntelliJ Platform used to build Android Studio, use the Android Studio <em>About</em> dialog screen.
+An example is shown below.
+In this case, the (BRANCH.BUILD.FIX) version of the IntelliJ Platform is <code class="code highlight language-text">191.8026.42</code>, which corresponds to the IntelliJ IDEA version 2019.1.4.
+The <a href="#configuring-the-plugin-buildgradle-file"><span><code class="code highlight language-text">build.gradle</code> configuration steps</span></a> section below explains how to set the IntelliJ Platform version to match the target version of Android Studio.</p>
+
+<p><img src="img/android_studio_build.png" alt="Example Android Studio About Dialog" width="600px" /></p>
+
+<a name="configuring-the-plugin-buildgradle-file" class="elem-anchor"></a>
+<h3>Configuring the Plugin build.gradle File<a href="#configuring-the-plugin-buildgradle-file" class="anchor-link"><span></span></a></h3>
+<p>The use-case of developing for a non-IntelliJ IDEA IDE is reviewed in the <a href="/intellij/sdk/docs/tutorials/build_system/gradle_guide.html#plugins-targeting-alternate-intellij-platform-based-ides"><span>Plugins Targeting Alternate IntelliJ Platform-Based IDEs</span></a> section of the <a href="/intellij/sdk/docs/tutorials/build_system/gradle_guide.html"><span>Configuring Gradle for IntelliJ Platform Plugins</span></a> page.
+The particular example in that section discusses configuring a plugin project for PhpStorm, so the details for an Android Studio plugin project are reviewed here.</p>
+
+<p>Here are the steps to configure the <code class="code highlight language-text">build.gradle</code> file for developing a plugin to target Android Studio:</p>
+<ul>
+  <li>The Gradle plugin attributes describing the configuration of the <a href="/intellij/sdk/docs/tutorials/build_system/gradle_guide.html#configuring-the-gradle-plugin-for-building-intellij-platform-plugin-projects"><span>IntelliJ Platform used to build the plugin project</span></a> must be explicitly set. 
+Continuing with the example <a href="#matching-versions-of-the-intellij-platform-with-the-android-studio-version"><span>above</span></a>, set the <code class="code highlight language-text">intellij.version</code> value to <code class="code highlight language-text">191.8026.42</code>.</li>
+  <li>Android Studio plugin projects that use APIs from the <code class="code highlight language-text">android</code> plugin must declare a dependency on that plugin.
+ Declare the dependency in <code class="code highlight language-text">build.gradle</code> using the Gradle plugin <code class="code highlight language-text">intellij.plugins</code> attribute, which in this case lists the <a href="https://github.com/JetBrains/gradle-intellij-plugin/blob/master/README.md#intellij-platform-properties" data-bypass="yes" target="_blank"><span>directory name</span></a> of the plugin.</li>
+  <li>The best practice is to use the target version of Android Studio as the IDE Development Instance.
+Set the Development Instance to the (user-specific) absolute path to the target Android Studio application.</li>
+</ul>
+
+<p>The snippet below is an example of configuring the Setup and Running DSLs in a <code class="code highlight language-text">build.gradle</code> specific to developing a plugin targeted at Android Studio.</p>
+<div class="code-block" data-lang="groovy"><code class="code-block__wrapper"><span class="n">intellij</span> <span class="o">{</span>
+  <span class="c1">// Define IntelliJ Platform against which to build the plugin project.</span>
+  <span class="n">version</span> <span class="s1">'191.8026.42'</span>  <span class="c1">// Same IntelliJ IDEA version (2019.1.4) as target 3.5 Android Studio   </span>
+  <span class="n">type</span> <span class="s1">'IC'</span>              <span class="c1">// Use IntelliJ IDEA CE because it's the basis of the IntelliJ Platform   </span>
+  <span class="c1">// Require the Android plugin, Gradle will match the plugin version to intellij.version </span>
+  <span class="n">plugins</span> <span class="s1">'android'</span>     
+<span class="o">}</span>
+
+<span class="n">runIde</span> <span class="o">{</span>
+    <span class="c1">// Absolute path to installed target 3.5 Android Studio to use as IDE Development Instance</span>
+    <span class="c1">// The "Contents" directory is macOS specific.</span>
+    <span class="n">ideDirectory</span> <span class="s1">'/Applications/Android Studio.app/Contents'</span>
+<span class="o">}</span>
+</code></div>
+
+<a name="configuring-the-plugin-pluginxml-file" class="elem-anchor"></a>
+<h3>Configuring the Plugin plugin.xml File<a href="#configuring-the-plugin-pluginxml-file" class="anchor-link"><span></span></a></h3>
+<p>As discussed in the <a href="/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html#declaring-plugin-dependencies"><span>Plugin Dependencies</span></a> section of this guide, a plugin’s dependency on <a href="/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html#modules-specific-to-functionality"><span>Modules Specific to Functionality</span></a> must be declared in <code class="code highlight language-text">plugin.xml</code>. 
+When using Android Studio-specific features (APIs), a dependency on <code class="code highlight language-text">com.intellij.modules.androidstudio</code> must be declared as shown in the code snippet below.
+Otherwise, if only general IntelliJ Platform features (APIs) are used, then a dependency on <code class="code highlight language-text">com.intellij.modules.platform</code> must be declared as discussed in <a href="/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html"><span>Plugin Compatibility with IntelliJ Platform Products</span></a>.</p>
+<div class="code-block" data-lang="xml"><code class="code-block__wrapper"><span class="nt">&lt;depends&gt;</span>com.intellij.modules.androidstudio<span class="nt">&lt;/depends&gt;</span>
+</code></div>
+
+<a name="additional-articles-and-resources" class="elem-anchor"></a>
+<h2>Additional Articles and Resources<a href="#additional-articles-and-resources" class="anchor-link"><span></span></a></h2>
+<ul>
+  <li>Discussion of extending Android Lint - <a href="https://intellij-support.jetbrains.com/hc/en-us/community/posts/360005018559-How-to-register-AndroidLintInspectionBase-in-IntellijIdea-Plugin" data-bypass="yes" target="_blank"><span>How to Register Androidlintinspectionbase in Intellijidea Plugin</span></a></li>
+  <li>Grzegorz Matyszczak’s article <em>“How I Automated Creating Files for a New Screen with My Own Android Studio Plugin”</em>.</li>
+  <li>Marcos Holgado’s article series <em>“Write an Android Studio Plugin”</em>.</li>
+</ul>
+
+<!--
+* Grzegorz Matyszczak's article [How I Automated Creating Files for a New Screen with My Own Android Studio Plugin](https://proandroiddev.com/how-i-automated-creating-files-for-a-new-screen-with-my-own-android-studio-plugin-5d54b14ba6fa)
+* Marcos Holgado's article series [Write an Android Studio Plugin (Part 1)](https://proandroiddev.com/write-an-android-studio-plugin-part-1-creating-a-basic-plugin-af956c4f8b50)
+-->
+
+<a name="open-source-plugins-for-android-studio" class="elem-anchor"></a>
+<h2>Open Source Plugins for Android Studio<a href="#open-source-plugins-for-android-studio" class="anchor-link"><span></span></a></h2>
+<p>When learning new development configurations, it is helpful to have some representative projects for reference:</p>
+<ul>
+  <li><a href="https://github.com/pbreault/adb-idea" data-bypass="yes" target="_blank"><span>ADB Idea</span></a> plugin for Android Studio and Intellij IDEA that speeds Android development.</li>
+  <li><a href="https://github.com/takahirom/android-postfix-plugin" data-bypass="yes" target="_blank"><span>Android postfix plugin</span></a> for AndroidStudio.</li>
+  <li><a href="https://github.com/flutter/flutter-intellij" data-bypass="yes" target="_blank"><span>Flutter Plugin</span></a>.</li>
+  <li>Bal Sikandar’s <a href="https://github.com/balsikandar/Android-Studio-Plugins" data-bypass="yes" target="_blank"><span>list of Android Studio plugins</span></a>.</li>
+</ul>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/basics/getting_started/plugin_compatibility.html">Plugin Compatibility with IntelliJ Platform Products</a>
+                        <a class="navigation-links__next" href="/products/app_code.html">AppCode Plugin Development</a>
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 18 March 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+

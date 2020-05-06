@@ -1,0 +1,339 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Guidelines for Creating IntelliJ Platform SDK Code Samples / IntelliJ Platform SDK  DevGuide</title>
+    <link rel="stylesheet" href="/intellij/sdk/docs/app/app.css">
+    <link rel="shortcut icon" href="/intellij/sdk/docs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/intellij/sdk/docs/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/intellij/sdk/docs/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/intellij/sdk/docs/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/intellij/sdk/docs/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/intellij/sdk/docs/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/intellij/sdk/docs/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/intellij/sdk/docs/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/intellij/sdk/docs/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/intellij/sdk/docs/apple-mask-icon.svg" color="black">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-square70x70logo" content="/intellij/sdk/docs/mstile-70x70.png">
+    <meta name="msapplication-TileImage" content="/intellij/sdk/docs/mstile-144x144.png">
+    <meta name="msapplication-square150x150logo" content="/intellij/sdk/docs/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/intellij/sdk/docs/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/intellij/sdk/docs/mstile-310x310.png">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs//intro/sdk_code_guidelines.html" />
+    <meta property="og:site_name" content="JetBrains IntelliJ Platform SDK" />
+    <meta property="og:title" content="Guidelines for Creating IntelliJ Platform SDK Code Samples" />
+    <meta property="og:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta property="og:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta property="article:modified_time" content="2020-02-19T22:44:51+08:00" />
+    <!-- <meta property="article:section" content="" /> 
+    <meta property="article:tag" content="" /> -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@JBPlatform" />
+    <meta name="twitter:title" content="Guidelines for Creating IntelliJ Platform SDK Code Samples" />
+    <meta name="twitter:description" content="Documentation for working with and extending the IntelliJ Platform SDK" />
+    <meta name="twitter:image" content="https://intellij-sdk-docs-cn.github.io/intellij/sdk/docs/jetbrains.png" />
+    <meta class="swiftype" name="product" data-type="string" content="/intellij/sdk/docs/"></meta>
+<link  rel="stylesheet" href="/intellij/sdk/docs/app/styles.css"></head>
+<body data-id="intro/sdk_code_guidelines">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search IntelliJ Platform SDK  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a data-bypass="true" href="//youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2020 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>IntelliJ Platform SDK DevGuide</h3>
+                
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+                    <div class="navigation-links _top" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/intro/sdk_style.html">Style Guide for SDK Documents</a>
+                        
+                    </div>
+                    <a data-bypass="true" href="https://github.com/intellij-sdk-docs-cn/intellij-sdk-docs-cn/edit/master/intro/sdk_code_guidelines.md" class="page-link-to-github" target="_blank" title="Edit this page on GitHub">
+                        <i class="github-icon"></i>
+                        <span class="text">Edit page</span>
+                    </a>
+
+                    <h1>Guidelines for Creating IntelliJ Platform SDK Code Samples</h1>
+                    <!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
+<p>This document describes the coding guidelines used for authoring open-source IntelliJ Platform SDK code samples.
+Before you begin, please read this page thoroughly, as well as the <a href="/intellij/sdk/docs/CODE_OF_CONDUCT.html"><span>Code of Conduct</span></a> and <a href="https://github.com/JetBrains/intellij-sdk-docs/blob/master/LICENSE.txt" data-bypass="yes" target="_blank"><span>License</span></a> documents.
+For information about contributing to the IntelliJ Platform itself visit <a href="/intellij/sdk/docs/basics/platform_contributions.html"><span>Contributing to the IntelliJ Platform</span></a>.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#objectives" id="markdown-toc-objectives"><span>Objectives</span></a></li>
+  <li><a href="#plugin-copyright-statements" id="markdown-toc-plugin-copyright-statements"><span>Plugin Copyright Statements</span></a></li>
+  <li><a href="#directory-naming-conventions-for-sdk-plugins" id="markdown-toc-directory-naming-conventions-for-sdk-plugins"><span>Directory Naming Conventions for SDK Plugins</span></a></li>
+  <li><a href="#group-and-artifact-id" id="markdown-toc-group-and-artifact-id"><span>Group and Artifact ID</span></a></li>
+  <li><a href="#plugin-id-conventions" id="markdown-toc-plugin-id-conventions"><span>Plugin ID Conventions</span></a></li>
+  <li><a href="#plugin-package-names" id="markdown-toc-plugin-package-names"><span>Plugin Package Names</span></a></li>
+  <li><a href="#plugin-directory-structure" id="markdown-toc-plugin-directory-structure"><span>Plugin Directory Structure</span></a></li>
+  <li><a href="#buildgradle-conventions" id="markdown-toc-buildgradle-conventions"><span>build.gradle Conventions</span></a></li>
+  <li><a href="#pluginxml-conventions" id="markdown-toc-pluginxml-conventions"><span>plugin.xml Conventions</span></a></li>
+  <li><a href="#testing" id="markdown-toc-testing"><span>Testing</span></a></li>
+</ul>
+
+<a name="objectives" class="elem-anchor"></a>
+<h2>Objectives<a href="#objectives" class="anchor-link"><span></span></a></h2>
+<p>Keep the following considerations in mind while authoring an SDK code sample:</p>
+<ul>
+  <li>The purpose of an SDK sample is to demonstrate an implementation pattern of the IntelliJ Platform.</li>
+  <li>SDK code samples are instructional code, intended to teach.
+    <ul>
+      <li>Instructional code differs from production code in some key aspects:
+        <ul>
+          <li>Sacrifice some robustness in the interest of simplicity and brevity.
+Use error checking where it is necessary to make a point about an implementation pitfall.</li>
+          <li>Keep implementations as simple as possible, but use the full features of the IntelliJ Platform, programming language, and libraries.</li>
+          <li>Use meaningful names for interfaces, classes, fields, methods, and extension points.</li>
+          <li>Write instructional JavaDoc comments.</li>
+        </ul>
+      </li>
+      <li>Code samples replace lots of documentation.</li>
+    </ul>
+  </li>
+  <li>Aim for two levels of SDK samples:
+    <ul>
+      <li>A <em>basic</em> sample is focused on a particular subject by demonstrating a limited area of the IntelliJ Platform. 
+It should show all the components and architecture but ultimately accomplish something elementary. 
+For example, demonstrate persistence by storing only a <code class="code highlight language-text">String</code>.</li>
+      <li>An <em>advanced</em> sample demonstrates how different parts of the IntelliJ Platform integrate and work together, such as combining inspections or intentions with non-trivial PsiTree manipulation.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Ultimately, the goal is to provide developers with roadmaps for implementing functionality in an IntelliJ Platform-based plugin.
+Each roadmap should contain:</p>
+<ul>
+  <li>Pointers to SDK documentation about the IntelliJ Platform APIs needed to implement the functionality.</li>
+  <li>Pointers to relevant <em>basic</em> SDK sample plugins.</li>
+  <li>Pointers to related <em>advanced</em> SDK sample plugins.</li>
+</ul>
+
+<a name="plugin-copyright-statements" class="elem-anchor"></a>
+<h2>Plugin Copyright Statements<a href="#plugin-copyright-statements" class="anchor-link"><span></span></a></h2>
+<p>Use the standard intellij-community copyright notice in all sample plugins authored by JetBrains:</p>
+<div class="code-block" data-lang="text"><code class="code-block__wrapper">Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file."  
+</code></div>
+
+<aside class="note">
+  <p> The copyright statement must appear at the top of every source file. Use the <a href="https://github.com/JetBrains/intellij-sdk-docs/tree/master/.idea/copyright" data-bypass="yes" target="_blank"><span>IntelliJ Platform SDK</span></a> copyright profile.</p>
+</aside>
+
+<a name="directory-naming-conventions-for-sdk-plugins" class="elem-anchor"></a>
+<h2>Directory Naming Conventions for SDK Plugins<a href="#directory-naming-conventions-for-sdk-plugins" class="anchor-link"><span></span></a></h2>
+<p>For <em>basic</em> samples, the plugin directory name is derived from the IntelliJ Platform extension points demonstrated.
+For example, <code class="code highlight language-text">foo_basics</code> where <code class="code highlight language-text">foo</code> corresponds to an IntelliJ Platform framework, extension point, or component.
+Some naming examples include <code class="code highlight language-text">facet_basics</code> and <code class="code highlight language-text">editor_basics</code>.
+There is only one <em>basic</em> sample per IntelliJ Platform API area.</p>
+
+<p>For <em>advanced</em> code samples, the name should reflect the complex functionality delivered by the plugin rather than the IntelliJ Platform APIs.
+Advanced samples will be cross-referenced to the IntelliJ Platform APIs demonstrated in the sample.</p>
+
+<p>The only symbol characters allowed in the name of a plugin root directory are underscores, such as <code class="code highlight language-text">foo_basics</code> or <code class="code highlight language-text">max_opened_projects</code>.
+However, underscores should <em>not</em> be used in any other symbol names, such as <code class="code highlight language-text">Artifact ID</code>, plugin ID, package names, etc.
+Instead, concatenate a long name into camelCase such as <code class="code highlight language-text">maxOpenedProjects</code></p>
+
+<a name="group-and-artifact-id" class="elem-anchor"></a>
+<h2>Group and Artifact ID<a href="#group-and-artifact-id" class="anchor-link"><span></span></a></h2>
+<p>When creating a Gradle-based IntelliJ Platform plugin, the plugin’s Maven coordinates (<code class="code highlight language-text">Group ID</code>, <code class="code highlight language-text">Artifact ID</code>, <code class="code highlight language-text">Version</code>) are defined.</p>
+
+<p>The <code class="code highlight language-text">Group ID</code> for SDK plugins is always <code class="code highlight language-text">org.intellij.sdk</code>.</p>
+
+<p>The <code class="code highlight language-text">Artifact ID</code> is a succinct derivative of the plugin directory name.
+An <code class="code highlight language-text">Artifact ID</code> should not contain symbols.</p>
+
+<p>For <em>basic</em> code samples, it is not necessary to include “basic” in the <code class="code highlight language-text">Artifact ID</code>.
+For example, the <code class="code highlight language-text">foo_basics</code> directory name would have the <code class="code highlight language-text">Artifact ID</code> <code class="code highlight language-text">foo</code>.</p>
+
+<p>A plugin with a longer directory name, such as <code class="code highlight language-text">conditional_operator_intention</code>, could have the more succinct <code class="code highlight language-text">Artifact ID</code> of <code class="code highlight language-text">conditionalOperatorIntention</code>.
+(For legacy reasons, the <code class="code highlight language-text">conditional_operator_intention</code> plugin uses a more succinct <code class="code highlight language-text">Artifact ID</code>.)</p>
+
+<a name="plugin-id-conventions" class="elem-anchor"></a>
+<h2>Plugin ID Conventions<a href="#plugin-id-conventions" class="anchor-link"><span></span></a></h2>
+<p>The plugin ID appears between <code class="code highlight language-text">&lt;id&gt;</code> elements in the <code class="code highlight language-text">plugin.xml</code> file.</p>
+
+<p>In general, the plugin ID is the <code class="code highlight language-text">Group ID</code> concatenated with the <code class="code highlight language-text">Artifact ID</code>.
+For example, a plugin like <code class="code highlight language-text">facet_basics</code> has the plugin ID <code class="code highlight language-text">org.intellij.sdk.facet</code>.</p>
+
+<p>Plugin IDs do not contain underscores.</p>
+
+<a name="plugin-package-names" class="elem-anchor"></a>
+<h2>Plugin Package Names<a href="#plugin-package-names" class="anchor-link"><span></span></a></h2>
+<p>Packages in plugins should begin with the plugin ID.
+If there is only one package in a plugin, then the package name is the same as the plugin ID.
+Additional suffix words, separated by “.” characters, can be added to form more specific package names.
+Package names do not contain underscores.</p>
+
+<a name="plugin-directory-structure" class="elem-anchor"></a>
+<h2>Plugin Directory Structure<a href="#plugin-directory-structure" class="anchor-link"><span></span></a></h2>
+<p>SDK sample code should have a standard directory footprint.
+Standardized structure not only makes the samples simpler to navigate and understand, but it builds on the default Gradle plugin project structure.</p>
+
+<p>Note that directories below the plugin root folder should not have underscore characters, and should use camelCase if needed.
+The following is an example directory structure for a <code class="code highlight language-text">foo_basics</code> plugin.</p>
+<div class="code-block" data-lang="text"><code class="code-block__wrapper">code_samples/
+  foo_basics/
+    gradle/
+    src/
+      main/
+        java/
+          org.intellij.sdk.foo/
+          icons/
+            SdkIcons.java     # The standard SDK icon class
+        resources/
+          icons/
+            sdk_16.svg        # The standard SDK icon for menus, etc.
+          META-INF/
+            plugin.xml        # The plugin configuration file
+            pluginIcon.svg    # The standard SDK plugin icon
+      test/                   # Omit if there are no tests
+        java/
+          org.intellij.sdk.foo/
+        resources/
+    build.gradle
+    gradlew
+    gradle.bat
+    settings.gradle
+</code></div>
+
+<a name="buildgradle-conventions" class="elem-anchor"></a>
+<h2>build.gradle Conventions<a href="#buildgradle-conventions" class="anchor-link"><span></span></a></h2>
+<p>New SDK code samples should be developed <a href="/intellij/sdk/docs/tutorials/build_system.html"><span>using Gradle</span></a>. 
+As of this writing, the use of Gradle in SDK code samples still relies heavily on the <code class="code highlight language-text">plugin.xml</code> for specifying the plugin configuration.
+At a later, second phase, the SDK code samples will transition to rely more on the Gradle configuration.</p>
+
+<p>The default contents of a <code class="code highlight language-text">build.gradle</code> file are produced by the <a href="/intellij/sdk/docs/tutorials/build_system/prerequisites.html#creating-a-gradle-based-intellij-platform-plugin-with-new-project-wizard"><span>New Project Wizard</span></a>. 
+A consistent structure for an SDK code sample’s <code class="code highlight language-text">build.gradle</code> file is important for clarity and is based on the default produced by the project wizard. 
+Comments in SDK code sample <code class="code highlight language-text">build.gradle</code> files should only draw attention to the parts of the Gradle configuration that are unique for a plugin.</p>
+
+<p>For SDK code samples, a few alterations are needed to the default <code class="code highlight language-text">build.gradle</code> file produced by the plugin wizard:</p>
+<ul>
+  <li>Maintain the Gradle properties <code class="code highlight language-text">version</code> (<code class="code highlight language-text">project.version</code>) and <code class="code highlight language-text">group</code> (<code class="code highlight language-text">project.group</code>).
+See the <a href="/intellij/sdk/docs/tutorials/build_system/prerequisites.html#plugin-gradle-properties-and-plugin-configuration-file-elements"><span>Plugin Gradle Properties</span></a> section for how these Gradle properties relate to the elements in <code class="code highlight language-text">plugin.xml</code>.</li>
+  <li>Add the following statement to the <a href="https://github.com/JetBrains/gradle-intellij-plugin/blob/master/README.md#setup-dsl" data-bypass="yes" target="_blank"><span>Setup DSL</span></a> (<code class="code highlight language-text">intellij{}</code>) section:
+<div class="code-block" data-lang="groovy"><code class="code-block__wrapper"><span class="c1">// Prevents patching &lt;idea-version&gt; attributes in plugin.xml</span>
+<span class="n">updateSinceUntilBuild</span> <span class="o">=</span> <span class="kc">false</span> 
+</code></div>
+  </li>
+  <li>Add the following statement to the <a href="https://github.com/JetBrains/gradle-intellij-plugin/blob/master/README.md#patching-dsl" data-bypass="yes" target="_blank"><span>Patching DSL</span></a> (<code class="code highlight language-text">patchPluginXml{}</code>) section:
+<div class="code-block" data-lang="groovy"><code class="code-block__wrapper"><span class="c1">// Patches &lt;version&gt; value in plugin.xml</span>
+<span class="n">version</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="na">version</span>
+</code></div>
+  </li>
+</ul>
+
+<a name="pluginxml-conventions" class="elem-anchor"></a>
+<h2>plugin.xml Conventions<a href="#pluginxml-conventions" class="anchor-link"><span></span></a></h2>
+<p>A consistent structure for the <a href="/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html"><span><code class="code highlight language-text">plugin.xml</code></span></a> configuration file of an SDK code sample is important because we want to draw attention to the unique parts of the file for a plugin.
+Comment profusely about unique elements and configurations, and comment sparingly for the rest.</p>
+
+<p>The sequence of elements in an SDK code sample <code class="code highlight language-text">plugin.xml</code> file is:</p>
+<ul>
+  <li><code class="code highlight language-text">&lt;id&gt;</code> Use the fully qualified <a href="#plugin-id-conventions"><span>Plugin ID</span></a>.</li>
+  <li><code class="code highlight language-text">&lt;name&gt;</code> The name value does not have to match the <a href="#directory-naming-conventions-for-sdk-plugins"><span>Plugin Directory Name</span></a>.
+The name is used for display purposes, and should reflect the functionality of the plugin.
+The name must start with “SDK: “.</li>
+  <li><code class="code highlight language-text">&lt;version&gt;</code> The code sample’s version in MAJOR.MINOR.FIX format.
+    <ul>
+      <li>MAJOR corresponds to a significant upgrade in functionality.</li>
+      <li>MINOR corresponds to minor refactoring and small improvements in functionality.</li>
+      <li>FIX corresponds to changes that fix problems without significant refactoring.</li>
+    </ul>
+  </li>
+  <li><code class="code highlight language-text">&lt;idea-version&gt;</code> Set the attributes:
+    <ul>
+      <li><code class="code highlight language-text">since-build</code> attribute to the earliest compatible build number of the IntelliJ Platform.
+The default for SDK samples is “193”.</li>
+      <li><code class="code highlight language-text">until-build</code> Omit this attribute for new sample plugins.
+SDK code samples are reviewed before every major release (20XX.1) to ensure compatibility with the latest IntelliJ Platform.
+Add this attribute if a plugin sample is deprecated with a release of the IntelliJ Platform.</li>
+    </ul>
+  </li>
+  <li><code class="code highlight language-text">&lt;depends&gt;</code> Include at least one dependency with the module <code class="code highlight language-text">com.intellij.modules.platform</code> to indicate basic plugin compatibility with IntelliJ Platform-based products.
+Add <code class="code highlight language-text">&lt;depends&gt;</code> elements containing module FQNs as needed to describe more specialized <a href="/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html"><span>Compatibility with Multiple Products</span></a>, and any other <a href="/intellij/sdk/docs/basics/plugin_structure/plugin_dependencies.html"><span>Plugin Dependencies</span></a>.</li>
+  <li><code class="code highlight language-text">&lt;description&gt;</code> is a concise explanation of what is being demonstrated and how a user would access the functionality.
+If the plugin by default overrides IDE behavior (such as <code class="code highlight language-text">tree_structure_provider</code>) it must be noted in the description.</li>
+  <li><code class="code highlight language-text">&lt;change-notes&gt;</code> is an ordered list by version numbers with a brief description of changes for each version.</li>
+  <li><code class="code highlight language-text">&lt;vendor&gt;</code> Set the value to <code class="code highlight language-text">IntelliJ Platform SDK</code>.
+Set the attributes:
+    <ul>
+      <li><code class="code highlight language-text">email</code> omit this attribute.</li>
+      <li><code class="code highlight language-text">url</code> to the JetBrains plugin repository <code class="code highlight language-text">"https://plugins.jetbrains.com"</code></li>
+    </ul>
+  </li>
+  <li>The remainder of the <a href="/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html"><span>plugin configuration elements</span></a> should only appear if they are needed by a specific plugin.</li>
+</ul>
+
+<a name="testing" class="elem-anchor"></a>
+<h2>Testing<a href="#testing" class="anchor-link"><span></span></a></h2>
+<p>IntelliJ Platform SDK code samples should be built and tested against the <code class="code highlight language-text">since-build</code> version.</p>
+
+<p>Code samples should build cleanly, with no warnings or errors, and new code samples should pass all default IntelliJ IDEA code inspections.</p>
+
+<p>Testers should complete the following checklist. 
+Here the term “IDE” means the IntelliJ Platform-based IDE in which the plugin is designed to run:</p>
+<ul>
+  <li>The plugin should load in the IDE.</li>
+  <li>The correct information about the plugin should display in the <strong>Preferences | Plugins</strong> panel.</li>
+  <li>If applicable, the plugin UI such as tool windows, menu additions, etc. should display correctly.</li>
+  <li>The functionality of the plugin should be tested with a sample file.</li>
+  <li>If applicable, the plugin should pass unit tests.</li>
+</ul>
+
+
+                    <div class="navigation-links _bottom" data-swiftype-index="false">
+                        <a class="navigation-links__prev" href="/intro/sdk_style.html">Style Guide for SDK Documents</a>
+                        
+                    </div>
+                    <div class="last-modified">
+                        Last modified: 19 February 2020
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/intellij/sdk/docs/app/app.js" data-baseurl="/intellij/sdk/docs/"></script>
+
+</body>
+</html>
+
